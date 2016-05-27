@@ -1,15 +1,15 @@
 //
-//  ViewController.h
+//  Commons.m
 //  30DaysABSChallenge
 //
 //  Created by KRKT on 27/05/16.
 //  Copyright © 2016 tahavath. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#import "Commons.h"
 
-@interface ViewController : UIViewController
+NSString *const THVReminderTimeFormat = @"HH:mm";
 
+@implementation Commons
 
 @end
-

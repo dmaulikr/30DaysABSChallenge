@@ -1,4 +1,46 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model name="Test1.xcdatamodel" userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="1" systemVersion="11A491" minimumToolsVersion="Automatic" macOSVersion="Automatic" iOSVersion="Automatic">
-    <elements/>
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="10174" systemVersion="15F34" minimumToolsVersion="Automatic">
+    <entity name="Challenge" representedClassName="Challenge" parentEntity="ParentEntity" syncable="YES">
+        <attribute name="challengeId" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="numberOfDays" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <relationship name="daysList" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="ChallengeDay" syncable="YES"/>
+    </entity>
+    <entity name="ChallengeAttempt" representedClassName="ChallengeAttempt" parentEntity="ParentEntity" syncable="YES">
+        <attribute name="challengeAttemptId" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="currentDay" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="reminderActive" optional="YES" attributeType="Boolean" defaultValueString="YES" syncable="YES"/>
+        <attribute name="reminderTime" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="startDate" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="state" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <relationship name="challenge" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Challenge" syncable="YES"/>
+        <relationship name="challengeDayAttemptsList" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="ChallengeDayAttempt" syncable="YES"/>
+    </entity>
+    <entity name="ChallengeDay" representedClassName="ChallengeDay" parentEntity="ParentEntity" syncable="YES">
+        <attribute name="challengeDayId" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="dayNumber" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="type" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <relationship name="exerciseList" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="Exercise" syncable="YES"/>
+    </entity>
+    <entity name="ChallengeDayAttempt" representedClassName="ChallengeDayAttempt" parentEntity="ParentEntity" syncable="YES">
+        <attribute name="challengeDayAttemptDate" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="challengeDayAttemptId" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="completed" optional="YES" attributeType="Boolean" defaultValueString="NO" syncable="YES"/>
+        <attribute name="completionDate" optional="YES" attributeType="Date" syncable="YES"/>
+        <relationship name="challengeDay" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ChallengeDay" syncable="YES"/>
+    </entity>
+    <entity name="Exercise" representedClassName="Exercise" parentEntity="ParentEntity" syncable="YES">
+        <attribute name="amount" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="type" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+    </entity>
+    <entity name="ParentEntity" representedClassName="ParentEntity" isAbstract="YES" syncable="YES"/>
+    <elements>
+        <element name="Challenge" positionX="-63" positionY="-18" width="128" height="105"/>
+        <element name="ChallengeAttempt" positionX="-18" positionY="63" width="128" height="165"/>
+        <element name="ChallengeDay" positionX="-54" positionY="18" width="128" height="105"/>
+        <element name="ChallengeDayAttempt" positionX="0" positionY="117" width="128" height="120"/>
+        <element name="Exercise" positionX="-36" positionY="45" width="128" height="90"/>
+        <element name="ParentEntity" positionX="18" positionY="135" width="128" height="45"/>
+    </elements>
 </model>

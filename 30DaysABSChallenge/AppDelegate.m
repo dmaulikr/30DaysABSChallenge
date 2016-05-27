@@ -7,6 +7,7 @@
 //
 
 #import "AppDelegate.h"
+#import "DatabaseInitializer.h"
 
 @interface AppDelegate ()
 
@@ -16,6 +17,8 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+	NSLog(@"%@", [[self applicationDocumentsDirectory] absoluteString]);
+	[self managedObjectContext];
 	// Override point for customization after application launch.
 	return YES;
 }
