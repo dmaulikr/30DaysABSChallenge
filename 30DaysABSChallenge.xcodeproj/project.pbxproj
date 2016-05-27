@@ -28,6 +28,9 @@
 		8974E4381CF851C800CF51A5 /* ChallengeAttempt.m in Sources */ = {isa = PBXBuildFile; fileRef = 8974E42A1CF851C800CF51A5 /* ChallengeAttempt.m */; };
 		8974E4391CF851C800CF51A5 /* Exercise+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 8974E42C1CF851C800CF51A5 /* Exercise+CoreDataProperties.m */; };
 		8974E43A1CF851C800CF51A5 /* Exercise.m in Sources */ = {isa = PBXBuildFile; fileRef = 8974E42E1CF851C800CF51A5 /* Exercise.m */; };
+		8974E43D1CF85F3200CF51A5 /* AddChallengeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8974E43C1CF85F3200CF51A5 /* AddChallengeViewController.m */; };
+		897B80D81CF8794B0000A351 /* ChallengeDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 897B80D71CF8794B0000A351 /* ChallengeDetailsViewController.m */; };
+		897B80DB1CF87A3E0000A351 /* ChosenChallengeConfigurationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 897B80DA1CF87A3E0000A351 /* ChosenChallengeConfigurationViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -71,6 +74,12 @@
 		8974E42C1CF851C800CF51A5 /* Exercise+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Exercise+CoreDataProperties.m"; sourceTree = "<group>"; };
 		8974E42D1CF851C800CF51A5 /* Exercise.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Exercise.h; sourceTree = "<group>"; };
 		8974E42E1CF851C800CF51A5 /* Exercise.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Exercise.m; sourceTree = "<group>"; };
+		8974E43B1CF85F3200CF51A5 /* AddChallengeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddChallengeViewController.h; sourceTree = "<group>"; };
+		8974E43C1CF85F3200CF51A5 /* AddChallengeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddChallengeViewController.m; sourceTree = "<group>"; };
+		897B80D61CF8794B0000A351 /* ChallengeDetailsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChallengeDetailsViewController.h; sourceTree = "<group>"; };
+		897B80D71CF8794B0000A351 /* ChallengeDetailsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChallengeDetailsViewController.m; sourceTree = "<group>"; };
+		897B80D91CF87A3E0000A351 /* ChosenChallengeConfigurationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChosenChallengeConfigurationViewController.h; sourceTree = "<group>"; };
+		897B80DA1CF87A3E0000A351 /* ChosenChallengeConfigurationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChosenChallengeConfigurationViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -165,6 +174,12 @@
 			children = (
 				8974E40A1CF83E0A00CF51A5 /* MainViewController.h */,
 				8974E40B1CF83E0A00CF51A5 /* MainViewController.m */,
+				8974E43B1CF85F3200CF51A5 /* AddChallengeViewController.h */,
+				8974E43C1CF85F3200CF51A5 /* AddChallengeViewController.m */,
+				897B80D61CF8794B0000A351 /* ChallengeDetailsViewController.h */,
+				897B80D71CF8794B0000A351 /* ChallengeDetailsViewController.m */,
+				897B80D91CF87A3E0000A351 /* ChosenChallengeConfigurationViewController.h */,
+				897B80DA1CF87A3E0000A351 /* ChosenChallengeConfigurationViewController.m */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -250,16 +265,19 @@
 			files = (
 				8974E4301CF851C800CF51A5 /* ChallengeDayAttempt.m in Sources */,
 				8974E40C1CF83E0A00CF51A5 /* MainViewController.m in Sources */,
+				897B80D81CF8794B0000A351 /* ChallengeDetailsViewController.m in Sources */,
 				8974E4311CF851C800CF51A5 /* ChallengeDay+CoreDataProperties.m in Sources */,
 				8974E3DA1CF8375200CF51A5 /* _0DaysABSChallenge.xcdatamodeld in Sources */,
 				8974E4341CF851C800CF51A5 /* ParentEntity.m in Sources */,
 				8974E3E91CF83B7800CF51A5 /* Commons.m in Sources */,
 				8974E3D11CF8375200CF51A5 /* AppDelegate.m in Sources */,
 				8974E43A1CF851C800CF51A5 /* Exercise.m in Sources */,
+				897B80DB1CF87A3E0000A351 /* ChosenChallengeConfigurationViewController.m in Sources */,
 				8974E4331CF851C800CF51A5 /* ParentEntity+CoreDataProperties.m in Sources */,
 				8974E3CE1CF8375200CF51A5 /* main.m in Sources */,
 				8974E42F1CF851C800CF51A5 /* ChallengeDayAttempt+CoreDataProperties.m in Sources */,
 				8974E4321CF851C800CF51A5 /* ChallengeDay.m in Sources */,
+				8974E43D1CF85F3200CF51A5 /* AddChallengeViewController.m in Sources */,
 				8974E4391CF851C800CF51A5 /* Exercise+CoreDataProperties.m in Sources */,
 				8974E4371CF851C800CF51A5 /* ChallengeAttempt+CoreDataProperties.m in Sources */,
 				8974E4351CF851C800CF51A5 /* Challenge+CoreDataProperties.m in Sources */,

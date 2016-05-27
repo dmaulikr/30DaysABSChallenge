@@ -10,6 +10,6 @@
 
 @interface DatabaseInitializer : NSObject
 
-+ (BOOL)initializeDatabaseWithMOC:(NSManagedObjectContext *)moc;
++ (void)initializeDatabaseWithMOC:(NSManagedObjectContext *)moc;
 
 @end

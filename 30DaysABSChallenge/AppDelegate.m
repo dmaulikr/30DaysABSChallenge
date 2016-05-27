@@ -17,9 +17,12 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-	NSLog(@"%@", [[self applicationDocumentsDirectory] absoluteString]);
-	[self managedObjectContext];
-	// Override point for customization after application launch.
+	
+	NSURL *storeURL = [[self applicationDocumentsDirectory] URLByAppendingPathComponent:@"_0DaysABSChallenge.sqlite"];
+	if (![[NSFileManager defaultManager] fileExistsAtPath:[storeURL path]]) {
+		[DatabaseInitializer initializeDatabaseWithMOC:[self managedObjectContext]];
+	}
+	
 	return YES;
 }
 
@@ -92,6 +95,7 @@
         NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
         abort();
     }
+	
     
     return _persistentStoreCoordinator;
 }

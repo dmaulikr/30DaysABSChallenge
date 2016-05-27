@@ -1,11 +1,139 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="gFY-84-9mr">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
     </dependencies>
     <scenes>
-        <!--Main View Controller-->
+        <!--Add Challenge-->
+        <scene sceneID="b2Q-50-Cz9">
+            <objects>
+                <viewController title="Add Challenge" id="BZw-CS-MJu" customClass="AddChallengeViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="XLP-Vl-ceB"/>
+                        <viewControllerLayoutGuide type="bottom" id="5Uy-Ll-JPa"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="iLf-QY-wlC">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="7Mv-1f-aRC">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="BZw-CS-MJu" id="Jbl-BU-RTU"/>
+                                    <outlet property="delegate" destination="BZw-CS-MJu" id="4H7-G0-RKe"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="7Mv-1f-aRC" secondAttribute="trailing" id="4nN-n3-XH5"/>
+                            <constraint firstItem="7Mv-1f-aRC" firstAttribute="leading" secondItem="iLf-QY-wlC" secondAttribute="leading" id="GDY-Zq-c3D"/>
+                            <constraint firstItem="7Mv-1f-aRC" firstAttribute="top" secondItem="iLf-QY-wlC" secondAttribute="top" id="WnV-EC-kvN"/>
+                            <constraint firstAttribute="bottom" secondItem="7Mv-1f-aRC" secondAttribute="bottom" id="i8F-Vw-dKy"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="Add Challenge" id="Ih0-6B-xk2">
+                        <barButtonItem key="rightBarButtonItem" enabled="NO" title="Choose" id="O7n-nd-2A3">
+                            <connections>
+                                <action selector="chooseButtonTapped:" destination="BZw-CS-MJu" id="zci-3J-FXK"/>
+                                <segue destination="dty-zy-K0P" kind="show" identifier="chosenScreenFromChallengeList" id="2cP-nh-ksI"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="challengeTableView" destination="7Mv-1f-aRC" id="dy0-wH-9j8"/>
+                        <outlet property="chooseButton" destination="O7n-nd-2A3" id="GR7-9G-YoD"/>
+                        <segue destination="z4Y-Et-pt5" kind="show" identifier="showChallengeDetails" id="zdc-tp-ihQ"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ghi-jN-upL" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2924" y="1139"/>
+        </scene>
+        <!--Challange Details-->
+        <scene sceneID="uhE-Tm-VgO">
+            <objects>
+                <viewController title="Challange Details" id="z4Y-Et-pt5" customClass="ChallengeDetailsViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="IBS-ii-yjn"/>
+                        <viewControllerLayoutGuide type="bottom" id="JeS-jn-c7n"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="5q8-qM-Z8N">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="gEi-3s-TWf">
+                                <rect key="frame" x="0.0" y="64" width="600" height="536"/>
+                                <color key="backgroundColor" red="1" green="0.97552885519999999" blue="0.2435400134" alpha="1" colorSpace="calibratedRGB"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="b1C-1t-L30">
+                                    <size key="itemSize" width="50" height="50"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="vr1-Pv-yOq">
+                                        <rect key="frame" x="0.0" y="64" width="50" height="50"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                            <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        </view>
+                                    </collectionViewCell>
+                                </cells>
+                            </collectionView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="gEi-3s-TWf" secondAttribute="trailing" id="4GY-FC-gIx"/>
+                            <constraint firstItem="gEi-3s-TWf" firstAttribute="top" secondItem="IBS-ii-yjn" secondAttribute="bottom" id="m8N-mG-eJw"/>
+                            <constraint firstItem="gEi-3s-TWf" firstAttribute="leading" secondItem="5q8-qM-Z8N" secondAttribute="leading" id="oHu-Kj-h9m"/>
+                            <constraint firstAttribute="bottom" secondItem="gEi-3s-TWf" secondAttribute="bottom" id="xeO-9G-wUt"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="Challenge Details" id="ymM-JB-nMn">
+                        <barButtonItem key="rightBarButtonItem" title="Choose" id="dMQ-wp-8hD">
+                            <connections>
+                                <segue destination="dty-zy-K0P" kind="show" identifier="chosenChallangeScreenFromDetails" id="N6b-1z-4N0"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Tc2-NJ-NHE" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3739" y="1690"/>
+        </scene>
+        <!--Title-->
+        <scene sceneID="gxH-GT-aGY">
+            <objects>
+                <viewController id="dty-zy-K0P" customClass="ChosenChallengeConfigurationViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="bsR-ht-PBb"/>
+                        <viewControllerLayoutGuide type="bottom" id="HaG-NN-5xG"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="E2P-Nx-0Ly">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Title" id="ype-4t-PrG">
+                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="NaG-1p-Bvf">
+                            <connections>
+                                <action selector="saveButtonTapped:" destination="dty-zy-K0P" id="uO6-PP-kgN"/>
+                                <segue destination="wbw-Mf-txP" kind="unwind" unwindAction="prepareForUnwind:" id="wfo-pj-vqL"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="xEd-Ze-NYi" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="wbw-Mf-txP" userLabel="Exit" sceneMemberID="exit"/>
+            </objects>
+            <point key="canvasLocation" x="3739" y="892"/>
+        </scene>
+        <!--My Challenges-->
         <scene sceneID="tne-QT-ifu">
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="MainViewController" sceneMemberID="viewController">
@@ -18,9 +146,56 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
+                    <navigationItem key="navigationItem" title="My Challenges" id="kWJ-73-xK4">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="fB6-DW-3Ul">
+                            <connections>
+                                <segue destination="Wuh-f3-BE7" kind="presentation" modalPresentationStyle="fullScreen" modalTransitionStyle="coverVertical" id="Kf5-F9-Rxv"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="1358" y="1139"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="9pf-jg-hRG">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="gFY-84-9mr" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="Vdp-pW-lRO">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="eMi-lZ-Zou"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="5pn-I1-Lxq" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="613" y="1139"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="Na1-ow-mou">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Wuh-f3-BE7" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="9Mf-i1-Nwg">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="BZw-CS-MJu" kind="relationship" relationship="rootViewController" id="QOC-KI-s26"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="MGf-SV-eYD" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2112" y="1139"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="N6b-1z-4N0"/>
+    </inferredMetricsTieBreakers>
 </document>
