@@ -9,7 +9,19 @@
 #import <Foundation/Foundation.h>
 
 extern NSString *const THVReminderTimeFormat;
+extern NSString *const THVChallengeDayDateFormat;
+
+extern CGFloat const THVCompletedColorR;
+extern CGFloat const THVCompletedColorG;
+extern CGFloat const THVCompletedColorB;
+extern CGFloat const THVCompletedColorA;
+extern CGFloat const THVDelayedColorR;
+extern CGFloat const THVDelayedColorG;
+extern CGFloat const THVDelayedColorB;
+extern CGFloat const THVDelayedColorA;
 
 @interface Commons : NSObject
+
++ (NSDateFormatter *)challengeDayDateFormatter;
 
 @end

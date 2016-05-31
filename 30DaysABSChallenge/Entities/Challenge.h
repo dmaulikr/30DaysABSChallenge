@@ -8,12 +8,13 @@
 
 #import <Foundation/Foundation.h>
 #import "ParentEntity.h"
+#import "ChallengeDataProtocol.h"
 
 @class ChallengeDay;
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface Challenge : ParentEntity
+@interface Challenge : ParentEntity <ChallengeDataProtocol>
 
 // Insert code here to declare functionality of your managed object subclass
 

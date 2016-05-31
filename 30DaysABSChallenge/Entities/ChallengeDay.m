@@ -11,6 +11,17 @@
 
 @implementation ChallengeDay
 
-// Insert code here to add functionality to your managed object subclass
+#pragma mark - ChallengeDayDataProtocol methods
+- (NSNumber *)challengeDayNumber {
+	return [self dayNumber];
+}
+
+- (NSString *)dayTypeName {
+	return [[self type] integerValue] == THVChallengeDayTypeWorkout ? @"Workout" : @"Rest";
+}
+
+- (NSArray <Exercise *> *)exerciseListOfDay {
+	return [[self exerciseList] array];
+}
 
 @end

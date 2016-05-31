@@ -17,8 +17,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 	
-	self.navigationItem.title = self.selectedChallenge.name;
-	self.title = self.selectedChallenge.name;
+	self.navigationItem.title = [self.selectedChallenge challengeName];
+	self.title = [self.selectedChallenge challengeName];
 }
 
 - (void)didReceiveMemoryWarning {

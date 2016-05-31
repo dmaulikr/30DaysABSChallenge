@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "ParentEntity.h"
+#import "ChallengeDayDataProtocol.h"
 
 typedef enum {
 	THVChallengeDayTypeWorkout	= 1,
@@ -18,7 +19,7 @@ typedef enum {
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface ChallengeDay : ParentEntity
+@interface ChallengeDay : ParentEntity <ChallengeDayDataProtocol>
 
 // Insert code here to declare functionality of your managed object subclass
 

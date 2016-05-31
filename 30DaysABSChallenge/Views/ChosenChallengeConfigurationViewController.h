@@ -7,11 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "Challenge.h"
+#import "ChallengeDataProtocol.h"
 
 @interface ChosenChallengeConfigurationViewController : UIViewController
 
-@property (nonatomic) Challenge *selectedChallenge;
+@property (nonatomic) id<ChallengeDataProtocol> selectedChallenge;
 - (IBAction)saveButtonTapped:(id)sender;
 
 @end

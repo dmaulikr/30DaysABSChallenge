@@ -7,10 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "Challenge.h"
+#import "ChallengeDataProtocol.h"
 
-@interface ChallengeDetailsViewController : UIViewController
+@interface ChallengeDetailsViewController : UIViewController <UICollectionViewDelegate, UICollectionViewDataSource>
 
-@property (nonatomic) Challenge *selectedChallenge;
+@property (nonatomic) id<ChallengeDataProtocol> selectedChallenge;
+@property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
 
 @end

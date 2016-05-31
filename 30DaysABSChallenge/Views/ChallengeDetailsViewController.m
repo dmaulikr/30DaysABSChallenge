@@ -8,8 +8,17 @@
 
 #import "ChallengeDetailsViewController.h"
 #import "ChosenChallengeConfigurationViewController.h"
+#import "ChallengeDetailsCollectionViewCell.h"
+#import "ChallengeDayDataProtocol.h"
+#import "ChallengeDetailsCollectionHeaderView.h"
+#import "Commons.h"
+#import "ChallengeDayDetailViewController.h"
 
 NSString *const THVGoToChosenChallengeConfigurationScreen = @"chosenChallangeScreenFromDetails";
+NSString *const THVShowChallengeDayDetails = @"shoChallengeDayDetails";
+
+NSString *const THVChallengeDetailsCollectionViewCellId = @"THVChallengeDetailsCollectionViewCellId";
+NSString *const THVChallengeDetailsCollectionViewHeaderId = @"THVChallengeDetailsCollectionViewHeaderId";
 
 @interface ChallengeDetailsViewController ()
 
@@ -19,8 +28,6 @@ NSString *const THVGoToChosenChallengeConfigurationScreen = @"chosenChallangeScr
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-	
-	
 }
 
 - (void)didReceiveMemoryWarning {
@@ -33,7 +40,81 @@ NSString *const THVGoToChosenChallengeConfigurationScreen = @"chosenChallangeScr
 	if ([segue.identifier isEqualToString:THVGoToChosenChallengeConfigurationScreen]) {
 		ChosenChallengeConfigurationViewController *destinationVC = [segue destinationViewController];
 		destinationVC.selectedChallenge = self.selectedChallenge;
+	} else if ([segue.identifier isEqualToString:THVShowChallengeDayDetails]) {
+		ChallengeDayDetailViewController *destinationVC = [segue destinationViewController];
+		if ([sender conformsToProtocol:@protocol(ChallengeDayDataProtocol)]) {
+			destinationVC.selectedChallangeDay = sender;
+		}
+		destinationVC.challangeName = [self.selectedChallenge challengeName];
 	}
+}
+
+#pragma mark - collection view helper methods
+- (void)configureCell:(ChallengeDetailsCollectionViewCell *)cell forIndexPath:(NSIndexPath *)indexPath {
+	
+	id<ChallengeDayDataProtocol> dayForCell = [[self.selectedChallenge daysListOfChallenge] objectAtIndex:indexPath.item];
+	
+	cell.dayNumberLabel.text = [NSString stringWithFormat:@"Day %@", [dayForCell challengeDayNumber]];
+	cell.dayTypeLabel.text = [dayForCell dayTypeName];
+	if ([dayForCell respondsToSelector:@selector(dayAttemptDate)]) {
+		cell.dayDateLabel.text = [[Commons challengeDayDateFormatter] stringFromDate:[dayForCell dayAttemptDate]];
+	} else {
+		[cell.dayDateLabel removeFromSuperview];
+	}
+	
+	if ([dayForCell respondsToSelector:@selector(isCompleted)]) {
+		UIColor *toBeDoneColor = [UIColor whiteColor];
+		UIColor *completedColor = [UIColor colorWithRed:THVCompletedColorR green:THVCompletedColorG blue:THVCompletedColorB alpha:THVCompletedColorA];
+		UIColor *delayedColor = [UIColor colorWithRed:THVDelayedColorR green:THVDelayedColorG blue:THVDelayedColorB alpha:THVDelayedColorA];
+		
+		if ([dayForCell isCompleted]) {
+			cell.internalCellView.backgroundColor = completedColor;
+		} else if ([dayForCell respondsToSelector:@selector(dayAttemptDate)] &&
+				   [[NSDate date] timeIntervalSinceDate:[dayForCell dayAttemptDate]] > (12. * 60. * 60.)) {
+			cell.internalCellView.backgroundColor = delayedColor;
+		} else {
+			cell.internalCellView.backgroundColor = toBeDoneColor;
+		}
+		
+		
+	}
+}
+
+#pragma mark - UICollectionViewDataSource metods
+- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
+	return [[self.selectedChallenge daysListOfChallenge] count];
+}
+
+- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
+	ChallengeDetailsCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:THVChallengeDetailsCollectionViewCellId forIndexPath:indexPath];
+	
+	[self configureCell:cell forIndexPath:indexPath];
+	return cell;
+}
+
+- (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath {
+	
+	ChallengeDetailsCollectionHeaderView *headerView = nil;
+	
+	if (kind == UICollectionElementKindSectionHeader) {
+		headerView = [collectionView dequeueReusableSupplementaryViewOfKind:kind withReuseIdentifier:THVChallengeDetailsCollectionViewHeaderId forIndexPath:indexPath];
+		headerView.headerLabel.text = [self.selectedChallenge challengeName];
+		if ([self.selectedChallenge respondsToSelector:@selector(challengeStartDate)]) {
+			headerView.additionalInfoLabel.text = [[Commons challengeDayDateFormatter] stringFromDate:[self.selectedChallenge challengeStartDate]];
+		} else {
+			[headerView.additionalInfoLabel removeFromSuperview];
+			headerView.headerLabelCenterYAlignmentConstraint.constant = 0.0;
+		}
+	}
+	
+	return headerView;
+}
+
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
+	
+	id<ChallengeDayDataProtocol> dayForCell = [[self.selectedChallenge daysListOfChallenge] objectAtIndex:indexPath.item];
+	
+	[self performSegueWithIdentifier:THVShowChallengeDayDetails sender:dayForCell];
 }
 
 @end

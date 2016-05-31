@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "ParentEntity.h"
+#import "ChallengeDataProtocol.h"
 
 typedef enum {
 	THVChallengeAttemptStateActive		= 1,
@@ -18,7 +19,7 @@ typedef enum {
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface ChallengeAttempt : ParentEntity
+@interface ChallengeAttempt : ParentEntity <ChallengeDataProtocol>
 
 // Insert code here to declare functionality of your managed object subclass
 

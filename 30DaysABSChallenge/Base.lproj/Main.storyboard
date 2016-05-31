@@ -35,6 +35,7 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Add Challenge" id="Ih0-6B-xk2">
+                        <barButtonItem key="backBarButtonItem" title=" " id="IFZ-X6-X1S"/>
                         <barButtonItem key="rightBarButtonItem" enabled="NO" title="Choose" id="O7n-nd-2A3">
                             <connections>
                                 <action selector="chooseButtonTapped:" destination="BZw-CS-MJu" id="zci-3J-FXK"/>
@@ -52,10 +53,154 @@
             </objects>
             <point key="canvasLocation" x="2924" y="1139"/>
         </scene>
+        <!--Title-->
+        <scene sceneID="fhk-64-IkT">
+            <objects>
+                <viewController id="fV2-M7-ZQb" customClass="ChallengeDayDetailViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="yCD-sA-PJZ"/>
+                        <viewControllerLayoutGuide type="bottom" id="GA8-H9-w96"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="5sd-4f-bbL">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Day ##" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="v0O-Ng-Inr">
+                                <rect key="frame" x="258" y="72" width="85" height="33"/>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rfd-A8-xHT">
+                                <rect key="frame" x="194" y="171" width="213" height="99"/>
+                                <string key="text">No need to hustle.
+
+Rest in peace!</string>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="80" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Qnx-wP-fSR">
+                                <rect key="frame" x="20" y="113" width="560" height="435"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="challengeDayDetailsTableViewCellId" rowHeight="80" id="fLZ-Im-YTy" customClass="ChallengeDayDetailsTableViewCell">
+                                        <rect key="frame" x="0.0" y="28" width="560" height="80"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="fLZ-Im-YTy" id="x10-rW-osy">
+                                            <rect key="frame" x="0.0" y="0.0" width="560" height="80"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Exercise name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OhT-Im-1BG">
+                                                    <rect key="frame" x="8" y="24" width="170" height="33"/>
+                                                    <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ffo-ez-wBZ">
+                                                    <rect key="frame" x="488" y="24" width="64" height="33"/>
+                                                    <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EX5-N4-xMG" userLabel="timerView">
+                                                    <rect key="frame" x="0.0" y="9" width="560" height="71"/>
+                                                    <subviews>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="###" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="shG-ZC-Tj7">
+                                                            <rect key="frame" x="241" y="12" width="78" height="48"/>
+                                                            <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="40"/>
+                                                            <color key="textColor" red="0.49105737346365774" green="0.63313972513089012" blue="0.29507506122530491" alpha="1" colorSpace="calibratedRGB"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                    </subviews>
+                                                    <color key="backgroundColor" red="0.83246073298429324" green="0.79896512520168095" blue="0.60233540835512378" alpha="0.5" colorSpace="calibratedRGB"/>
+                                                    <constraints>
+                                                        <constraint firstItem="shG-ZC-Tj7" firstAttribute="centerY" secondItem="EX5-N4-xMG" secondAttribute="centerY" id="Rdz-21-86E"/>
+                                                        <constraint firstItem="shG-ZC-Tj7" firstAttribute="centerX" secondItem="EX5-N4-xMG" secondAttribute="centerX" id="fTT-KN-Q4K"/>
+                                                    </constraints>
+                                                </view>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="EX5-N4-xMG" firstAttribute="top" secondItem="x10-rW-osy" secondAttribute="top" constant="9" id="4N8-d6-cp6"/>
+                                                <constraint firstItem="OhT-Im-1BG" firstAttribute="leading" secondItem="x10-rW-osy" secondAttribute="leading" constant="8" id="5Gd-D2-Rp5"/>
+                                                <constraint firstAttribute="trailing" secondItem="Ffo-ez-wBZ" secondAttribute="trailing" constant="8" id="Dx4-r4-2Pk"/>
+                                                <constraint firstItem="OhT-Im-1BG" firstAttribute="centerY" secondItem="x10-rW-osy" secondAttribute="centerY" id="RC1-DB-Jea"/>
+                                                <constraint firstAttribute="trailing" secondItem="EX5-N4-xMG" secondAttribute="trailing" id="XfW-BO-4ca"/>
+                                                <constraint firstItem="EX5-N4-xMG" firstAttribute="leading" secondItem="x10-rW-osy" secondAttribute="leading" id="u3p-Q3-1Hf"/>
+                                                <constraint firstItem="Ffo-ez-wBZ" firstAttribute="centerY" secondItem="x10-rW-osy" secondAttribute="centerY" id="xFg-Rr-fUH"/>
+                                                <constraint firstAttribute="bottom" secondItem="EX5-N4-xMG" secondAttribute="bottom" id="yU3-3p-rff"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="counterLabel" destination="shG-ZC-Tj7" id="DZl-dF-Yq4"/>
+                                            <outlet property="exerciseAmountLabel" destination="Ffo-ez-wBZ" id="g1V-ey-VTc"/>
+                                            <outlet property="exerciseNameLabel" destination="OhT-Im-1BG" id="Aj0-rp-BKL"/>
+                                            <outlet property="timerView" destination="EX5-N4-xMG" id="OoB-jo-5XO"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="fV2-M7-ZQb" id="zyb-v3-9jN"/>
+                                    <outlet property="delegate" destination="fV2-M7-ZQb" id="hAd-sZ-gjD"/>
+                                </connections>
+                            </tableView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Zxv-Ed-B0j" userLabel="mark as completed view">
+                                <rect key="frame" x="0.0" y="556" width="600" height="44"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ubS-eq-QwH">
+                                        <rect key="frame" x="210" y="3" width="180" height="38"/>
+                                        <fontDescription key="fontDescription" style="UICTFontTextStyleTitle2"/>
+                                        <state key="normal" title="Mark as completed">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="markAsCompletedButtonTapped:" destination="fV2-M7-ZQb" eventType="touchUpInside" id="KV2-MQ-ry1"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="27z-2s-jBi"/>
+                                    <constraint firstItem="ubS-eq-QwH" firstAttribute="centerX" secondItem="Zxv-Ed-B0j" secondAttribute="centerX" id="IjE-6i-Xl8"/>
+                                    <constraint firstItem="ubS-eq-QwH" firstAttribute="centerY" secondItem="Zxv-Ed-B0j" secondAttribute="centerY" id="Pma-Jd-zSB"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="rfd-A8-xHT" firstAttribute="top" secondItem="v0O-Ng-Inr" secondAttribute="bottom" constant="66" id="5Ml-dC-nkb"/>
+                            <constraint firstAttribute="trailing" secondItem="Zxv-Ed-B0j" secondAttribute="trailing" id="5Vz-to-PvR"/>
+                            <constraint firstItem="Zxv-Ed-B0j" firstAttribute="top" secondItem="Qnx-wP-fSR" secondAttribute="bottom" constant="8" id="7PD-1O-HNm"/>
+                            <constraint firstItem="v0O-Ng-Inr" firstAttribute="top" secondItem="yCD-sA-PJZ" secondAttribute="bottom" constant="8" id="ENp-b1-eap"/>
+                            <constraint firstAttribute="trailing" secondItem="Qnx-wP-fSR" secondAttribute="trailing" constant="20" symbolic="YES" id="HF2-qN-Fhk"/>
+                            <constraint firstItem="Qnx-wP-fSR" firstAttribute="top" secondItem="v0O-Ng-Inr" secondAttribute="bottom" constant="8" id="PQ6-kS-Ajd"/>
+                            <constraint firstItem="Zxv-Ed-B0j" firstAttribute="leading" secondItem="5sd-4f-bbL" secondAttribute="leading" id="Ywe-ck-l9b"/>
+                            <constraint firstItem="Qnx-wP-fSR" firstAttribute="leading" secondItem="5sd-4f-bbL" secondAttribute="leading" constant="20" symbolic="YES" id="ZvE-mS-ghn"/>
+                            <constraint firstItem="rfd-A8-xHT" firstAttribute="centerX" secondItem="5sd-4f-bbL" secondAttribute="centerX" id="ne5-uA-otH"/>
+                            <constraint firstItem="GA8-H9-w96" firstAttribute="top" secondItem="Zxv-Ed-B0j" secondAttribute="bottom" id="rX0-TX-OUI"/>
+                            <constraint firstItem="v0O-Ng-Inr" firstAttribute="centerX" secondItem="5sd-4f-bbL" secondAttribute="centerX" id="t60-Dd-dDl"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="Title" id="jvZ-DE-TMF">
+                        <barButtonItem key="backBarButtonItem" title=" " id="LuB-Xs-vrz"/>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="dayNumberLabel" destination="v0O-Ng-Inr" id="huC-RZ-06k"/>
+                        <outlet property="markAsCompletedButton" destination="ubS-eq-QwH" id="o50-fa-KSx"/>
+                        <outlet property="markAsCompletedView" destination="Zxv-Ed-B0j" id="3ga-Fw-a1n"/>
+                        <outlet property="markAsCompletedViewHeightConstraint" destination="27z-2s-jBi" id="aA1-jZ-rV8"/>
+                        <outlet property="placeholderLabel" destination="rfd-A8-xHT" id="9eh-1u-0BY"/>
+                        <outlet property="tableView" destination="Qnx-wP-fSR" id="k5i-JI-gX0"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="FKP-Xz-hqT" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3739" y="2405"/>
+        </scene>
         <!--Challange Details-->
         <scene sceneID="uhE-Tm-VgO">
             <objects>
-                <viewController title="Challange Details" id="z4Y-Et-pt5" customClass="ChallengeDetailsViewController" sceneMemberID="viewController">
+                <viewController title="Challange Details" automaticallyAdjustsScrollViewInsets="NO" id="z4Y-Et-pt5" customClass="ChallengeDetailsViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="IBS-ii-yjn"/>
                         <viewControllerLayoutGuide type="bottom" id="JeS-jn-c7n"/>
@@ -66,24 +211,104 @@
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="gEi-3s-TWf">
                                 <rect key="frame" x="0.0" y="64" width="600" height="536"/>
-                                <color key="backgroundColor" red="1" green="0.97552885519999999" blue="0.2435400134" alpha="1" colorSpace="calibratedRGB"/>
-                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="b1C-1t-L30">
-                                    <size key="itemSize" width="50" height="50"/>
-                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="6" minimumInteritemSpacing="6" id="b1C-1t-L30">
+                                    <size key="itemSize" width="95" height="95"/>
+                                    <size key="headerReferenceSize" width="50" height="50"/>
                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                    <inset key="sectionInset" minX="6" minY="6" maxX="6" maxY="6"/>
                                 </collectionViewFlowLayout>
                                 <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="vr1-Pv-yOq">
-                                        <rect key="frame" x="0.0" y="64" width="50" height="50"/>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" restorationIdentifier="THVChallengeDetailsCollectionViewCellId" reuseIdentifier="THVChallengeDetailsCollectionViewCellId" id="vr1-Pv-yOq" customClass="ChallengeDetailsCollectionViewCell">
+                                        <rect key="frame" x="6" y="56" width="95" height="95"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                            <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="95" height="95"/>
                                             <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zEU-jq-KXu" userLabel="internal cell view">
+                                                    <rect key="frame" x="2" y="2" width="91" height="91"/>
+                                                    <subviews>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Work/Rest" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FuK-L3-h1F" userLabel="day type">
+                                                            <rect key="frame" x="-3" y="39" width="98" height="26"/>
+                                                            <fontDescription key="fontDescription" style="UICTFontTextStyleTitle2"/>
+                                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Day ##" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="evc-A5-gD0" userLabel="day number">
+                                                            <rect key="frame" x="3" y="8" width="85" height="33"/>
+                                                            <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
+                                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="dd MMM" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XiU-Bq-oij">
+                                                            <rect key="frame" x="12" y="64" width="68" height="21"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                    </subviews>
+                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <constraints>
+                                                        <constraint firstItem="XiU-Bq-oij" firstAttribute="centerX" secondItem="zEU-jq-KXu" secondAttribute="centerX" id="0aa-AS-WSD"/>
+                                                        <constraint firstItem="evc-A5-gD0" firstAttribute="top" secondItem="zEU-jq-KXu" secondAttribute="top" constant="8" id="4Sd-FQ-ATc"/>
+                                                        <constraint firstItem="evc-A5-gD0" firstAttribute="centerX" secondItem="zEU-jq-KXu" secondAttribute="centerX" id="Bzb-ql-Cih"/>
+                                                        <constraint firstItem="FuK-L3-h1F" firstAttribute="centerX" secondItem="zEU-jq-KXu" secondAttribute="centerX" id="JTq-Km-lDV"/>
+                                                        <constraint firstAttribute="bottom" secondItem="XiU-Bq-oij" secondAttribute="bottom" constant="6" id="SvX-80-R4y"/>
+                                                        <constraint firstItem="FuK-L3-h1F" firstAttribute="centerY" secondItem="zEU-jq-KXu" secondAttribute="centerY" constant="6" id="bOY-PN-qj9"/>
+                                                    </constraints>
+                                                </view>
+                                            </subviews>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         </view>
+                                        <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstItem="zEU-jq-KXu" firstAttribute="leading" secondItem="vr1-Pv-yOq" secondAttribute="leading" constant="2" id="1mK-I3-ffj"/>
+                                            <constraint firstAttribute="bottom" secondItem="zEU-jq-KXu" secondAttribute="bottom" constant="2" id="6jq-Ox-7FC"/>
+                                            <constraint firstAttribute="trailing" secondItem="zEU-jq-KXu" secondAttribute="trailing" constant="2" id="Eag-xd-VSV"/>
+                                            <constraint firstItem="zEU-jq-KXu" firstAttribute="top" secondItem="vr1-Pv-yOq" secondAttribute="top" constant="2" id="eb2-U0-Xsu"/>
+                                        </constraints>
+                                        <connections>
+                                            <outlet property="dayDateLabel" destination="XiU-Bq-oij" id="QG4-26-OJk"/>
+                                            <outlet property="dayNumberLabel" destination="evc-A5-gD0" id="Nra-DP-Kbb"/>
+                                            <outlet property="dayTypeLabel" destination="FuK-L3-h1F" id="l3W-A3-dpL"/>
+                                            <outlet property="internalCellView" destination="zEU-jq-KXu" id="xzA-7a-MY8"/>
+                                        </connections>
                                     </collectionViewCell>
                                 </cells>
+                                <collectionReusableView key="sectionHeaderView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="THVChallengeDetailsCollectionViewHeaderId" id="J3Q-uw-JoJ" customClass="ChallengeDetailsCollectionHeaderView">
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="50"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="header label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XDt-9i-JZQ" userLabel="collection header label">
+                                            <rect key="frame" x="228" y="-2" width="145" height="34"/>
+                                            <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="start date" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mBs-GR-Qmj">
+                                            <rect key="frame" x="263" y="25" width="75" height="21"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="mBs-GR-Qmj" firstAttribute="centerX" secondItem="J3Q-uw-JoJ" secondAttribute="centerX" id="B7u-D7-7uI"/>
+                                        <constraint firstItem="XDt-9i-JZQ" firstAttribute="centerX" secondItem="J3Q-uw-JoJ" secondAttribute="centerX" id="NB2-Wx-I1N"/>
+                                        <constraint firstItem="mBs-GR-Qmj" firstAttribute="centerY" secondItem="J3Q-uw-JoJ" secondAttribute="centerY" constant="10" id="O5s-eQ-rig"/>
+                                        <constraint firstItem="XDt-9i-JZQ" firstAttribute="centerY" secondItem="J3Q-uw-JoJ" secondAttribute="centerY" constant="-10" id="Phb-p4-WPH"/>
+                                    </constraints>
+                                    <connections>
+                                        <outlet property="additionalInfoLabel" destination="mBs-GR-Qmj" id="tvT-8k-1v4"/>
+                                        <outlet property="headerLabel" destination="XDt-9i-JZQ" id="z09-Sk-nwk"/>
+                                        <outlet property="headerLabelCenterYAlignmentConstraint" destination="Phb-p4-WPH" id="pGf-LQ-6bM"/>
+                                    </connections>
+                                </collectionReusableView>
+                                <connections>
+                                    <outlet property="dataSource" destination="z4Y-Et-pt5" id="yvZ-0U-2pi"/>
+                                    <outlet property="delegate" destination="z4Y-Et-pt5" id="rwi-WU-SeM"/>
+                                </connections>
                             </collectionView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -95,12 +320,17 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Challenge Details" id="ymM-JB-nMn">
+                        <barButtonItem key="backBarButtonItem" title=" " id="RcG-F0-Ipu"/>
                         <barButtonItem key="rightBarButtonItem" title="Choose" id="dMQ-wp-8hD">
                             <connections>
                                 <segue destination="dty-zy-K0P" kind="show" identifier="chosenChallangeScreenFromDetails" id="N6b-1z-4N0"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="collectionView" destination="gEi-3s-TWf" id="UYT-Jh-uT2"/>
+                        <segue destination="fV2-M7-ZQb" kind="show" identifier="shoChallengeDayDetails" id="Xbt-qx-JSo"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Tc2-NJ-NHE" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -120,6 +350,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" title="Title" id="ype-4t-PrG">
+                        <barButtonItem key="backBarButtonItem" title=" " id="AIj-Rw-pDj"/>
                         <barButtonItem key="rightBarButtonItem" systemItem="save" id="NaG-1p-Bvf">
                             <connections>
                                 <action selector="saveButtonTapped:" destination="dty-zy-K0P" id="uO6-PP-kgN"/>

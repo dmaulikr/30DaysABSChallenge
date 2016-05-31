@@ -12,6 +12,29 @@
 
 @implementation ChallengeAttempt
 
-// Insert code here to add functionality to your managed object subclass
+#pragma mark - ChallengeDataProtocol methods
+- (NSString *)challengeName {
+	return [[self challenge] name];
+}
+
+- (NSNumber *)numberOfDaysInChallenge {
+	return [[self challenge] numberOfDays];
+}
+
+- (NSArray <ChallengeDayDataProtocol> *)daysListOfChallenge {
+	return (NSArray <ChallengeDayDataProtocol> *)[[self challengeDayAttemptsList] array];
+}
+
+- (NSNumber *)currentDayNumber {
+	return [self currentDay];
+}
+
+- (BOOL)isCompleted {
+	return [[self state] integerValue] == THVChallengeAttemptStateCompleted;
+}
+
+- (NSDate *)challengeStartDate {
+	return [self startDate];
+}
 
 @end

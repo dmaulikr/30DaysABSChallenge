@@ -9,6 +9,7 @@
 #import "AddChallengeViewController.h"
 #import "ChallengeDetailsViewController.h"
 #import "ChosenChallengeConfigurationViewController.h"
+#import "ChallengeDataProtocol.h"
 #import "Challenge.h"
 
 NSString *const THVAddChallengeTableViewCellId = @"THVAddChallengeTableViewCellId";
@@ -39,7 +40,7 @@ NSString *const THVShowChosenChallengeDetailsSegueName = @"chosenScreenFromChall
 #pragma mark - segue methods
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
 	if ([segue.identifier isEqualToString:THVShowChallengeDetailsSegueName]) {
-		if ([sender isKindOfClass:[Challenge class]]) {
+		if ([sender conformsToProtocol:@protocol(ChallengeDataProtocol)]) {
 			ChallengeDetailsViewController *destinationVC = [segue destinationViewController];
 			destinationVC.selectedChallenge = sender;
 		}
@@ -85,10 +86,10 @@ NSString *const THVShowChosenChallengeDetailsSegueName = @"chosenScreenFromChall
 
 #pragma mark - table view helper methods
 - (void)configureCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
-	Challenge *challenge = [self.fetchedResultsController objectAtIndexPath:indexPath];
+	id<ChallengeDataProtocol> challenge = [self.fetchedResultsController objectAtIndexPath:indexPath];
 	
-	cell.textLabel.text = [challenge name];
-	cell.detailTextLabel.text = [NSString stringWithFormat:@"Days: %@", [challenge numberOfDays]];
+	cell.textLabel.text = [challenge challengeName];
+	cell.detailTextLabel.text = [NSString stringWithFormat:@"Days: %@", [challenge numberOfDaysInChallenge]];
 }
 
 #pragma mark - lazy initializers

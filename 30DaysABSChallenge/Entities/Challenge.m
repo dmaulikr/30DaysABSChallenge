@@ -11,6 +11,18 @@
 
 @implementation Challenge
 
-// Insert code here to add functionality to your managed object subclass
+#pragma mark - ChallengeDataProtocol methods
+- (NSString *)challengeName {
+	return [self name];
+}
+
+- (NSNumber *)numberOfDaysInChallenge {
+	return [self numberOfDays];
+}
+
+- (NSArray <ChallengeDayDataProtocol> *)daysListOfChallenge {
+	return (NSArray <ChallengeDayDataProtocol> *)[[self daysList] array];
+}
+
 
 @end

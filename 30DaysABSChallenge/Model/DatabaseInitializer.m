@@ -57,9 +57,9 @@ NSString *const THVExerciseNamePlank = @"plank";
 #pragma mark challenge day 2
 	// create challange day 2 with exercises
 	ChallengeDay *day02 = [NSEntityDescription insertNewObjectForEntityForName:[ChallengeDay entityName] inManagedObjectContext:moc];
-	day01.dayNumber = @(2);
-	day01.challengeDayId = @(2);
-	day01.type = @(THVChallengeDayTypeWorkout);
+	day02.dayNumber = @(2);
+	day02.challengeDayId = @(2);
+	day02.type = @(THVChallengeDayTypeWorkout);
 	
 	Exercise *day02Exercise01 = [NSEntityDescription insertNewObjectForEntityForName:[Exercise entityName] inManagedObjectContext:moc];
 	day02Exercise01.amount = @(20);

@@ -31,6 +31,10 @@
 		8974E43D1CF85F3200CF51A5 /* AddChallengeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8974E43C1CF85F3200CF51A5 /* AddChallengeViewController.m */; };
 		897B80D81CF8794B0000A351 /* ChallengeDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 897B80D71CF8794B0000A351 /* ChallengeDetailsViewController.m */; };
 		897B80DB1CF87A3E0000A351 /* ChosenChallengeConfigurationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 897B80DA1CF87A3E0000A351 /* ChosenChallengeConfigurationViewController.m */; };
+		89C123761CFC2BBC00AA7807 /* ChallengeDetailsCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 89C123741CFC2BBC00AA7807 /* ChallengeDetailsCollectionViewCell.m */; };
+		89EAB33B1CFC558200CCA851 /* ChallengeDetailsCollectionHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 89EAB33A1CFC558200CCA851 /* ChallengeDetailsCollectionHeaderView.m */; };
+		89EAB33E1CFC5AD100CCA851 /* ChallengeDayDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 89EAB33D1CFC5AD100CCA851 /* ChallengeDayDetailViewController.m */; };
+		89EAB3421CFC6BDD00CCA851 /* ChallengeDayDetailsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 89EAB3401CFC6BDD00CCA851 /* ChallengeDayDetailsTableViewCell.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -80,6 +84,16 @@
 		897B80D71CF8794B0000A351 /* ChallengeDetailsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChallengeDetailsViewController.m; sourceTree = "<group>"; };
 		897B80D91CF87A3E0000A351 /* ChosenChallengeConfigurationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChosenChallengeConfigurationViewController.h; sourceTree = "<group>"; };
 		897B80DA1CF87A3E0000A351 /* ChosenChallengeConfigurationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChosenChallengeConfigurationViewController.m; sourceTree = "<group>"; };
+		89C123731CFC2BBC00AA7807 /* ChallengeDetailsCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChallengeDetailsCollectionViewCell.h; sourceTree = "<group>"; };
+		89C123741CFC2BBC00AA7807 /* ChallengeDetailsCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChallengeDetailsCollectionViewCell.m; sourceTree = "<group>"; };
+		89C123791CFC3C7200AA7807 /* ChallengeDataProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChallengeDataProtocol.h; sourceTree = "<group>"; };
+		89C1237A1CFC3DA200AA7807 /* ChallengeDayDataProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChallengeDayDataProtocol.h; sourceTree = "<group>"; };
+		89EAB3391CFC558200CCA851 /* ChallengeDetailsCollectionHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChallengeDetailsCollectionHeaderView.h; sourceTree = "<group>"; };
+		89EAB33A1CFC558200CCA851 /* ChallengeDetailsCollectionHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChallengeDetailsCollectionHeaderView.m; sourceTree = "<group>"; };
+		89EAB33C1CFC5AD100CCA851 /* ChallengeDayDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChallengeDayDetailViewController.h; sourceTree = "<group>"; };
+		89EAB33D1CFC5AD100CCA851 /* ChallengeDayDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChallengeDayDetailViewController.m; sourceTree = "<group>"; };
+		89EAB33F1CFC6BDD00CCA851 /* ChallengeDayDetailsTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChallengeDayDetailsTableViewCell.h; sourceTree = "<group>"; };
+		89EAB3401CFC6BDD00CCA851 /* ChallengeDayDetailsTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChallengeDayDetailsTableViewCell.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -112,6 +126,7 @@
 		8974E3CB1CF8375200CF51A5 /* 30DaysABSChallenge */ = {
 			isa = PBXGroup;
 			children = (
+				89C123781CFC3C6900AA7807 /* DTOProtocols */,
 				8974E40D1CF84E0A00CF51A5 /* Model */,
 				8974E4091CF83DC800CF51A5 /* Views */,
 				8974E3EA1CF83C7900CF51A5 /* Entities */,
@@ -178,8 +193,16 @@
 				8974E43C1CF85F3200CF51A5 /* AddChallengeViewController.m */,
 				897B80D61CF8794B0000A351 /* ChallengeDetailsViewController.h */,
 				897B80D71CF8794B0000A351 /* ChallengeDetailsViewController.m */,
+				89C123731CFC2BBC00AA7807 /* ChallengeDetailsCollectionViewCell.h */,
+				89C123741CFC2BBC00AA7807 /* ChallengeDetailsCollectionViewCell.m */,
+				89EAB3391CFC558200CCA851 /* ChallengeDetailsCollectionHeaderView.h */,
+				89EAB33A1CFC558200CCA851 /* ChallengeDetailsCollectionHeaderView.m */,
 				897B80D91CF87A3E0000A351 /* ChosenChallengeConfigurationViewController.h */,
 				897B80DA1CF87A3E0000A351 /* ChosenChallengeConfigurationViewController.m */,
+				89EAB33C1CFC5AD100CCA851 /* ChallengeDayDetailViewController.h */,
+				89EAB33D1CFC5AD100CCA851 /* ChallengeDayDetailViewController.m */,
+				89EAB33F1CFC6BDD00CCA851 /* ChallengeDayDetailsTableViewCell.h */,
+				89EAB3401CFC6BDD00CCA851 /* ChallengeDayDetailsTableViewCell.m */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -191,6 +214,15 @@
 				8974E40F1CF84E2200CF51A5 /* DatabaseInitializer.m */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		89C123781CFC3C6900AA7807 /* DTOProtocols */ = {
+			isa = PBXGroup;
+			children = (
+				89C123791CFC3C7200AA7807 /* ChallengeDataProtocol.h */,
+				89C1237A1CFC3DA200AA7807 /* ChallengeDayDataProtocol.h */,
+			);
+			path = DTOProtocols;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -263,7 +295,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				89EAB33E1CFC5AD100CCA851 /* ChallengeDayDetailViewController.m in Sources */,
 				8974E4301CF851C800CF51A5 /* ChallengeDayAttempt.m in Sources */,
+				89EAB33B1CFC558200CCA851 /* ChallengeDetailsCollectionHeaderView.m in Sources */,
 				8974E40C1CF83E0A00CF51A5 /* MainViewController.m in Sources */,
 				897B80D81CF8794B0000A351 /* ChallengeDetailsViewController.m in Sources */,
 				8974E4311CF851C800CF51A5 /* ChallengeDay+CoreDataProperties.m in Sources */,
@@ -275,11 +309,13 @@
 				897B80DB1CF87A3E0000A351 /* ChosenChallengeConfigurationViewController.m in Sources */,
 				8974E4331CF851C800CF51A5 /* ParentEntity+CoreDataProperties.m in Sources */,
 				8974E3CE1CF8375200CF51A5 /* main.m in Sources */,
+				89EAB3421CFC6BDD00CCA851 /* ChallengeDayDetailsTableViewCell.m in Sources */,
 				8974E42F1CF851C800CF51A5 /* ChallengeDayAttempt+CoreDataProperties.m in Sources */,
 				8974E4321CF851C800CF51A5 /* ChallengeDay.m in Sources */,
 				8974E43D1CF85F3200CF51A5 /* AddChallengeViewController.m in Sources */,
 				8974E4391CF851C800CF51A5 /* Exercise+CoreDataProperties.m in Sources */,
 				8974E4371CF851C800CF51A5 /* ChallengeAttempt+CoreDataProperties.m in Sources */,
+				89C123761CFC2BBC00AA7807 /* ChallengeDetailsCollectionViewCell.m in Sources */,
 				8974E4351CF851C800CF51A5 /* Challenge+CoreDataProperties.m in Sources */,
 				8974E4101CF84E2200CF51A5 /* DatabaseInitializer.m in Sources */,
 				8974E4361CF851C800CF51A5 /* Challenge.m in Sources */,

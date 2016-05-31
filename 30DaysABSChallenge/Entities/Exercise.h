@@ -11,7 +11,8 @@
 
 typedef enum {
 	THVExerciseTypeRepetition	= 1,
-	THVExerciseTypeTime			= 2
+	THVExerciseTypeTime			= 2,
+	THVExerciseTypeToDo			= 3
 } THVExerciseType;
 
 NS_ASSUME_NONNULL_BEGIN
