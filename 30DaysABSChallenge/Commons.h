@@ -23,5 +23,6 @@ extern CGFloat const THVDelayedColorA;
 @interface Commons : NSObject
 
 + (NSDateFormatter *)challengeDayDateFormatter;
++ (NSDateFormatter *)challengeTimeReminderFormatter;
 
 @end

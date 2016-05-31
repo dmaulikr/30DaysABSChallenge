@@ -77,6 +77,7 @@ NSString *const THVShowChosenChallengeDetailsSegueName = @"chosenScreenFromChall
 	if (!cell) {
 		cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:THVAddChallengeTableViewCellId];
 		cell.accessoryType = UITableViewCellAccessoryDetailDisclosureButton;
+		cell.textLabel.font = [UIFont preferredFontForTextStyle:UIFontTextStyleTitle2];
 	}
 	
 	[self configureCell:cell forRowAtIndexPath:indexPath];

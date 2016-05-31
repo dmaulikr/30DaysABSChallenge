@@ -3,6 +3,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--Add Challenge-->
@@ -36,6 +37,11 @@
                     </view>
                     <navigationItem key="navigationItem" title="Add Challenge" id="Ih0-6B-xk2">
                         <barButtonItem key="backBarButtonItem" title=" " id="IFZ-X6-X1S"/>
+                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="24B-Qc-tZs">
+                            <connections>
+                                <segue destination="t6A-ck-PpQ" kind="unwind" unwindAction="unwindToMain:" id="caz-jf-1wt"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" enabled="NO" title="Choose" id="O7n-nd-2A3">
                             <connections>
                                 <action selector="chooseButtonTapped:" destination="BZw-CS-MJu" id="zci-3J-FXK"/>
@@ -50,13 +56,14 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ghi-jN-upL" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="t6A-ck-PpQ" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="2924" y="1139"/>
         </scene>
-        <!--Title-->
+        <!--challenge day details-->
         <scene sceneID="fhk-64-IkT">
             <objects>
-                <viewController id="fV2-M7-ZQb" customClass="ChallengeDayDetailViewController" sceneMemberID="viewController">
+                <viewController id="fV2-M7-ZQb" userLabel="challenge day details" customClass="ChallengeDayDetailViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="yCD-sA-PJZ"/>
                         <viewControllerLayoutGuide type="bottom" id="GA8-H9-w96"/>
@@ -336,10 +343,10 @@ Rest in peace!</string>
             </objects>
             <point key="canvasLocation" x="3739" y="1690"/>
         </scene>
-        <!--Title-->
+        <!--chosen challenge-->
         <scene sceneID="gxH-GT-aGY">
             <objects>
-                <viewController id="dty-zy-K0P" customClass="ChosenChallengeConfigurationViewController" sceneMemberID="viewController">
+                <viewController id="dty-zy-K0P" userLabel="chosen challenge" customClass="ChosenChallengeConfigurationViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="bsR-ht-PBb"/>
                         <viewControllerLayoutGuide type="bottom" id="HaG-NN-5xG"/>
@@ -347,17 +354,72 @@ Rest in peace!</string>
                     <view key="view" contentMode="scaleToFill" id="E2P-Nx-0Ly">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="751" text="Starting from" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SBu-zj-rvw">
+                                <rect key="frame" x="20" y="72" width="151" height="33"/>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <datePicker contentMode="scaleToFill" verticalCompressionResistancePriority="749" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="date" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="DiL-hX-iX6" userLabel="starting from date picker">
+                                <rect key="frame" x="140" y="113" width="320" height="150"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="150" id="snY-aR-xOc"/>
+                                </constraints>
+                                <date key="date" timeIntervalSinceReferenceDate="-1293886799.5099189">
+                                    <!--1960-01-01 11:00:00 +0000-->
+                                </date>
+                            </datePicker>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="751" text="Reminder" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="esb-qP-mhv">
+                                <rect key="frame" x="20" y="271" width="113" height="33"/>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" verticalCompressionResistancePriority="751" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="YeO-CR-L27">
+                                <rect key="frame" x="531" y="272" width="51" height="31"/>
+                                <connections>
+                                    <action selector="reminderSwitchTapped:" destination="dty-zy-K0P" eventType="valueChanged" id="pgt-fy-3Yf"/>
+                                </connections>
+                            </switch>
+                            <datePicker hidden="YES" contentMode="scaleToFill" verticalCompressionResistancePriority="749" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="time" minuteInterval="10" useCurrentDate="NO" translatesAutoresizingMaskIntoConstraints="NO" id="t8y-wu-wYM">
+                                <rect key="frame" x="140" y="311" width="320" height="150"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" relation="lessThanOrEqual" constant="150" id="VRD-Md-Iw2"/>
+                                </constraints>
+                                <date key="date" timeIntervalSinceReferenceDate="-978281999.40630507">
+                                    <!--1970-01-01 07:00:00 +0000-->
+                                </date>
+                            </datePicker>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="YeO-CR-L27" firstAttribute="centerY" secondItem="esb-qP-mhv" secondAttribute="centerY" id="5zc-HM-epf"/>
+                            <constraint firstAttribute="trailing" secondItem="YeO-CR-L27" secondAttribute="trailing" constant="20" id="DfR-zN-cre"/>
+                            <constraint firstItem="t8y-wu-wYM" firstAttribute="top" secondItem="YeO-CR-L27" secondAttribute="bottom" constant="8" id="DtQ-ny-lzi"/>
+                            <constraint firstItem="HaG-NN-5xG" firstAttribute="top" relation="greaterThanOrEqual" secondItem="t8y-wu-wYM" secondAttribute="bottom" constant="8" id="LtS-Vu-CvG"/>
+                            <constraint firstItem="esb-qP-mhv" firstAttribute="top" secondItem="DiL-hX-iX6" secondAttribute="bottom" constant="8" id="NK2-Da-GXo"/>
+                            <constraint firstItem="SBu-zj-rvw" firstAttribute="leading" secondItem="E2P-Nx-0Ly" secondAttribute="leading" constant="20" id="RhW-q3-UvI"/>
+                            <constraint firstItem="DiL-hX-iX6" firstAttribute="centerX" secondItem="E2P-Nx-0Ly" secondAttribute="centerX" id="Ybz-Db-Qt6"/>
+                            <constraint firstItem="DiL-hX-iX6" firstAttribute="top" secondItem="SBu-zj-rvw" secondAttribute="bottom" constant="8" id="aek-0M-4yh"/>
+                            <constraint firstItem="SBu-zj-rvw" firstAttribute="top" secondItem="bsR-ht-PBb" secondAttribute="bottom" constant="8" id="b8M-Bb-1Sp"/>
+                            <constraint firstItem="t8y-wu-wYM" firstAttribute="centerX" secondItem="E2P-Nx-0Ly" secondAttribute="centerX" id="wN7-0w-Hdf"/>
+                            <constraint firstItem="esb-qP-mhv" firstAttribute="leading" secondItem="E2P-Nx-0Ly" secondAttribute="leading" constant="20" id="xm2-Yh-rJd"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Title" id="ype-4t-PrG">
                         <barButtonItem key="backBarButtonItem" title=" " id="AIj-Rw-pDj"/>
                         <barButtonItem key="rightBarButtonItem" systemItem="save" id="NaG-1p-Bvf">
                             <connections>
-                                <action selector="saveButtonTapped:" destination="dty-zy-K0P" id="uO6-PP-kgN"/>
-                                <segue destination="wbw-Mf-txP" kind="unwind" unwindAction="prepareForUnwind:" id="wfo-pj-vqL"/>
+                                <segue destination="wbw-Mf-txP" kind="unwind" identifier="unwindToMain" unwindAction="unwindToMain:" id="86l-i3-UX6"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="reminderSwitch" destination="YeO-CR-L27" id="Lhu-eh-6tC"/>
+                        <outlet property="reminderTimeDatePicker" destination="t8y-wu-wYM" id="MfO-Gb-a0I"/>
+                        <outlet property="startingFromDatePicker" destination="DiL-hX-iX6" id="x0z-4e-1Ma"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xEd-Ze-NYi" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="wbw-Mf-txP" userLabel="Exit" sceneMemberID="exit"/>
@@ -375,7 +437,23 @@ Rest in peace!</string>
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" allowsSelection="NO" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="pIg-0u-jpf">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="BYZ-38-t0r" id="TH7-o2-rQp"/>
+                                    <outlet property="delegate" destination="BYZ-38-t0r" id="Eq2-r3-3xG"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="pIg-0u-jpf" secondAttribute="trailing" id="7jz-VE-4hv"/>
+                            <constraint firstItem="pIg-0u-jpf" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="topMargin" id="AOs-Bg-MJP"/>
+                            <constraint firstItem="pIg-0u-jpf" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="NpL-pE-p9a"/>
+                            <constraint firstAttribute="bottom" secondItem="pIg-0u-jpf" secondAttribute="bottom" id="rO3-vg-QcP"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="My Challenges" id="kWJ-73-xK4">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="fB6-DW-3Ul">
@@ -384,6 +462,9 @@ Rest in peace!</string>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="tableView" destination="pIg-0u-jpf" id="FLf-85-cce"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
@@ -427,6 +508,6 @@ Rest in peace!</string>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="N6b-1z-4N0"/>
+        <segue reference="2cP-nh-ksI"/>
     </inferredMetricsTieBreakers>
 </document>

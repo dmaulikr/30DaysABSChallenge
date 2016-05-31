@@ -33,4 +33,17 @@ CGFloat const THVDelayedColorA = 1.0;
 	return dateFormatter;
 }
 
++ (NSDateFormatter *)challengeTimeReminderFormatter {
+	static NSDateFormatter *dateFormatter;
+	static dispatch_once_t onceToken;
+	dispatch_once(&onceToken, ^{
+		dateFormatter = [[NSDateFormatter alloc] init];
+		dateFormatter.dateFormat = THVReminderTimeFormat;
+	});
+	
+	return dateFormatter;
+}
+
+
+
 @end

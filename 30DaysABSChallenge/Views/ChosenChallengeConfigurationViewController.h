@@ -12,6 +12,8 @@
 @interface ChosenChallengeConfigurationViewController : UIViewController
 
 @property (nonatomic) id<ChallengeDataProtocol> selectedChallenge;
-- (IBAction)saveButtonTapped:(id)sender;
 
+@property (weak, nonatomic) IBOutlet UIDatePicker *startingFromDatePicker;
+@property (weak, nonatomic) IBOutlet UISwitch *reminderSwitch;
+@property (weak, nonatomic) IBOutlet UIDatePicker *reminderTimeDatePicker;
 @end
