@@ -35,6 +35,7 @@
 		89EAB33B1CFC558200CCA851 /* ChallengeDetailsCollectionHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 89EAB33A1CFC558200CCA851 /* ChallengeDetailsCollectionHeaderView.m */; };
 		89EAB33E1CFC5AD100CCA851 /* ChallengeDayDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 89EAB33D1CFC5AD100CCA851 /* ChallengeDayDetailViewController.m */; };
 		89EAB3421CFC6BDD00CCA851 /* ChallengeDayDetailsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 89EAB3401CFC6BDD00CCA851 /* ChallengeDayDetailsTableViewCell.m */; };
+		89EAB3471CFEE1C500CCA851 /* NSDate+THVDateAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 89EAB3461CFEE1C500CCA851 /* NSDate+THVDateAdditions.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -94,6 +95,8 @@
 		89EAB33D1CFC5AD100CCA851 /* ChallengeDayDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChallengeDayDetailViewController.m; sourceTree = "<group>"; };
 		89EAB33F1CFC6BDD00CCA851 /* ChallengeDayDetailsTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChallengeDayDetailsTableViewCell.h; sourceTree = "<group>"; };
 		89EAB3401CFC6BDD00CCA851 /* ChallengeDayDetailsTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChallengeDayDetailsTableViewCell.m; sourceTree = "<group>"; };
+		89EAB3451CFEE1C500CCA851 /* NSDate+THVDateAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+THVDateAdditions.h"; sourceTree = "<group>"; };
+		89EAB3461CFEE1C500CCA851 /* NSDate+THVDateAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+THVDateAdditions.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -126,6 +129,7 @@
 		8974E3CB1CF8375200CF51A5 /* 30DaysABSChallenge */ = {
 			isa = PBXGroup;
 			children = (
+				89EAB3441CFEE17200CCA851 /* Categories */,
 				89C123781CFC3C6900AA7807 /* DTOProtocols */,
 				8974E40D1CF84E0A00CF51A5 /* Model */,
 				8974E4091CF83DC800CF51A5 /* Views */,
@@ -225,6 +229,15 @@
 			path = DTOProtocols;
 			sourceTree = "<group>";
 		};
+		89EAB3441CFEE17200CCA851 /* Categories */ = {
+			isa = PBXGroup;
+			children = (
+				89EAB3451CFEE1C500CCA851 /* NSDate+THVDateAdditions.h */,
+				89EAB3461CFEE1C500CCA851 /* NSDate+THVDateAdditions.m */,
+			);
+			path = Categories;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -298,6 +311,7 @@
 				89EAB33E1CFC5AD100CCA851 /* ChallengeDayDetailViewController.m in Sources */,
 				8974E4301CF851C800CF51A5 /* ChallengeDayAttempt.m in Sources */,
 				89EAB33B1CFC558200CCA851 /* ChallengeDetailsCollectionHeaderView.m in Sources */,
+				89EAB3471CFEE1C500CCA851 /* NSDate+THVDateAdditions.m in Sources */,
 				8974E40C1CF83E0A00CF51A5 /* MainViewController.m in Sources */,
 				897B80D81CF8794B0000A351 /* ChallengeDetailsViewController.m in Sources */,
 				8974E4311CF851C800CF51A5 /* ChallengeDay+CoreDataProperties.m in Sources */,

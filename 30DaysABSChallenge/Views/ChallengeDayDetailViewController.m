@@ -8,9 +8,13 @@
 
 #import "ChallengeDayDetailViewController.h"
 #import "ChallengeDayDetailsTableViewCell.h"
+#import "ChallengeDayAttempt.h"
 #import "Commons.h"
+#import "NSDate+THVDateAdditions.h"
 
 NSString *const THVChallengeDayDetailsTableViewCellId = @"challengeDayDetailsTableViewCellId";
+NSString *const THVMarkAsCompletedLabelString = @"Mark as completed";
+NSString *const THVMarkAsNotCompletedLabelString = @"Mark as NOT completed";
 
 @interface ChallengeDayDetailViewController () {
 	ChallengeDayDetailsTableViewCell *cellWithTimer;
@@ -25,24 +29,29 @@ NSString *const THVChallengeDayDetailsTableViewCellId = @"challengeDayDetailsTab
 @implementation ChallengeDayDetailViewController
 
 - (void)viewDidLoad {
+	showOnly = ![self.selectedChallangeDay respondsToSelector:@selector(isCompleted)];
+	
+	[self setupMarkAsCompletedView];
+	[self setupDayAttemptDateLabel];
+	
 	self.navigationItem.title = self.challangeName;
 	self.dayNumberLabel.text = [NSString stringWithFormat:@"Day %@", [self.selectedChallangeDay challengeDayNumber]];
 	
 	if ([[self.selectedChallangeDay exerciseListOfDay] count]) {
-		[self.tableView reloadData];
+		[self.placeholderLabel removeFromSuperview];
+	} else {
+		self.tableView.hidden = YES;
+	}
+}
+
+- (void)viewDidLayoutSubviews {
+	if (!self.tableView.hidden) {
 		if (self.tableView.contentSize.height < self.tableView.frame.size.height) {
 			self.tableView.scrollEnabled = NO;
 		} else {
 			self.tableView.scrollEnabled = YES;
 		}
-		[self.placeholderLabel removeFromSuperview];
-	} else {
-		self.tableView.hidden = YES;
 	}
-	
-	showOnly = ![self.selectedChallangeDay respondsToSelector:@selector(isCompleted)];
-	
-	[self setupMarkAsCompletedView];
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
@@ -99,9 +108,12 @@ NSString *const THVChallengeDayDetailsTableViewCellId = @"challengeDayDetailsTab
 
 #pragma mark - UITableViewDelegate methods
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-	if (!showOnly) {
-		ChallengeDayDetailsTableViewCell *cell = (ChallengeDayDetailsTableViewCell *)[self tableView:tableView cellForRowAtIndexPath:indexPath];
-		
+	ChallengeDayDetailsTableViewCell *cell = (ChallengeDayDetailsTableViewCell *)[tableView cellForRowAtIndexPath:indexPath];
+	dispatch_async(dispatch_get_main_queue(), ^{
+		[tableView scrollRectToVisible:cell.frame animated:YES];
+	});
+	
+	if (!showOnly && ![self.selectedChallangeDay isCompleted]) {
 		if (cell.isATimerCell) {
 			cellWithTimer = cell;
 			indexPathOfCellWithTimer = indexPath;
@@ -124,7 +136,15 @@ NSString *const THVChallengeDayDetailsTableViewCellId = @"challengeDayDetailsTab
 	if (showOnly) {
 		self.markAsCompletedViewHeightConstraint.constant = 0.0;
 	} else {
-		self.markAsCompletedView.backgroundColor = [UIColor colorWithRed:THVCompletedColorR green:THVCompletedColorG blue:THVCompletedColorB alpha:THVCompletedColorA];
+		
+		if (![self.selectedChallangeDay isCompleted]) {
+			self.markAsCompletedView.backgroundColor = [UIColor colorWithRed:THVCompletedColorR green:THVCompletedColorG blue:THVCompletedColorB alpha:THVCompletedColorA];
+			[self.markAsCompletedViewLabel setTitle:THVMarkAsCompletedLabelString forState:UIControlStateNormal];
+		} else {
+			self.markAsCompletedView.backgroundColor = [UIColor colorWithRed:THVDelayedColorR green:THVDelayedColorG blue:THVDelayedColorB alpha:THVDelayedColorA];
+			[self.markAsCompletedViewLabel setTitle:THVMarkAsNotCompletedLabelString forState:UIControlStateNormal];
+		}
+		
 		UITapGestureRecognizer *tapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(markAsCompletedViewTapped)];
 		[self.markAsCompletedView setUserInteractionEnabled:YES];
 		[self.markAsCompletedView addGestureRecognizer:tapRecognizer];
@@ -166,8 +186,48 @@ NSString *const THVChallengeDayDetailsTableViewCellId = @"challengeDayDetailsTab
 	indexPathOfCellWithTimer = nil;
 }
 
+- (void)markSelectedChallengeDayAttemptAsCompleted:(BOOL)isCompleted {
+	((ChallengeDayAttempt *)self.selectedChallangeDay).completed = [NSNumber numberWithBool:isCompleted];
+	((ChallengeDayAttempt *)self.selectedChallangeDay).completionDate = isCompleted ? [NSDate date] : nil;
+	
+	NSError *error = nil;
+	if (![((AppDelegate *)[[UIApplication sharedApplication] delegate]).managedObjectContext save:&error]) {
+		NSLog(@"Could not save challenge day attempt!\n%@\n%@", error.localizedDescription, error.userInfo);
+	}
+	
+	if (isCompleted) {
+		[self.navigationController popViewControllerAnimated:YES];
+	} else {
+		[self setupMarkAsCompletedView];
+	}
+}
+
+- (void)setupDayAttemptDateLabel {
+	if ([self.selectedChallangeDay respondsToSelector:@selector(dayAttemptDate)]) {
+		self.dayAttemptDateLabel.text = [[Commons challengeDayDateFormatter] stringFromDate:[self.selectedChallangeDay dayAttemptDate]];
+	} else {
+		self.dayAttemptDateLabelHeightConstraint.constant = 0.0;
+	}
+}
+
 #pragma mark - ibaction methods
 - (IBAction)markAsCompletedButtonTapped:(id)sender {
-	NSLog(@"mark as completed button tapped");
+	if ([self.selectedChallangeDay isKindOfClass:[ChallengeDayAttempt class]]) {
+		if (![self.selectedChallangeDay isCompleted]) {
+			if (![((ChallengeDayAttempt *)self.selectedChallangeDay).dayAttemptDate isEqualToDate:[[NSDate date] thv_dateWithoutTime]]) {
+				UIAlertController *alert = [UIAlertController alertControllerWithTitle:nil message:@"Selected challenge day's date does not match today's date.\n\nAre you sure you want to mark this challenge day as completed?" preferredStyle:UIAlertControllerStyleAlert];
+				[alert addAction:[UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:nil]];
+				ChallengeDayDetailViewController __block *this = self;
+				[alert addAction:[UIAlertAction actionWithTitle:@"Yes, mark as completed" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+					[this markSelectedChallengeDayAttemptAsCompleted:YES];
+				}]];
+				[self presentViewController:alert animated:YES completion:nil];
+			} else {
+				[self markSelectedChallengeDayAttemptAsCompleted:YES];
+			}
+		} else {
+			[self markSelectedChallengeDayAttemptAsCompleted:NO];
+		}
+	}
 }
 @end

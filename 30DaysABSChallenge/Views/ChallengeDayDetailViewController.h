@@ -12,6 +12,9 @@
 @interface ChallengeDayDetailViewController : UIViewController <UITableViewDelegate, UITableViewDataSource>
 
 @property (weak, nonatomic) IBOutlet UILabel *dayNumberLabel;
+@property (weak, nonatomic) IBOutlet UILabel *dayAttemptDateLabel;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *dayAttemptDateLabelHeightConstraint;
+
 @property (nonatomic) NSString *challangeName;
 @property (nonatomic) id<ChallengeDayDataProtocol> selectedChallangeDay;
 
@@ -21,4 +24,5 @@
 @property (weak, nonatomic) IBOutlet UIView *markAsCompletedView;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *markAsCompletedViewHeightConstraint;
 @property (weak, nonatomic) IBOutlet UIButton *markAsCompletedButton;
+@property (weak, nonatomic) IBOutlet UIButton *markAsCompletedViewLabel;
 @end

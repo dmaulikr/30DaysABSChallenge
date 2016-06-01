@@ -13,6 +13,7 @@
 #import "ChallengeDetailsCollectionHeaderView.h"
 #import "Commons.h"
 #import "ChallengeDayDetailViewController.h"
+#import "NSDate+THVDateAdditions.h"
 
 NSString *const THVGoToChosenChallengeConfigurationScreen = @"chosenChallangeScreenFromDetails";
 NSString *const THVShowChallengeDayDetails = @"shoChallengeDayDetails";
@@ -28,6 +29,18 @@ NSString *const THVChallengeDetailsCollectionViewHeaderId = @"THVChallengeDetail
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+	
+	if ([self.selectedChallenge respondsToSelector:@selector(isCompleted)]) {
+		NSMutableArray *navigationBarButtons = [self.navigationItem.rightBarButtonItems mutableCopy];
+		[navigationBarButtons removeObject:self.chooseBarButtonItem];
+		[self.navigationItem setRightBarButtonItems:navigationBarButtons];
+	}
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+	[self.collectionView reloadData];
+	
+	[super viewWillAppear:animated];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -70,7 +83,7 @@ NSString *const THVChallengeDetailsCollectionViewHeaderId = @"THVChallengeDetail
 		if ([dayForCell isCompleted]) {
 			cell.internalCellView.backgroundColor = completedColor;
 		} else if ([dayForCell respondsToSelector:@selector(dayAttemptDate)] &&
-				   [[NSDate date] timeIntervalSinceDate:[dayForCell dayAttemptDate]] > (12. * 60. * 60.)) {
+				   [[[NSDate date] thv_dateWithoutTime] timeIntervalSinceDate:[dayForCell dayAttemptDate]] > (12. * 60. * 60.)) {
 			cell.internalCellView.backgroundColor = delayedColor;
 		} else {
 			cell.internalCellView.backgroundColor = toBeDoneColor;
@@ -100,7 +113,7 @@ NSString *const THVChallengeDetailsCollectionViewHeaderId = @"THVChallengeDetail
 		headerView = [collectionView dequeueReusableSupplementaryViewOfKind:kind withReuseIdentifier:THVChallengeDetailsCollectionViewHeaderId forIndexPath:indexPath];
 		headerView.headerLabel.text = [self.selectedChallenge challengeName];
 		if ([self.selectedChallenge respondsToSelector:@selector(challengeStartDate)]) {
-			headerView.additionalInfoLabel.text = [[Commons challengeDayDateFormatter] stringFromDate:[self.selectedChallenge challengeStartDate]];
+			headerView.additionalInfoLabel.text = [NSString stringWithFormat:@"Started at: %@", [[Commons challengeDayDateFormatter] stringFromDate:[self.selectedChallenge challengeStartDate]]];
 		} else {
 			[headerView.additionalInfoLabel removeFromSuperview];
 			headerView.headerLabelCenterYAlignmentConstraint.constant = 0.0;

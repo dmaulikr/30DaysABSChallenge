@@ -13,5 +13,6 @@
 
 @property (nonatomic) id<ChallengeDataProtocol> selectedChallenge;
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *chooseBarButtonItem;
 
 @end

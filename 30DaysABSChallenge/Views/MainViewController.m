@@ -10,8 +10,10 @@
 #import "ChallengeDataProtocol.h"
 #import "ChallengeAttempt.h"
 #import "Commons.h"
+#import "ChallengeDetailsViewController.h"
 
 NSString *const THVMyChallengesTableViewCellId = @"THVMyChallengesTableViewCellId";
+NSString *const THVShowChallengeAttempDetailsSegueId = @"showChallengeAttemptDetails";
 
 @interface MainViewController ()
 
@@ -39,6 +41,16 @@ NSString *const THVMyChallengesTableViewCellId = @"THVMyChallengesTableViewCellI
     // Dispose of any resources that can be recreated.
 }
 
+#pragma mark - segue methods
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+	if ([segue.identifier isEqualToString:THVShowChallengeAttempDetailsSegueId]) {
+		if ([sender conformsToProtocol:@protocol(ChallengeDataProtocol)]) {
+			ChallengeDetailsViewController *destinationVC = segue.destinationViewController;
+			destinationVC.selectedChallenge = sender;
+		}
+	}
+}
+
 #pragma mark - table view helper methods
 - (void)configureCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
 	id<ChallengeDataProtocol> challengeAttemptForRow = [self.fetchedResultsController objectAtIndexPath:indexPath];
@@ -62,11 +74,17 @@ NSString *const THVMyChallengesTableViewCellId = @"THVMyChallengesTableViewCellI
 		cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:THVMyChallengesTableViewCellId];
 		cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
 		cell.textLabel.font = [UIFont preferredFontForTextStyle:UIFontTextStyleTitle2];
+		cell.selectionStyle = UITableViewCellSelectionStyleNone;
 	}
 	
 	[self configureCell:cell forRowAtIndexPath:indexPath];
 	
 	return cell;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+	ChallengeAttempt *selectedChallenge = [self.fetchedResultsController objectAtIndexPath:indexPath];
+	[self performSegueWithIdentifier:THVShowChallengeAttempDetailsSegueId sender:selectedChallenge];
 }
 
 #pragma mark - NSFetchedResultsControllerDelegate methods

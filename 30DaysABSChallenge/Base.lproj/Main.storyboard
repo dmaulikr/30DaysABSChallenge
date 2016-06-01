@@ -87,12 +87,12 @@ Rest in peace!</string>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="80" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Qnx-wP-fSR">
-                                <rect key="frame" x="20" y="113" width="560" height="435"/>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="80" sectionHeaderHeight="1" sectionFooterHeight="1" translatesAutoresizingMaskIntoConstraints="NO" id="Qnx-wP-fSR">
+                                <rect key="frame" x="20" y="134" width="560" height="422"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="challengeDayDetailsTableViewCellId" rowHeight="80" id="fLZ-Im-YTy" customClass="ChallengeDayDetailsTableViewCell">
-                                        <rect key="frame" x="0.0" y="28" width="560" height="80"/>
+                                        <rect key="frame" x="0.0" y="1" width="560" height="80"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="fLZ-Im-YTy" id="x10-rW-osy">
                                             <rect key="frame" x="0.0" y="0.0" width="560" height="80"/>
@@ -172,18 +172,29 @@ Rest in peace!</string>
                                     <constraint firstItem="ubS-eq-QwH" firstAttribute="centerY" secondItem="Zxv-Ed-B0j" secondAttribute="centerY" id="Pma-Jd-zSB"/>
                                 </constraints>
                             </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="dd MMM" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RzL-0m-Dqs">
+                                <rect key="frame" x="266" y="105" width="68" height="21"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="21" id="JwJ-tY-z9H"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="rfd-A8-xHT" firstAttribute="top" secondItem="v0O-Ng-Inr" secondAttribute="bottom" constant="66" id="5Ml-dC-nkb"/>
                             <constraint firstAttribute="trailing" secondItem="Zxv-Ed-B0j" secondAttribute="trailing" id="5Vz-to-PvR"/>
-                            <constraint firstItem="Zxv-Ed-B0j" firstAttribute="top" secondItem="Qnx-wP-fSR" secondAttribute="bottom" constant="8" id="7PD-1O-HNm"/>
+                            <constraint firstItem="Zxv-Ed-B0j" firstAttribute="top" secondItem="Qnx-wP-fSR" secondAttribute="bottom" id="7PD-1O-HNm"/>
                             <constraint firstItem="v0O-Ng-Inr" firstAttribute="top" secondItem="yCD-sA-PJZ" secondAttribute="bottom" constant="8" id="ENp-b1-eap"/>
+                            <constraint firstItem="Qnx-wP-fSR" firstAttribute="top" secondItem="RzL-0m-Dqs" secondAttribute="bottom" constant="8" id="Fge-FL-gO8"/>
                             <constraint firstAttribute="trailing" secondItem="Qnx-wP-fSR" secondAttribute="trailing" constant="20" symbolic="YES" id="HF2-qN-Fhk"/>
-                            <constraint firstItem="Qnx-wP-fSR" firstAttribute="top" secondItem="v0O-Ng-Inr" secondAttribute="bottom" constant="8" id="PQ6-kS-Ajd"/>
+                            <constraint firstItem="RzL-0m-Dqs" firstAttribute="top" secondItem="v0O-Ng-Inr" secondAttribute="bottom" id="YQX-gb-TRX"/>
                             <constraint firstItem="Zxv-Ed-B0j" firstAttribute="leading" secondItem="5sd-4f-bbL" secondAttribute="leading" id="Ywe-ck-l9b"/>
                             <constraint firstItem="Qnx-wP-fSR" firstAttribute="leading" secondItem="5sd-4f-bbL" secondAttribute="leading" constant="20" symbolic="YES" id="ZvE-mS-ghn"/>
                             <constraint firstItem="rfd-A8-xHT" firstAttribute="centerX" secondItem="5sd-4f-bbL" secondAttribute="centerX" id="ne5-uA-otH"/>
+                            <constraint firstItem="RzL-0m-Dqs" firstAttribute="centerX" secondItem="5sd-4f-bbL" secondAttribute="centerX" id="pR6-qS-PKS"/>
                             <constraint firstItem="GA8-H9-w96" firstAttribute="top" secondItem="Zxv-Ed-B0j" secondAttribute="bottom" id="rX0-TX-OUI"/>
                             <constraint firstItem="v0O-Ng-Inr" firstAttribute="centerX" secondItem="5sd-4f-bbL" secondAttribute="centerX" id="t60-Dd-dDl"/>
                         </constraints>
@@ -192,10 +203,13 @@ Rest in peace!</string>
                         <barButtonItem key="backBarButtonItem" title=" " id="LuB-Xs-vrz"/>
                     </navigationItem>
                     <connections>
+                        <outlet property="dayAttemptDateLabel" destination="RzL-0m-Dqs" id="Yhp-X3-kns"/>
+                        <outlet property="dayAttemptDateLabelHeightConstraint" destination="JwJ-tY-z9H" id="z6t-cf-TTn"/>
                         <outlet property="dayNumberLabel" destination="v0O-Ng-Inr" id="huC-RZ-06k"/>
                         <outlet property="markAsCompletedButton" destination="ubS-eq-QwH" id="o50-fa-KSx"/>
                         <outlet property="markAsCompletedView" destination="Zxv-Ed-B0j" id="3ga-Fw-a1n"/>
                         <outlet property="markAsCompletedViewHeightConstraint" destination="27z-2s-jBi" id="aA1-jZ-rV8"/>
+                        <outlet property="markAsCompletedViewLabel" destination="ubS-eq-QwH" id="sNR-qp-4qr"/>
                         <outlet property="placeholderLabel" destination="rfd-A8-xHT" id="9eh-1u-0BY"/>
                         <outlet property="tableView" destination="Qnx-wP-fSR" id="k5i-JI-gX0"/>
                     </connections>
@@ -327,7 +341,7 @@ Rest in peace!</string>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Challenge Details" id="ymM-JB-nMn">
-                        <barButtonItem key="backBarButtonItem" title=" " id="RcG-F0-Ipu"/>
+                        <barButtonItem key="backBarButtonItem" title=" " id="ERG-E5-uSh"/>
                         <barButtonItem key="rightBarButtonItem" title="Choose" id="dMQ-wp-8hD">
                             <connections>
                                 <segue destination="dty-zy-K0P" kind="show" identifier="chosenChallangeScreenFromDetails" id="N6b-1z-4N0"/>
@@ -335,6 +349,7 @@ Rest in peace!</string>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="chooseBarButtonItem" destination="dMQ-wp-8hD" id="kLQ-lQ-awi"/>
                         <outlet property="collectionView" destination="gEi-3s-TWf" id="UYT-Jh-uT2"/>
                         <segue destination="fV2-M7-ZQb" kind="show" identifier="shoChallengeDayDetails" id="Xbt-qx-JSo"/>
                     </connections>
@@ -438,7 +453,7 @@ Rest in peace!</string>
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" allowsSelection="NO" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="pIg-0u-jpf">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="pIg-0u-jpf">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <connections>
@@ -456,6 +471,7 @@ Rest in peace!</string>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="My Challenges" id="kWJ-73-xK4">
+                        <barButtonItem key="backBarButtonItem" title=" " id="Nbw-Zz-NVv"/>
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="fB6-DW-3Ul">
                             <connections>
                                 <segue destination="Wuh-f3-BE7" kind="presentation" modalPresentationStyle="fullScreen" modalTransitionStyle="coverVertical" id="Kf5-F9-Rxv"/>
@@ -464,6 +480,7 @@ Rest in peace!</string>
                     </navigationItem>
                     <connections>
                         <outlet property="tableView" destination="pIg-0u-jpf" id="FLf-85-cce"/>
+                        <segue destination="z4Y-Et-pt5" kind="show" identifier="showChallengeAttemptDetails" id="zvd-fx-BAt"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -508,6 +525,7 @@ Rest in peace!</string>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="2cP-nh-ksI"/>
+        <segue reference="zvd-fx-BAt"/>
+        <segue reference="N6b-1z-4N0"/>
     </inferredMetricsTieBreakers>
 </document>

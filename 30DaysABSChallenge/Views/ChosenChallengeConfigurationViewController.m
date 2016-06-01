@@ -14,6 +14,7 @@
 #import "ChallengeDayDataProtocol.h"
 #import "Commons.h"
 #import "MainViewController.h"
+#import "NSDate+THVDateAdditions.h"
 
 NSString *const THVUnwindToMainSegueId = @"unwindToMain";
 
@@ -44,7 +45,7 @@ NSString *const THVUnwindToMainSegueId = @"unwindToMain";
 		challengeAttempt.currentDay = @(1);
 		challengeAttempt.reminderActive = [NSNumber numberWithBool:self.reminderSwitch.isOn];
 		challengeAttempt.reminderTime = self.reminderSwitch.isOn ? [[Commons challengeTimeReminderFormatter] stringFromDate:self.reminderTimeDatePicker.date] : nil;
-		challengeAttempt.startDate = self.startingFromDatePicker.date;
+		challengeAttempt.startDate = [self.startingFromDatePicker.date thv_dateWithoutTime];
 		challengeAttempt.state = @(THVChallengeAttemptStateActive);
 		if ([self.selectedChallenge isKindOfClass:[Challenge class]]) {
 			challengeAttempt.challenge = (Challenge *)self.selectedChallenge;
@@ -54,7 +55,7 @@ NSString *const THVUnwindToMainSegueId = @"unwindToMain";
 			id<ChallengeDayDataProtocol> challengeDay = [[self.selectedChallenge daysListOfChallenge] objectAtIndex:i];
 			
 			ChallengeDayAttempt *challengeDayAttempt = [NSEntityDescription insertNewObjectForEntityForName:[ChallengeDayAttempt entityName] inManagedObjectContext:moc];
-			challengeDayAttempt.challengeDayAttemptDate = [self.startingFromDatePicker.date dateByAddingTimeInterval:24.*60.*60.*i];
+			challengeDayAttempt.challengeDayAttemptDate = [challengeAttempt.startDate dateByAddingTimeInterval:24.*60.*60.*i];
 			challengeDayAttempt.completed = [NSNumber numberWithBool:NO];
 			if ([challengeDay isKindOfClass:[ChallengeDay class]]) {
 				challengeDayAttempt.challengeDay = (ChallengeDay *)challengeDay;
