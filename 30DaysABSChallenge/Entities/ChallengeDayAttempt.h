@@ -10,7 +10,7 @@
 #import "ParentEntity.h"
 #import "ChallengeDayDataProtocol.h"
 
-@class ChallengeDay;
+@class ChallengeDay, ChallengeAttempt;
 
 NS_ASSUME_NONNULL_BEGIN
 

@@ -10,6 +10,17 @@
 
 @implementation Exercise
 
-// Insert code here to add functionality to your managed object subclass
+#pragma mark - ExerciseDataProtocol methods
+- (NSNumber *)exerciseAmount {
+	return [self amount];
+}
+
+- (NSString *)exerciseName {
+	return [self name];
+}
+
+- (NSNumber *)exerciseType {
+	return [self type];
+}
 
 @end

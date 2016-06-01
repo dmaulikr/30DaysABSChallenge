@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "ParentEntity.h"
+#import "ExerciseDataProtocol.h"
 
 typedef enum {
 	THVExerciseTypeRepetition	= 1,
@@ -15,9 +16,11 @@ typedef enum {
 	THVExerciseTypeToDo			= 3
 } THVExerciseType;
 
+@class ChallengeDay, ExerciseAttempt;
+
 NS_ASSUME_NONNULL_BEGIN
 
-@interface Exercise : ParentEntity
+@interface Exercise : ParentEntity <ExerciseDataProtocol>
 
 // Insert code here to declare functionality of your managed object subclass
 

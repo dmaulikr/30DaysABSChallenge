@@ -36,6 +36,8 @@
 		89EAB33E1CFC5AD100CCA851 /* ChallengeDayDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 89EAB33D1CFC5AD100CCA851 /* ChallengeDayDetailViewController.m */; };
 		89EAB3421CFC6BDD00CCA851 /* ChallengeDayDetailsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 89EAB3401CFC6BDD00CCA851 /* ChallengeDayDetailsTableViewCell.m */; };
 		89EAB3471CFEE1C500CCA851 /* NSDate+THVDateAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 89EAB3461CFEE1C500CCA851 /* NSDate+THVDateAdditions.m */; };
+		89EAB34C1CFF16D400CCA851 /* ExerciseAttempt+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 89EAB3491CFF16D400CCA851 /* ExerciseAttempt+CoreDataProperties.m */; };
+		89EAB34D1CFF16D400CCA851 /* ExerciseAttempt.m in Sources */ = {isa = PBXBuildFile; fileRef = 89EAB34B1CFF16D400CCA851 /* ExerciseAttempt.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -97,6 +99,11 @@
 		89EAB3401CFC6BDD00CCA851 /* ChallengeDayDetailsTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChallengeDayDetailsTableViewCell.m; sourceTree = "<group>"; };
 		89EAB3451CFEE1C500CCA851 /* NSDate+THVDateAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+THVDateAdditions.h"; sourceTree = "<group>"; };
 		89EAB3461CFEE1C500CCA851 /* NSDate+THVDateAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+THVDateAdditions.m"; sourceTree = "<group>"; };
+		89EAB3481CFF16D400CCA851 /* ExerciseAttempt+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ExerciseAttempt+CoreDataProperties.h"; sourceTree = "<group>"; };
+		89EAB3491CFF16D400CCA851 /* ExerciseAttempt+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "ExerciseAttempt+CoreDataProperties.m"; sourceTree = "<group>"; };
+		89EAB34A1CFF16D400CCA851 /* ExerciseAttempt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExerciseAttempt.h; sourceTree = "<group>"; };
+		89EAB34B1CFF16D400CCA851 /* ExerciseAttempt.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExerciseAttempt.m; sourceTree = "<group>"; };
+		89EAB34E1CFF18B100CCA851 /* ExerciseDataProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExerciseDataProtocol.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -180,6 +187,10 @@
 				8974E42E1CF851C800CF51A5 /* Exercise.m */,
 				8974E42B1CF851C800CF51A5 /* Exercise+CoreDataProperties.h */,
 				8974E42C1CF851C800CF51A5 /* Exercise+CoreDataProperties.m */,
+				89EAB34A1CFF16D400CCA851 /* ExerciseAttempt.h */,
+				89EAB34B1CFF16D400CCA851 /* ExerciseAttempt.m */,
+				89EAB3481CFF16D400CCA851 /* ExerciseAttempt+CoreDataProperties.h */,
+				89EAB3491CFF16D400CCA851 /* ExerciseAttempt+CoreDataProperties.m */,
 				8974E4211CF851C800CF51A5 /* ParentEntity.h */,
 				8974E4221CF851C800CF51A5 /* ParentEntity.m */,
 				8974E41F1CF851C800CF51A5 /* ParentEntity+CoreDataProperties.h */,
@@ -225,6 +236,7 @@
 			children = (
 				89C123791CFC3C7200AA7807 /* ChallengeDataProtocol.h */,
 				89C1237A1CFC3DA200AA7807 /* ChallengeDayDataProtocol.h */,
+				89EAB34E1CFF18B100CCA851 /* ExerciseDataProtocol.h */,
 			);
 			path = DTOProtocols;
 			sourceTree = "<group>";
@@ -327,8 +339,10 @@
 				8974E42F1CF851C800CF51A5 /* ChallengeDayAttempt+CoreDataProperties.m in Sources */,
 				8974E4321CF851C800CF51A5 /* ChallengeDay.m in Sources */,
 				8974E43D1CF85F3200CF51A5 /* AddChallengeViewController.m in Sources */,
+				89EAB34D1CFF16D400CCA851 /* ExerciseAttempt.m in Sources */,
 				8974E4391CF851C800CF51A5 /* Exercise+CoreDataProperties.m in Sources */,
 				8974E4371CF851C800CF51A5 /* ChallengeAttempt+CoreDataProperties.m in Sources */,
+				89EAB34C1CFF16D400CCA851 /* ExerciseAttempt+CoreDataProperties.m in Sources */,
 				89C123761CFC2BBC00AA7807 /* ChallengeDetailsCollectionViewCell.m in Sources */,
 				8974E4351CF851C800CF51A5 /* Challenge+CoreDataProperties.m in Sources */,
 				8974E4101CF84E2200CF51A5 /* DatabaseInitializer.m in Sources */,

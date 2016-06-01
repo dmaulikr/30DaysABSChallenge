@@ -2,7 +2,7 @@
 //  ChallengeDay+CoreDataProperties.h
 //  30DaysABSChallenge
 //
-//  Created by KRKT on 27/05/16.
+//  Created by KRKT on 01/06/16.
 //  Copyright © 2016 tahavath. All rights reserved.
 //
 //  Choose "Create NSManagedObject Subclass…" from the Core Data editor menu
@@ -15,10 +15,12 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface ChallengeDay (CoreDataProperties)
 
-@property (nullable, nonatomic, retain) NSNumber *dayNumber;
 @property (nullable, nonatomic, retain) NSNumber *challengeDayId;
+@property (nullable, nonatomic, retain) NSNumber *dayNumber;
 @property (nullable, nonatomic, retain) NSNumber *type;
 @property (nullable, nonatomic, retain) NSOrderedSet<Exercise *> *exerciseList;
+@property (nullable, nonatomic, retain) Challenge *challenge;
+@property (nullable, nonatomic, retain) NSOrderedSet<ChallengeDayAttempt *> *challengeDayAttempsList;
 
 @end
 
@@ -34,6 +36,17 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)removeExerciseListObject:(Exercise *)value;
 - (void)addExerciseList:(NSOrderedSet<Exercise *> *)values;
 - (void)removeExerciseList:(NSOrderedSet<Exercise *> *)values;
+
+- (void)insertObject:(ChallengeDayAttempt *)value inChallengeDayAttempsListAtIndex:(NSUInteger)idx;
+- (void)removeObjectFromChallengeDayAttempsListAtIndex:(NSUInteger)idx;
+- (void)insertChallengeDayAttempsList:(NSArray<ChallengeDayAttempt *> *)value atIndexes:(NSIndexSet *)indexes;
+- (void)removeChallengeDayAttempsListAtIndexes:(NSIndexSet *)indexes;
+- (void)replaceObjectInChallengeDayAttempsListAtIndex:(NSUInteger)idx withObject:(ChallengeDayAttempt *)value;
+- (void)replaceChallengeDayAttempsListAtIndexes:(NSIndexSet *)indexes withChallengeDayAttempsList:(NSArray<ChallengeDayAttempt *> *)values;
+- (void)addChallengeDayAttempsListObject:(ChallengeDayAttempt *)value;
+- (void)removeChallengeDayAttempsListObject:(ChallengeDayAttempt *)value;
+- (void)addChallengeDayAttempsList:(NSOrderedSet<ChallengeDayAttempt *> *)values;
+- (void)removeChallengeDayAttempsList:(NSOrderedSet<ChallengeDayAttempt *> *)values;
 
 @end
 

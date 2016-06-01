@@ -7,7 +7,7 @@
 //
 
 #import "ChallengeDay.h"
-#import "Exercise.h"
+#import "ExerciseDataProtocol.h"
 
 @implementation ChallengeDay
 
@@ -20,8 +20,8 @@
 	return [[self type] integerValue] == THVChallengeDayTypeWorkout ? @"Workout" : @"Rest";
 }
 
-- (NSArray <Exercise *> *)exerciseListOfDay {
-	return [[self exerciseList] array];
+- (NSArray <ExerciseDataProtocol> *)exerciseListOfDay {
+	return (NSArray <ExerciseDataProtocol> *)[[self exerciseList] array];
 }
 
 @end

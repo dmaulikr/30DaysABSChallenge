@@ -1,20 +1,20 @@
 //
-//  Challenge.h
+//  ExerciseAttempt.h
 //  30DaysABSChallenge
 //
-//  Created by KRKT on 27/05/16.
+//  Created by KRKT on 01/06/16.
 //  Copyright © 2016 tahavath. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
 #import "ParentEntity.h"
-#import "ChallengeDataProtocol.h"
+#import "ExerciseDataProtocol.h"
 
-@class ChallengeDay, ChallengeAttempt;
+@class Exercise, ChallengeDayAttempt;
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface Challenge : ParentEntity <ChallengeDataProtocol>
+@interface ExerciseAttempt : ParentEntity <ExerciseDataProtocol>
 
 // Insert code here to declare functionality of your managed object subclass
 
@@ -22,4 +22,4 @@ NS_ASSUME_NONNULL_BEGIN
 
 NS_ASSUME_NONNULL_END
 
-#import "Challenge+CoreDataProperties.h"
+#import "ExerciseAttempt+CoreDataProperties.h"

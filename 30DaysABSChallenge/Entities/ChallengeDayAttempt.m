@@ -20,8 +20,8 @@
 	return [[[self challengeDay] type] integerValue] == THVChallengeDayTypeWorkout ? @"Workout" : @"Rest";
 }
 
-- (NSArray <Exercise *> *)exerciseListOfDay {
-	return [[[self challengeDay] exerciseList] array];
+- (NSArray <ExerciseDataProtocol> *)exerciseListOfDay {
+	return (NSArray <ExerciseDataProtocol> *)[[self exerciseAttemptsList] array];
 }
 
 - (NSDate *)dayAttemptDate {

@@ -11,6 +11,8 @@
 #import "ChallengeDayAttempt.h"
 #import "Commons.h"
 #import "NSDate+THVDateAdditions.h"
+#import "ExerciseDataProtocol.h"
+#import "Exercise.h"
 
 NSString *const THVChallengeDayDetailsTableViewCellId = @"challengeDayDetailsTableViewCellId";
 NSString *const THVMarkAsCompletedLabelString = @"Mark as completed";
@@ -65,18 +67,18 @@ NSString *const THVMarkAsNotCompletedLabelString = @"Mark as NOT completed";
 #pragma mark - table view helper methods
 - (void)configureCell:(ChallengeDayDetailsTableViewCell *)cell forIndexPath:(NSIndexPath *)indexPath {
 	
-	Exercise *exerciseForCell = [[self.selectedChallangeDay exerciseListOfDay] objectAtIndex:indexPath.row];
+	id<ExerciseDataProtocol> exerciseForCell = [[self.selectedChallangeDay exerciseListOfDay] objectAtIndex:indexPath.row];
 	
-	cell.exerciseNameLabel.text = exerciseForCell.name;
+	cell.exerciseNameLabel.text = [exerciseForCell exerciseName];
 	cell.isATimerCell = NO;
 	cell.timerView.hidden = YES;
 	
-	switch ([exerciseForCell.type integerValue]) {
+	switch ([[exerciseForCell exerciseType] integerValue]) {
 		case THVExerciseTypeRepetition:
-			cell.exerciseAmountLabel.text = [NSString stringWithFormat:@"x %@", exerciseForCell.amount];
+			cell.exerciseAmountLabel.text = [NSString stringWithFormat:@"x %@", [exerciseForCell exerciseAmount]];
 			break;
 		case THVExerciseTypeTime:
-			cell.exerciseAmountLabel.text = [NSString stringWithFormat:@"%@s", exerciseForCell.amount];
+			cell.exerciseAmountLabel.text = [NSString stringWithFormat:@"%@s", [exerciseForCell exerciseAmount]];
 			cell.isATimerCell = YES;
 			
 			if (currentTimerValue) {

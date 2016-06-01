@@ -1,5 +1,5 @@
 //
-//  ChallengeDayAttempt+CoreDataProperties.m
+//  ExerciseAttempt+CoreDataProperties.m
 //  30DaysABSChallenge
 //
 //  Created by KRKT on 01/06/16.
@@ -9,16 +9,13 @@
 //  to delete and recreate this implementation file for your updated model.
 //
 
-#import "ChallengeDayAttempt+CoreDataProperties.h"
+#import "ExerciseAttempt+CoreDataProperties.h"
 
-@implementation ChallengeDayAttempt (CoreDataProperties)
+@implementation ExerciseAttempt (CoreDataProperties)
 
-@dynamic challengeDayAttemptDate;
-@dynamic challengeDayAttemptId;
 @dynamic completed;
 @dynamic completionDate;
-@dynamic challengeDay;
-@dynamic challengeAttempt;
-@dynamic exerciseAttemptsList;
+@dynamic challengeDayAttempt;
+@dynamic exercise;
 
 @end

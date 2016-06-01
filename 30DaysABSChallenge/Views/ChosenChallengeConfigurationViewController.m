@@ -12,6 +12,8 @@
 #import "Challenge.h"
 #import "ChallengeDay.h"
 #import "ChallengeDayDataProtocol.h"
+#import "Exercise.h"
+#import "ExerciseAttempt.h"
 #import "Commons.h"
 #import "MainViewController.h"
 #import "NSDate+THVDateAdditions.h"
@@ -57,11 +59,22 @@ NSString *const THVUnwindToMainSegueId = @"unwindToMain";
 			ChallengeDayAttempt *challengeDayAttempt = [NSEntityDescription insertNewObjectForEntityForName:[ChallengeDayAttempt entityName] inManagedObjectContext:moc];
 			challengeDayAttempt.challengeDayAttemptDate = [challengeAttempt.startDate dateByAddingTimeInterval:24.*60.*60.*i];
 			challengeDayAttempt.completed = [NSNumber numberWithBool:NO];
+			challengeDayAttempt.challengeAttempt = challengeAttempt;
 			if ([challengeDay isKindOfClass:[ChallengeDay class]]) {
 				challengeDayAttempt.challengeDay = (ChallengeDay *)challengeDay;
 			}
 			
-			[challengeAttempt addChallengeDayAttemptsListObject:challengeDayAttempt];
+			for (int j = 0; j < [[challengeDay exerciseListOfDay] count]; j++) {
+				id<ExerciseDataProtocol> exercise = [[challengeDay exerciseListOfDay] objectAtIndex:j];
+				
+				ExerciseAttempt *exerciseAttempt = [NSEntityDescription insertNewObjectForEntityForName:[ExerciseAttempt entityName] inManagedObjectContext:moc];
+				exerciseAttempt.completed = [NSNumber numberWithBool:NO];
+				exerciseAttempt.completionDate = nil;
+				exerciseAttempt.challengeDayAttempt = challengeDayAttempt;
+				if ([exercise isKindOfClass:[Exercise class]]) {
+					exerciseAttempt.exercise = (Exercise *)exercise;
+				}
+			}
 		}
 		
 		NSError *error = nil;

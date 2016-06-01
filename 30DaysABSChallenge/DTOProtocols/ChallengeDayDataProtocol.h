@@ -7,14 +7,14 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "Exercise.h"
+#import "ExerciseDataProtocol.h"
 
 @protocol ChallengeDayDataProtocol <NSObject>
 
 @required
 - (NSNumber *)challengeDayNumber;
 - (NSString *)dayTypeName;
-- (NSArray <Exercise *> *)exerciseListOfDay;
+- (NSArray <ExerciseDataProtocol> *)exerciseListOfDay;
 
 @optional
 - (NSDate *)dayAttemptDate;

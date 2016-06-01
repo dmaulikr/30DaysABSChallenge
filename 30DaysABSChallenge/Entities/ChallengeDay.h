@@ -15,7 +15,7 @@ typedef enum {
 	THVChallengeDayTypeRest		= 2
 } THVChallengeDayType;
 
-@class Exercise;
+@class Exercise, Challenge, ChallengeDayAttempt;
 
 NS_ASSUME_NONNULL_BEGIN
 
