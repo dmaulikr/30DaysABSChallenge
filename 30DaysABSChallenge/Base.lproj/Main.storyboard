@@ -75,7 +75,7 @@
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Day ##" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="v0O-Ng-Inr">
                                 <rect key="frame" x="258" y="72" width="85" height="33"/>
                                 <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rfd-A8-xHT">
@@ -84,37 +84,45 @@
 
 Rest in peace!</string>
                                 <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="80" sectionHeaderHeight="1" sectionFooterHeight="1" translatesAutoresizingMaskIntoConstraints="NO" id="Qnx-wP-fSR">
-                                <rect key="frame" x="20" y="134" width="560" height="422"/>
+                                <rect key="frame" x="0.0" y="134" width="600" height="422"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="challengeDayDetailsTableViewCellId" rowHeight="80" id="fLZ-Im-YTy" customClass="ChallengeDayDetailsTableViewCell">
-                                        <rect key="frame" x="0.0" y="1" width="560" height="80"/>
+                                        <rect key="frame" x="0.0" y="1" width="600" height="80"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="fLZ-Im-YTy" id="x10-rW-osy">
-                                            <rect key="frame" x="0.0" y="0.0" width="560" height="80"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="80"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="AFb-eB-QR5" userLabel="checkbox view">
+                                                    <rect key="frame" x="16" y="25" width="30" height="30"/>
+                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="30" id="4cM-Mx-2vv"/>
+                                                        <constraint firstAttribute="height" constant="30" id="t4b-0S-Yvg"/>
+                                                    </constraints>
+                                                </view>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Exercise name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OhT-Im-1BG">
-                                                    <rect key="frame" x="8" y="24" width="170" height="33"/>
+                                                    <rect key="frame" x="56" y="24" width="170" height="33"/>
                                                     <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ffo-ez-wBZ">
-                                                    <rect key="frame" x="488" y="24" width="64" height="33"/>
+                                                    <rect key="frame" x="528" y="24" width="64" height="33"/>
                                                     <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EX5-N4-xMG" userLabel="timerView">
-                                                    <rect key="frame" x="0.0" y="9" width="560" height="71"/>
+                                                    <rect key="frame" x="0.0" y="9" width="600" height="71"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="###" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="shG-ZC-Tj7">
-                                                            <rect key="frame" x="241" y="12" width="78" height="48"/>
+                                                            <rect key="frame" x="261" y="12" width="78" height="48"/>
                                                             <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="40"/>
                                                             <color key="textColor" red="0.49105737346365774" green="0.63313972513089012" blue="0.29507506122530491" alpha="1" colorSpace="calibratedRGB"/>
                                                             <nil key="highlightedColor"/>
@@ -129,16 +137,20 @@ Rest in peace!</string>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="EX5-N4-xMG" firstAttribute="top" secondItem="x10-rW-osy" secondAttribute="top" constant="9" id="4N8-d6-cp6"/>
-                                                <constraint firstItem="OhT-Im-1BG" firstAttribute="leading" secondItem="x10-rW-osy" secondAttribute="leading" constant="8" id="5Gd-D2-Rp5"/>
+                                                <constraint firstItem="AFb-eB-QR5" firstAttribute="centerY" secondItem="x10-rW-osy" secondAttribute="centerY" id="8nY-2U-yVc"/>
                                                 <constraint firstAttribute="trailing" secondItem="Ffo-ez-wBZ" secondAttribute="trailing" constant="8" id="Dx4-r4-2Pk"/>
                                                 <constraint firstItem="OhT-Im-1BG" firstAttribute="centerY" secondItem="x10-rW-osy" secondAttribute="centerY" id="RC1-DB-Jea"/>
+                                                <constraint firstItem="OhT-Im-1BG" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="x10-rW-osy" secondAttribute="leadingMargin" priority="999" constant="8" id="RPK-7u-B42"/>
                                                 <constraint firstAttribute="trailing" secondItem="EX5-N4-xMG" secondAttribute="trailing" id="XfW-BO-4ca"/>
+                                                <constraint firstItem="OhT-Im-1BG" firstAttribute="leading" secondItem="AFb-eB-QR5" secondAttribute="trailing" constant="10" id="qW6-Ni-bT4"/>
                                                 <constraint firstItem="EX5-N4-xMG" firstAttribute="leading" secondItem="x10-rW-osy" secondAttribute="leading" id="u3p-Q3-1Hf"/>
                                                 <constraint firstItem="Ffo-ez-wBZ" firstAttribute="centerY" secondItem="x10-rW-osy" secondAttribute="centerY" id="xFg-Rr-fUH"/>
                                                 <constraint firstAttribute="bottom" secondItem="EX5-N4-xMG" secondAttribute="bottom" id="yU3-3p-rff"/>
+                                                <constraint firstItem="AFb-eB-QR5" firstAttribute="leading" secondItem="x10-rW-osy" secondAttribute="leadingMargin" constant="8" id="yew-SP-vnC"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
+                                            <outlet property="checkboxView" destination="AFb-eB-QR5" id="lhM-4K-LQh"/>
                                             <outlet property="counterLabel" destination="shG-ZC-Tj7" id="DZl-dF-Yq4"/>
                                             <outlet property="exerciseAmountLabel" destination="Ffo-ez-wBZ" id="g1V-ey-VTc"/>
                                             <outlet property="exerciseNameLabel" destination="OhT-Im-1BG" id="Aj0-rp-BKL"/>
@@ -178,7 +190,7 @@ Rest in peace!</string>
                                     <constraint firstAttribute="height" constant="21" id="JwJ-tY-z9H"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
@@ -189,10 +201,10 @@ Rest in peace!</string>
                             <constraint firstItem="Zxv-Ed-B0j" firstAttribute="top" secondItem="Qnx-wP-fSR" secondAttribute="bottom" id="7PD-1O-HNm"/>
                             <constraint firstItem="v0O-Ng-Inr" firstAttribute="top" secondItem="yCD-sA-PJZ" secondAttribute="bottom" constant="8" id="ENp-b1-eap"/>
                             <constraint firstItem="Qnx-wP-fSR" firstAttribute="top" secondItem="RzL-0m-Dqs" secondAttribute="bottom" constant="8" id="Fge-FL-gO8"/>
-                            <constraint firstAttribute="trailing" secondItem="Qnx-wP-fSR" secondAttribute="trailing" constant="20" symbolic="YES" id="HF2-qN-Fhk"/>
+                            <constraint firstAttribute="trailing" secondItem="Qnx-wP-fSR" secondAttribute="trailing" id="HF2-qN-Fhk"/>
                             <constraint firstItem="RzL-0m-Dqs" firstAttribute="top" secondItem="v0O-Ng-Inr" secondAttribute="bottom" id="YQX-gb-TRX"/>
                             <constraint firstItem="Zxv-Ed-B0j" firstAttribute="leading" secondItem="5sd-4f-bbL" secondAttribute="leading" id="Ywe-ck-l9b"/>
-                            <constraint firstItem="Qnx-wP-fSR" firstAttribute="leading" secondItem="5sd-4f-bbL" secondAttribute="leading" constant="20" symbolic="YES" id="ZvE-mS-ghn"/>
+                            <constraint firstItem="Qnx-wP-fSR" firstAttribute="leading" secondItem="5sd-4f-bbL" secondAttribute="leading" id="ZvE-mS-ghn"/>
                             <constraint firstItem="rfd-A8-xHT" firstAttribute="centerX" secondItem="5sd-4f-bbL" secondAttribute="centerX" id="ne5-uA-otH"/>
                             <constraint firstItem="RzL-0m-Dqs" firstAttribute="centerX" secondItem="5sd-4f-bbL" secondAttribute="centerX" id="pR6-qS-PKS"/>
                             <constraint firstItem="GA8-H9-w96" firstAttribute="top" secondItem="Zxv-Ed-B0j" secondAttribute="bottom" id="rX0-TX-OUI"/>
@@ -253,19 +265,19 @@ Rest in peace!</string>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Work/Rest" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FuK-L3-h1F" userLabel="day type">
                                                             <rect key="frame" x="-3" y="39" width="98" height="26"/>
                                                             <fontDescription key="fontDescription" style="UICTFontTextStyleTitle2"/>
-                                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Day ##" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="evc-A5-gD0" userLabel="day number">
                                                             <rect key="frame" x="3" y="8" width="85" height="33"/>
                                                             <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
-                                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="dd MMM" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XiU-Bq-oij">
                                                             <rect key="frame" x="12" y="64" width="68" height="21"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                     </subviews>
@@ -304,13 +316,13 @@ Rest in peace!</string>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="header label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XDt-9i-JZQ" userLabel="collection header label">
                                             <rect key="frame" x="228" y="-2" width="145" height="34"/>
                                             <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
-                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="start date" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mBs-GR-Qmj">
                                             <rect key="frame" x="263" y="25" width="75" height="21"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
@@ -373,7 +385,7 @@ Rest in peace!</string>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="751" text="Starting from" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SBu-zj-rvw">
                                 <rect key="frame" x="20" y="72" width="151" height="33"/>
                                 <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <datePicker contentMode="scaleToFill" verticalCompressionResistancePriority="749" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="date" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="DiL-hX-iX6" userLabel="starting from date picker">
@@ -388,7 +400,7 @@ Rest in peace!</string>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="751" text="Reminder" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="esb-qP-mhv">
                                 <rect key="frame" x="20" y="271" width="113" height="33"/>
                                 <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" verticalCompressionResistancePriority="751" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="YeO-CR-L27">

@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8949B6C21D017ACF002409EA /* Checkbox.m in Sources */ = {isa = PBXBuildFile; fileRef = 8949B6C11D017ACF002409EA /* Checkbox.m */; };
+		8949B6C41D018196002409EA /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8949B6C31D018196002409EA /* QuartzCore.framework */; };
+		8949B6C81D019012002409EA /* CheckboxLayerUnchecked.m in Sources */ = {isa = PBXBuildFile; fileRef = 8949B6C71D019012002409EA /* CheckboxLayerUnchecked.m */; };
+		8949B6CB1D01901D002409EA /* CheckboxLayerChecked.m in Sources */ = {isa = PBXBuildFile; fileRef = 8949B6CA1D01901D002409EA /* CheckboxLayerChecked.m */; };
+		8949B6CE1D0199CC002409EA /* CheckboxLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 8949B6CD1D0199CC002409EA /* CheckboxLayer.m */; };
 		8974E3CE1CF8375200CF51A5 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 8974E3CD1CF8375200CF51A5 /* main.m */; };
 		8974E3D11CF8375200CF51A5 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 8974E3D01CF8375200CF51A5 /* AppDelegate.m */; };
 		8974E3D71CF8375200CF51A5 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8974E3D51CF8375200CF51A5 /* Main.storyboard */; };
@@ -41,6 +46,16 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		8949B6C01D017ACF002409EA /* Checkbox.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Checkbox.h; sourceTree = "<group>"; };
+		8949B6C11D017ACF002409EA /* Checkbox.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Checkbox.m; sourceTree = "<group>"; };
+		8949B6C31D018196002409EA /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		8949B6C61D019012002409EA /* CheckboxLayerUnchecked.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CheckboxLayerUnchecked.h; sourceTree = "<group>"; };
+		8949B6C71D019012002409EA /* CheckboxLayerUnchecked.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CheckboxLayerUnchecked.m; sourceTree = "<group>"; };
+		8949B6C91D01901D002409EA /* CheckboxLayerChecked.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CheckboxLayerChecked.h; sourceTree = "<group>"; };
+		8949B6CA1D01901D002409EA /* CheckboxLayerChecked.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CheckboxLayerChecked.m; sourceTree = "<group>"; };
+		8949B6CC1D0199CC002409EA /* CheckboxLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CheckboxLayer.h; sourceTree = "<group>"; };
+		8949B6CD1D0199CC002409EA /* CheckboxLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CheckboxLayer.m; sourceTree = "<group>"; };
+		8949B6CF1D01B0B1002409EA /* CheckboxDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CheckboxDelegate.h; sourceTree = "<group>"; };
 		8974E3C91CF8375200CF51A5 /* 30DaysABSChallenge.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = 30DaysABSChallenge.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8974E3CD1CF8375200CF51A5 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		8974E3CF1CF8375200CF51A5 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -111,15 +126,41 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8949B6C41D018196002409EA /* QuartzCore.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		8949B6BF1D017AB4002409EA /* CustomControls */ = {
+			isa = PBXGroup;
+			children = (
+				8949B6C51D018FC3002409EA /* Checkbox */,
+			);
+			path = CustomControls;
+			sourceTree = "<group>";
+		};
+		8949B6C51D018FC3002409EA /* Checkbox */ = {
+			isa = PBXGroup;
+			children = (
+				8949B6C01D017ACF002409EA /* Checkbox.h */,
+				8949B6C11D017ACF002409EA /* Checkbox.m */,
+				8949B6CC1D0199CC002409EA /* CheckboxLayer.h */,
+				8949B6CD1D0199CC002409EA /* CheckboxLayer.m */,
+				8949B6C61D019012002409EA /* CheckboxLayerUnchecked.h */,
+				8949B6C71D019012002409EA /* CheckboxLayerUnchecked.m */,
+				8949B6C91D01901D002409EA /* CheckboxLayerChecked.h */,
+				8949B6CA1D01901D002409EA /* CheckboxLayerChecked.m */,
+				8949B6CF1D01B0B1002409EA /* CheckboxDelegate.h */,
+			);
+			name = Checkbox;
+			sourceTree = "<group>";
+		};
 		8974E3C01CF8375200CF51A5 = {
 			isa = PBXGroup;
 			children = (
+				8949B6C31D018196002409EA /* QuartzCore.framework */,
 				8974E3CB1CF8375200CF51A5 /* 30DaysABSChallenge */,
 				8974E3CA1CF8375200CF51A5 /* Products */,
 			);
@@ -202,6 +243,7 @@
 		8974E4091CF83DC800CF51A5 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				8949B6BF1D017AB4002409EA /* CustomControls */,
 				8974E40A1CF83E0A00CF51A5 /* MainViewController.h */,
 				8974E40B1CF83E0A00CF51A5 /* MainViewController.m */,
 				8974E43B1CF85F3200CF51A5 /* AddChallengeViewController.h */,
@@ -322,9 +364,11 @@
 			files = (
 				89EAB33E1CFC5AD100CCA851 /* ChallengeDayDetailViewController.m in Sources */,
 				8974E4301CF851C800CF51A5 /* ChallengeDayAttempt.m in Sources */,
+				8949B6C21D017ACF002409EA /* Checkbox.m in Sources */,
 				89EAB33B1CFC558200CCA851 /* ChallengeDetailsCollectionHeaderView.m in Sources */,
 				89EAB3471CFEE1C500CCA851 /* NSDate+THVDateAdditions.m in Sources */,
 				8974E40C1CF83E0A00CF51A5 /* MainViewController.m in Sources */,
+				8949B6CB1D01901D002409EA /* CheckboxLayerChecked.m in Sources */,
 				897B80D81CF8794B0000A351 /* ChallengeDetailsViewController.m in Sources */,
 				8974E4311CF851C800CF51A5 /* ChallengeDay+CoreDataProperties.m in Sources */,
 				8974E3DA1CF8375200CF51A5 /* _0DaysABSChallenge.xcdatamodeld in Sources */,
@@ -332,6 +376,8 @@
 				8974E3E91CF83B7800CF51A5 /* Commons.m in Sources */,
 				8974E3D11CF8375200CF51A5 /* AppDelegate.m in Sources */,
 				8974E43A1CF851C800CF51A5 /* Exercise.m in Sources */,
+				8949B6CE1D0199CC002409EA /* CheckboxLayer.m in Sources */,
+				8949B6C81D019012002409EA /* CheckboxLayerUnchecked.m in Sources */,
 				897B80DB1CF87A3E0000A351 /* ChosenChallengeConfigurationViewController.m in Sources */,
 				8974E4331CF851C800CF51A5 /* ParentEntity+CoreDataProperties.m in Sources */,
 				8974E3CE1CF8375200CF51A5 /* main.m in Sources */,
