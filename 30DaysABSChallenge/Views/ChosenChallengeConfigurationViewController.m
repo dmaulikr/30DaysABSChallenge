@@ -20,7 +20,9 @@
 
 NSString *const THVUnwindToMainSegueId = @"unwindToMain";
 
-@interface ChosenChallengeConfigurationViewController ()
+@interface ChosenChallengeConfigurationViewController () {
+	NSDate *originalStartDate;
+}
 
 @end
 
@@ -31,6 +33,10 @@ NSString *const THVUnwindToMainSegueId = @"unwindToMain";
 	
 	self.navigationItem.title = [self.selectedChallenge challengeName];
 	self.title = [self.selectedChallenge challengeName];
+	
+	if ([self.selectedChallenge isKindOfClass:[ChallengeAttempt class]]) {
+		[self configureViewForShowingDetailsOfChallengeAttempt];
+	}
 }
 
 - (void)didReceiveMemoryWarning {
@@ -77,10 +83,43 @@ NSString *const THVUnwindToMainSegueId = @"unwindToMain";
 			}
 		}
 		
-		NSError *error = nil;
-		if (![moc save:&error]) {
-			NSLog(@"Could not save challenge attempt!\n%@\n%@", error.localizedDescription, error.userInfo);
+		[self saveContext];
+	}
+}
+
+- (BOOL)shouldPerformSegueWithIdentifier:(NSString *)identifier sender:(id)sender {
+	if ([self.selectedChallenge isKindOfClass:[ChallengeAttempt class]]) {
+		
+		ChallengeAttempt __block *challengeAttempt = (ChallengeAttempt *)self.selectedChallenge;
+		
+		challengeAttempt.reminderActive = [NSNumber numberWithBool:self.reminderSwitch.isOn];
+		challengeAttempt.reminderTime = self.reminderSwitch.isOn ? [[Commons challengeTimeReminderFormatter] stringFromDate:self.reminderTimeDatePicker.date] : nil;
+		
+		BOOL shouldSaveContextAndPopViewController = YES;
+		
+		if (![originalStartDate isEqualToDate:[self.startingFromDatePicker.date thv_dateWithoutTime]]) {
+			
+			shouldSaveContextAndPopViewController = NO;
+			
+			UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"" message:@"Are you sure you want to change start date of this challenge attempt and dates of all challenge days associated?" preferredStyle:UIAlertControllerStyleAlert];
+			[alert addAction:[UIAlertAction actionWithTitle:@"No" style:UIAlertActionStyleCancel handler:nil]];
+			ChosenChallengeConfigurationViewController __block *this = self;
+			[alert addAction:[UIAlertAction actionWithTitle:@"Yes" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+				[this updateChallengeAttempt:challengeAttempt withNewStartDate:[this.startingFromDatePicker.date thv_dateWithoutTime]];
+				[this saveContext];
+				[this.navigationController popViewControllerAnimated:YES];
+			}]];
+			[self presentViewController:alert animated:YES completion:nil];
 		}
+		
+		if (shouldSaveContextAndPopViewController) {
+			[self saveContext];
+			[self.navigationController popViewControllerAnimated:YES];
+		}
+		
+		return NO;
+	} else {
+		return YES;
 	}
 }
 
@@ -92,6 +131,38 @@ NSString *const THVUnwindToMainSegueId = @"unwindToMain";
 						self.reminderTimeDatePicker.hidden = !self.reminderSwitch.isOn;
 					}
 					completion:nil];
+}
+
+- (void)configureViewForShowingDetailsOfChallengeAttempt {
+	ChallengeAttempt *selectedChallengeAttempt = (ChallengeAttempt *)self.selectedChallenge;
+	
+	originalStartDate = selectedChallengeAttempt.startDate;
+	
+	self.startingFromDatePicker.date = selectedChallengeAttempt.startDate;
+	
+	[self.reminderSwitch setOn:[selectedChallengeAttempt.reminderActive boolValue]];
+	
+	if ([selectedChallengeAttempt.reminderActive boolValue]) {
+		self.reminderTimeDatePicker.hidden = !self.reminderSwitch.isOn;
+		self.reminderTimeDatePicker.date = [[Commons challengeTimeReminderFormatter] dateFromString:selectedChallengeAttempt.reminderTime];
+	}
+}
+
+#pragma mark - helper methods
+- (void)saveContext {
+	NSError *error = nil;
+	if (![((AppDelegate *)[[UIApplication sharedApplication] delegate]).managedObjectContext save:&error]) {
+		NSLog(@"Could not save challenge day attempt!\n%@\n%@", error.localizedDescription, error.userInfo);
+	}
+}
+
+- (void)updateChallengeAttempt:(ChallengeAttempt *)challengeAttempt withNewStartDate:(NSDate *)startDate {
+	challengeAttempt.startDate = startDate;
+	
+	for (int i = 0; i < [challengeAttempt.challengeDayAttemptsList array].count; i++) {
+		ChallengeDayAttempt *challengeDayAttempt = [[challengeAttempt.challengeDayAttemptsList array] objectAtIndex:i];
+		challengeDayAttempt.challengeDayAttemptDate = [challengeAttempt.startDate dateByAddingTimeInterval:24.*60.*60.*i];
+	}
 }
 
 @end

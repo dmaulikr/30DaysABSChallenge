@@ -17,6 +17,7 @@
 
 NSString *const THVGoToChosenChallengeConfigurationScreen = @"chosenChallangeScreenFromDetails";
 NSString *const THVShowChallengeDayDetails = @"shoChallengeDayDetails";
+NSString *const THVShowDetailsOfSelectedChallengeAttempt = @"showDetailsOfChallengeAttempt";
 
 NSString *const THVChallengeDetailsCollectionViewCellId = @"THVChallengeDetailsCollectionViewCellId";
 NSString *const THVChallengeDetailsCollectionViewHeaderId = @"THVChallengeDetailsCollectionViewHeaderId";
@@ -50,7 +51,8 @@ NSString *const THVChallengeDetailsCollectionViewHeaderId = @"THVChallengeDetail
 
 #pragma mark - segue methods
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-	if ([segue.identifier isEqualToString:THVGoToChosenChallengeConfigurationScreen]) {
+	if ([segue.identifier isEqualToString:THVGoToChosenChallengeConfigurationScreen] ||
+		[segue.identifier isEqualToString:THVShowDetailsOfSelectedChallengeAttempt]) {
 		ChosenChallengeConfigurationViewController *destinationVC = [segue destinationViewController];
 		destinationVC.selectedChallenge = self.selectedChallenge;
 	} else if ([segue.identifier isEqualToString:THVShowChallengeDayDetails]) {
@@ -114,6 +116,7 @@ NSString *const THVChallengeDetailsCollectionViewHeaderId = @"THVChallengeDetail
 		headerView.headerLabel.text = [self.selectedChallenge challengeName];
 		if ([self.selectedChallenge respondsToSelector:@selector(challengeStartDate)]) {
 			headerView.additionalInfoLabel.text = [NSString stringWithFormat:@"Started at: %@", [[Commons challengeDayDateFormatter] stringFromDate:[self.selectedChallenge challengeStartDate]]];
+			headerView.detailsButton.hidden = NO;
 		} else {
 			[headerView.additionalInfoLabel removeFromSuperview];
 			headerView.headerLabelCenterYAlignmentConstraint.constant = 0.0;

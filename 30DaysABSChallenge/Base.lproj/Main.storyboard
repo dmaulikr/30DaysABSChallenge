@@ -325,15 +325,24 @@ Rest in peace!</string>
                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
+                                        <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="detailDisclosure" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2H4-Z6-fCN">
+                                            <rect key="frame" x="570" y="14" width="22" height="22"/>
+                                            <connections>
+                                                <segue destination="dty-zy-K0P" kind="show" identifier="showDetailsOfChallengeAttempt" id="G9R-2I-djd"/>
+                                            </connections>
+                                        </button>
                                     </subviews>
                                     <constraints>
                                         <constraint firstItem="mBs-GR-Qmj" firstAttribute="centerX" secondItem="J3Q-uw-JoJ" secondAttribute="centerX" id="B7u-D7-7uI"/>
                                         <constraint firstItem="XDt-9i-JZQ" firstAttribute="centerX" secondItem="J3Q-uw-JoJ" secondAttribute="centerX" id="NB2-Wx-I1N"/>
                                         <constraint firstItem="mBs-GR-Qmj" firstAttribute="centerY" secondItem="J3Q-uw-JoJ" secondAttribute="centerY" constant="10" id="O5s-eQ-rig"/>
                                         <constraint firstItem="XDt-9i-JZQ" firstAttribute="centerY" secondItem="J3Q-uw-JoJ" secondAttribute="centerY" constant="-10" id="Phb-p4-WPH"/>
+                                        <constraint firstItem="2H4-Z6-fCN" firstAttribute="centerY" secondItem="J3Q-uw-JoJ" secondAttribute="centerY" id="Zg8-hW-1zc"/>
+                                        <constraint firstAttribute="trailing" secondItem="2H4-Z6-fCN" secondAttribute="trailing" constant="8" id="uUR-YF-dJZ"/>
                                     </constraints>
                                     <connections>
                                         <outlet property="additionalInfoLabel" destination="mBs-GR-Qmj" id="tvT-8k-1v4"/>
+                                        <outlet property="detailsButton" destination="2H4-Z6-fCN" id="I3D-FD-YnX"/>
                                         <outlet property="headerLabel" destination="XDt-9i-JZQ" id="z09-Sk-nwk"/>
                                         <outlet property="headerLabelCenterYAlignmentConstraint" destination="Phb-p4-WPH" id="pGf-LQ-6bM"/>
                                     </connections>
@@ -538,6 +547,6 @@ Rest in peace!</string>
     </scenes>
     <inferredMetricsTieBreakers>
         <segue reference="zvd-fx-BAt"/>
-        <segue reference="N6b-1z-4N0"/>
+        <segue reference="G9R-2I-djd"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -37,4 +37,12 @@
 	return [self startDate];
 }
 
+- (BOOL)isReminderActive {
+	return [[self reminderActive] boolValue];
+}
+
+- (NSString *)challengeReminderTime {
+	return [self reminderTime];
+}
+
 @end

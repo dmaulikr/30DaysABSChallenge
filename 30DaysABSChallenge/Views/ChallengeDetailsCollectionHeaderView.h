@@ -13,5 +13,6 @@
 @property (weak, nonatomic) IBOutlet UILabel *headerLabel;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *headerLabelCenterYAlignmentConstraint;
 @property (weak, nonatomic) IBOutlet UILabel *additionalInfoLabel;
+@property (weak, nonatomic) IBOutlet UIButton *detailsButton;
 
 @end

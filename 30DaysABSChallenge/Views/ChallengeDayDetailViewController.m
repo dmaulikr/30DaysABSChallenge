@@ -45,6 +45,12 @@ NSString *const THVMarkAsNotCompletedLabelString = @"Mark as NOT completed";
 	} else {
 		self.tableView.hidden = YES;
 	}
+	
+	if ([self.selectedChallangeDay isKindOfClass:[ChallengeDayAttempt class]] && ![((ChallengeDayAttempt *)self.selectedChallangeDay).dayAttemptDate isEqualToDate:[[NSDate date] thv_dateWithoutTime]] && ![self.selectedChallangeDay isCompleted]) {
+		UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Watch out!" message:@"Selected challenge day's date does not match today's date." preferredStyle:UIAlertControllerStyleAlert];
+		[alert addAction:[UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleCancel handler:nil]];
+		[self presentViewController:alert animated:YES completion:nil];
+	}
 }
 
 - (void)viewDidLayoutSubviews {
@@ -101,7 +107,6 @@ NSString *const THVMarkAsNotCompletedLabelString = @"Mark as NOT completed";
 		[cell.checkboxView removeFromSuperview];
 	} else {
 		[cell setupCheckbox];
-		[cell.checkbox addTarget:self action:@selector(checkBoxTapped:) forControlEvents:UIControlEventTouchUpInside];
 	}
 }
 
@@ -126,7 +131,7 @@ NSString *const THVMarkAsNotCompletedLabelString = @"Mark as NOT completed";
 		[tableView scrollRectToVisible:cell.frame animated:YES];
 	});
 	
-	if (!showOnly && ![self.selectedChallangeDay isCompleted] && ![cell.exercise exerciseIsCompleted]) {
+	if (!showOnly && ![self.selectedChallangeDay isCompleted] && (![cell.exercise exerciseIsCompleted] || (![[cell.exercise exerciseType] isEqualToNumber:[NSNumber numberWithInteger:THVExerciseTypeTime]] && cellTimer))) {
 		if (cell.isATimerCell) {
 			cellWithTimer = cell;
 			indexPathOfCellWithTimer = indexPath;
@@ -254,25 +259,11 @@ NSString *const THVMarkAsNotCompletedLabelString = @"Mark as NOT completed";
 - (IBAction)markAsCompletedButtonTapped:(id)sender {
 	if ([self.selectedChallangeDay isKindOfClass:[ChallengeDayAttempt class]]) {
 		if (![self.selectedChallangeDay isCompleted]) {
-			if (![((ChallengeDayAttempt *)self.selectedChallangeDay).dayAttemptDate isEqualToDate:[[NSDate date] thv_dateWithoutTime]]) {
-				UIAlertController *alert = [UIAlertController alertControllerWithTitle:nil message:@"Selected challenge day's date does not match today's date.\n\nAre you sure you want to mark this challenge day as completed?" preferredStyle:UIAlertControllerStyleAlert];
-				[alert addAction:[UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:nil]];
-				ChallengeDayDetailViewController __block *this = self;
-				[alert addAction:[UIAlertAction actionWithTitle:@"Yes, mark as completed" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-					[this markSelectedChallengeDayAttemptAsCompleted:YES markAllExercises:YES andPopViewController:YES];
-				}]];
-				[self presentViewController:alert animated:YES completion:nil];
-			} else {
-				[self markSelectedChallengeDayAttemptAsCompleted:YES markAllExercises:YES andPopViewController:YES];
-			}
+			[self markSelectedChallengeDayAttemptAsCompleted:YES markAllExercises:YES andPopViewController:YES];
 		} else {
 			[self markSelectedChallengeDayAttemptAsCompleted:NO markAllExercises:YES andPopViewController:NO];
 		}
 	}
-}
-
-- (void)checkBoxTapped:(Checkbox *)sender {
-	NSLog(@"%@", sender.isChecked ? @"checked" : @"unchecked");
 }
 
 @end

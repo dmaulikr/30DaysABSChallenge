@@ -56,9 +56,20 @@ NSString *const THVShowChallengeAttempDetailsSegueId = @"showChallengeAttemptDet
 	id<ChallengeDataProtocol> challengeAttemptForRow = [self.fetchedResultsController objectAtIndexPath:indexPath];
 	
 	cell.textLabel.text = [challengeAttemptForRow challengeName];
+	
+	NSMutableString *detailTextLabelText = [NSMutableString string];
 	if ([challengeAttemptForRow respondsToSelector:@selector(challengeStartDate)]) {
-		cell.detailTextLabel.text = [NSString stringWithFormat:@"Started at: %@", [[Commons challengeDayDateFormatter] stringFromDate:[challengeAttemptForRow challengeStartDate]]];
+		[detailTextLabelText appendFormat:@"Started at: %@", [[Commons challengeDayDateFormatter] stringFromDate:[challengeAttemptForRow challengeStartDate]]];
 	}
+	if ([challengeAttemptForRow respondsToSelector:@selector(isReminderActive)] &&
+		[challengeAttemptForRow respondsToSelector:@selector(challengeReminderTime)]) {
+		
+		if ([challengeAttemptForRow isReminderActive]) {
+			[detailTextLabelText appendString:detailTextLabelText.length > 0 ? @", " : @""];
+			[detailTextLabelText appendFormat:@"Reminder time: %@", [challengeAttemptForRow challengeReminderTime]];
+		}
+	}
+	cell.detailTextLabel.text = detailTextLabelText;
 }
 
 #pragma mark - UITableViewDataSource methods

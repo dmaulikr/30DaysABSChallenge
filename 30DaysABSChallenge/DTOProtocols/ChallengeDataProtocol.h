@@ -20,5 +20,7 @@
 - (NSNumber *)currentDayNumber;
 - (BOOL)isCompleted;
 - (NSDate *)challengeStartDate;
+- (BOOL)isReminderActive;
+- (NSString *)challengeReminderTime;
 
 @end
