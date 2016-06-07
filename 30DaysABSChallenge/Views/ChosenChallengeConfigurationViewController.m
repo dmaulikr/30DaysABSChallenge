@@ -84,6 +84,7 @@ NSString *const THVUnwindToMainSegueId = @"unwindToMain";
 		}
 		
 		[self saveContext];
+		[challengeAttempt scheduleNextNotificationForDate:challengeAttempt.startDate];
 	}
 }
 
@@ -115,6 +116,7 @@ NSString *const THVUnwindToMainSegueId = @"unwindToMain";
 		if (shouldSaveContextAndPopViewController) {
 			[self saveContext];
 			[self.navigationController popViewControllerAnimated:YES];
+			[challengeAttempt scheduleNextNotificationForDate:[NSDate date]];
 		}
 		
 		return NO;
@@ -163,6 +165,8 @@ NSString *const THVUnwindToMainSegueId = @"unwindToMain";
 		ChallengeDayAttempt *challengeDayAttempt = [[challengeAttempt.challengeDayAttemptsList array] objectAtIndex:i];
 		challengeDayAttempt.challengeDayAttemptDate = [challengeAttempt.startDate dateByAddingTimeInterval:24.*60.*60.*i];
 	}
+	
+	[challengeAttempt scheduleNextNotificationForDate:startDate];
 }
 
 @end

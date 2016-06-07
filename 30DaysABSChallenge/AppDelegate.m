@@ -8,6 +8,14 @@
 
 #import "AppDelegate.h"
 #import "DatabaseInitializer.h"
+#import "LocalNotificationsManager.h"
+#import "ChallengeAttempt.h"
+#import "ChallengeDayAttempt.h"
+#import "ChallengeDetailsViewController.h"
+#import "ChallengeDayDetailViewController.h"
+
+NSString *const THVStoryboardSceneIdChallengeDetails = @"challengeDetailsScene";
+NSString *const THVStoryboardSceneIdChallengeDayDetails = @"challengeDayDetails";
 
 @interface AppDelegate ()
 
@@ -21,6 +29,13 @@
 	NSURL *storeURL = [[self applicationDocumentsDirectory] URLByAppendingPathComponent:@"_0DaysABSChallenge.sqlite"];
 	if (![[NSFileManager defaultManager] fileExistsAtPath:[storeURL path]]) {
 		[DatabaseInitializer initializeDatabaseWithMOC:[self managedObjectContext]];
+	}
+	
+	[[LocalNotificationsManager sharedInstance] registerUserInteractionTypesAndCategoriesAndActionableNotificationTypes];
+	
+	if ([launchOptions objectForKey:UIApplicationLaunchOptionsLocalNotificationKey]) {
+		UILocalNotification *notif = [launchOptions objectForKey:UIApplicationLaunchOptionsLocalNotificationKey];
+		[self handleShowChallengeDayWithNotification:notif];
 	}
 	
 	return YES;
@@ -48,6 +63,31 @@
 	// Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
 	// Saves changes in the application's managed object context before the application terminates.
 	[self saveContext];
+}
+
+- (void)application:(UIApplication *)application didReceiveLocalNotification:(UILocalNotification *)notification {
+	
+	AppDelegate __block *this = self;
+	UILocalNotification __block *localNotif = notification;
+	
+	UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Reminder" message:notification.alertBody preferredStyle:UIAlertControllerStyleActionSheet];
+	UIAlertAction *showChallengeDayAction = [UIAlertAction actionWithTitle:@"Show" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+		[this handleShowChallengeDayWithNotification:localNotif];
+	}];
+	UIAlertAction *markChallengeDayAsCompletedAction = [UIAlertAction actionWithTitle:@"Mark as completed" style:UIAlertActionStyleDestructive handler:^(UIAlertAction * _Nonnull action) {
+		[this handleMarkChallengeDayAsCompletedWithNotification:localNotif];
+	}];
+	UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+		[this handleCancelPopupWithNotification:localNotif];
+	}];
+	
+	[alert addAction:showChallengeDayAction];
+	[alert addAction:markChallengeDayAsCompletedAction];
+	[alert addAction:cancelAction];
+	
+	if ([self.window.rootViewController isKindOfClass:[UINavigationController class]]) {
+		[((UINavigationController *)self.window.rootViewController).visibleViewController presentViewController:alert animated:YES completion:nil];
+	}
 }
 
 #pragma mark - Core Data stack
@@ -129,6 +169,68 @@
             abort();
         }
     }
+}
+
+#pragma mark - helper methods
+- (void)handleShowChallengeDayWithNotification:(UILocalNotification *)notif {
+	if ([self.window.rootViewController isKindOfClass:[UINavigationController class]]) {
+		ChallengeAttempt *challengeAttempt = [self getChallengeAttemptFromNotification:notif];
+		ChallengeDayAttempt *challengeDayAttempt = [self getChallengeDayAttemptFromNotification:notif];
+		
+		if (![challengeDayAttempt isCompleted]) {
+			UINavigationController *navController = (UINavigationController *)self.window.rootViewController;
+			UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+			
+			ChallengeDetailsViewController *challengeDetailsVC = [storyboard instantiateViewControllerWithIdentifier:THVStoryboardSceneIdChallengeDetails];
+			challengeDetailsVC.selectedChallenge = challengeAttempt;
+			
+			ChallengeDayDetailViewController *challengeDayDetailsVC = [storyboard instantiateViewControllerWithIdentifier:THVStoryboardSceneIdChallengeDayDetails];
+			challengeDayDetailsVC.selectedChallangeDay = challengeDayAttempt;
+			challengeDayDetailsVC.challangeName = challengeAttempt.challengeName;
+			
+			[navController popToRootViewControllerAnimated:NO];
+			[navController pushViewController:challengeDetailsVC animated:NO];
+			[navController pushViewController:challengeDayDetailsVC animated:YES];
+			
+			[challengeAttempt scheduleNextNotificationForDate:[challengeDayAttempt.dayAttemptDate dateByAddingTimeInterval:24.*60.*60.]];
+		}
+	}
+	
+}
+
+- (void)handleMarkChallengeDayAsCompletedWithNotification:(UILocalNotification *)notif {
+	ChallengeAttempt *challengeAttempt = [self getChallengeAttemptFromNotification:notif];
+	ChallengeDayAttempt *challengeDayAttempt = [self getChallengeDayAttemptFromNotification:notif];
+	
+	if (![challengeDayAttempt isCompleted]) {
+		challengeDayAttempt.completed = [NSNumber numberWithBool:YES];
+		challengeDayAttempt.completionDate = [NSDate date];
+		[challengeDayAttempt.exerciseListOfDay makeObjectsPerformSelector:@selector(setCompleted:) withObject:[NSNumber numberWithBool:YES]];
+		[challengeDayAttempt.exerciseListOfDay makeObjectsPerformSelector:@selector(setCompletionDate:) withObject:[NSDate date]];
+		
+		NSError *error = nil;
+		if (![self.managedObjectContext save:&error]) {
+			NSLog(@"Could not mark challenge day attempt as completed!\n%@\n%@", error.localizedDescription, error.userInfo);
+		}
+		
+		[challengeAttempt scheduleNextNotificationForDate:[challengeDayAttempt.dayAttemptDate dateByAddingTimeInterval:24.*60.*60.]];
+	}
+}
+
+- (void)handleCancelPopupWithNotification:(UILocalNotification *)notif {
+	ChallengeAttempt *challengeAttempt = [self getChallengeAttemptFromNotification:notif];
+	ChallengeDayAttempt *challengeDayAttempt = [self getChallengeDayAttemptFromNotification:notif];
+	if (![challengeDayAttempt isCompleted]) {
+		[challengeAttempt scheduleNextNotificationForDate:[challengeDayAttempt.dayAttemptDate dateByAddingTimeInterval:24.*60.*60.]];
+	}
+}
+
+- (ChallengeAttempt *)getChallengeAttemptFromNotification:(UILocalNotification *)notif {
+	return [self.managedObjectContext objectWithID:[self.persistentStoreCoordinator managedObjectIDForURIRepresentation:[NSURL URLWithString:[notif.userInfo objectForKey:THVNotificationUserInfoChallengeAttemptURIRepresentationId]]]];
+}
+
+- (ChallengeDayAttempt *)getChallengeDayAttemptFromNotification:(UILocalNotification *)notif {
+	return [self.managedObjectContext objectWithID:[self.persistentStoreCoordinator managedObjectIDForURIRepresentation:[NSURL URLWithString:[notif.userInfo objectForKey:THVNotificationUserInfoChallengeDayAttemptURIRepresentationId]]]];
 }
 
 @end

@@ -10,7 +10,7 @@
     <entity name="ChallengeAttempt" representedClassName="ChallengeAttempt" parentEntity="ParentEntity" syncable="YES">
         <attribute name="challengeAttemptId" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <attribute name="currentDay" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
-        <attribute name="reminderActive" optional="YES" attributeType="Boolean" defaultValueString="YES" syncable="YES"/>
+        <attribute name="reminderActive" optional="YES" attributeType="Boolean" defaultValueString="NO" syncable="YES"/>
         <attribute name="reminderTime" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="startDate" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="state" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
@@ -54,7 +54,7 @@
         <element name="ChallengeDay" positionX="-54" positionY="18" width="128" height="135"/>
         <element name="ChallengeDayAttempt" positionX="0" positionY="117" width="128" height="150"/>
         <element name="Exercise" positionX="-36" positionY="45" width="128" height="120"/>
-        <element name="ParentEntity" positionX="18" positionY="135" width="128" height="45"/>
         <element name="ExerciseAttempt" positionX="-18" positionY="90" width="128" height="105"/>
+        <element name="ParentEntity" positionX="18" positionY="135" width="128" height="45"/>
     </elements>
 </model>

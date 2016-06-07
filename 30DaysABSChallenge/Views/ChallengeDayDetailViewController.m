@@ -9,6 +9,7 @@
 #import "ChallengeDayDetailViewController.h"
 #import "ChallengeDayDetailsTableViewCell.h"
 #import "ChallengeDayAttempt.h"
+#import "ChallengeAttempt.h"
 #import "Commons.h"
 #import "NSDate+THVDateAdditions.h"
 #import "ExerciseDataProtocol.h"
@@ -231,6 +232,8 @@ NSString *const THVMarkAsNotCompletedLabelString = @"Mark as NOT completed";
 	}
 	
 	[self saveContext];
+	
+	[((ChallengeDayAttempt *)self.selectedChallangeDay).challengeAttempt scheduleNextNotificationForDate:isCompleted ? ((ChallengeDayAttempt *)self.selectedChallangeDay).challengeDayAttemptDate : [NSDate date]];
 	
 	if (popViewController) {
 		[self.navigationController popViewControllerAnimated:YES];

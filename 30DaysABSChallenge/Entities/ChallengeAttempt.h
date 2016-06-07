@@ -21,7 +21,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface ChallengeAttempt : ParentEntity <ChallengeDataProtocol>
 
-// Insert code here to declare functionality of your managed object subclass
+- (ChallengeDayAttempt *)nearestChallengeDayForDate:(NSDate *)date;
+- (void)scheduleNextNotificationForDate:(NSDate *)dateOfNextChallengeDay;
 
 @end
 

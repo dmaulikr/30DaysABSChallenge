@@ -63,7 +63,7 @@
         <!--challenge day details-->
         <scene sceneID="fhk-64-IkT">
             <objects>
-                <viewController id="fV2-M7-ZQb" userLabel="challenge day details" customClass="ChallengeDayDetailViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="challengeDayDetails" id="fV2-M7-ZQb" userLabel="challenge day details" customClass="ChallengeDayDetailViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="yCD-sA-PJZ"/>
                         <viewControllerLayoutGuide type="bottom" id="GA8-H9-w96"/>
@@ -233,7 +233,7 @@ Rest in peace!</string>
         <!--Challange Details-->
         <scene sceneID="uhE-Tm-VgO">
             <objects>
-                <viewController title="Challange Details" automaticallyAdjustsScrollViewInsets="NO" id="z4Y-Et-pt5" customClass="ChallengeDetailsViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="challengeDetailsScene" title="Challange Details" automaticallyAdjustsScrollViewInsets="NO" id="z4Y-Et-pt5" customClass="ChallengeDetailsViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="IBS-ii-yjn"/>
                         <viewControllerLayoutGuide type="bottom" id="JeS-jn-c7n"/>
@@ -418,7 +418,7 @@ Rest in peace!</string>
                                     <action selector="reminderSwitchTapped:" destination="dty-zy-K0P" eventType="valueChanged" id="pgt-fy-3Yf"/>
                                 </connections>
                             </switch>
-                            <datePicker hidden="YES" contentMode="scaleToFill" verticalCompressionResistancePriority="749" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="time" minuteInterval="10" useCurrentDate="NO" translatesAutoresizingMaskIntoConstraints="NO" id="t8y-wu-wYM">
+                            <datePicker hidden="YES" contentMode="scaleToFill" verticalCompressionResistancePriority="749" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="time" minuteInterval="1" useCurrentDate="NO" translatesAutoresizingMaskIntoConstraints="NO" id="t8y-wu-wYM">
                                 <rect key="frame" x="140" y="311" width="320" height="150"/>
                                 <constraints>
                                     <constraint firstAttribute="height" relation="lessThanOrEqual" constant="150" id="VRD-Md-Iw2"/>
@@ -546,7 +546,7 @@ Rest in peace!</string>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="zvd-fx-BAt"/>
+        <segue reference="zdc-tp-ihQ"/>
         <segue reference="G9R-2I-djd"/>
     </inferredMetricsTieBreakers>
 </document>
