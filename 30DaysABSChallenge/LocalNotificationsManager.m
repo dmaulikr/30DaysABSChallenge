@@ -32,7 +32,7 @@ NSString *const THVNotificationUserInfoChallengeDayAttemptURIRepresentationId = 
 }
 
 - (void)registerUserInteractionTypesAndCategoriesAndActionableNotificationTypes {
-	UIUserNotificationType types = (UIUserNotificationTypeAlert | UIUserNotificationTypeBadge);
+	UIUserNotificationType types = (UIUserNotificationTypeAlert);
 	
 	UIMutableUserNotificationAction *markAsCompletedAction = [[UIMutableUserNotificationAction alloc] init];
 	markAsCompletedAction.identifier = THVNotificationActionMarkAsCompleted;

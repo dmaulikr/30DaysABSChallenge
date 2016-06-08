@@ -233,6 +233,8 @@ NSString *const THVMarkAsNotCompletedLabelString = @"Mark as NOT completed";
 		[[self.selectedChallangeDay exerciseListOfDay] makeObjectsPerformSelector:@selector(setCompletionDate:) withObject:isCompleted ? currentDate : nil];
 	}
 	
+	[self checkIfWholeChallengeIsCompletedAndSetAppropriateStatusWithChallengeDayAttempt:self.selectedChallangeDay];
+	
 	[self saveContext];
 	
 	[((ChallengeDayAttempt *)self.selectedChallangeDay).challengeAttempt scheduleNextNotification];
@@ -260,6 +262,18 @@ NSString *const THVMarkAsNotCompletedLabelString = @"Mark as NOT completed";
 		self.dayAttemptDateLabel.text = [[Commons challengeDayDateFormatter] stringFromDate:[self.selectedChallangeDay dayAttemptDate]];
 	} else {
 		self.dayAttemptDateLabelHeightConstraint.constant = 0.0;
+	}
+}
+
+- (void)checkIfWholeChallengeIsCompletedAndSetAppropriateStatusWithChallengeDayAttempt:(ChallengeDayAttempt *)challengeDayAttempt {
+	ChallengeAttempt *challengeAttempt = challengeDayAttempt.challengeAttempt;
+	
+	NSSet *allCompletedValuesFromDayAttempts = [NSSet setWithArray:[[challengeAttempt.challengeDayAttemptsList array] valueForKey:@"completed"]];
+	
+	if (allCompletedValuesFromDayAttempts.count == 1 && [(NSNumber *)allCompletedValuesFromDayAttempts.anyObject boolValue]) {
+		challengeAttempt.state = [NSNumber numberWithInteger:THVChallengeAttemptStateCompleted];
+	} else {
+		challengeAttempt.state = [NSNumber numberWithInteger:THVChallengeAttemptStateActive];
 	}
 }
 

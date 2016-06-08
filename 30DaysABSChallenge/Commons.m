@@ -46,6 +46,16 @@ CGFloat const THVDelayedColorA = 1.0;
 	return dateFormatter;
 }
 
++ (NSNumberFormatter *)challengeAttemptStateNumberFormatter {
+	static NSNumberFormatter *numberFormatter;
+	static dispatch_once_t onceToken;
+	dispatch_once(&onceToken, ^{
+		numberFormatter = [[NSNumberFormatter alloc] init];
+		[numberFormatter setNumberStyle:NSNumberFormatterNoStyle];
+	});
+	return numberFormatter;
+}
+
 
 
 @end

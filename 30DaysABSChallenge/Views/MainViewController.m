@@ -28,17 +28,19 @@ NSString *const THVShowChallengeAttempDetailsSegueId = @"showChallengeAttemptDet
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-	
-	if (self.tableView.contentSize.height > self.tableView.frame.size.height) {
-		self.tableView.scrollEnabled = YES;
-	} else {
-		self.tableView.scrollEnabled = NO;
-	}
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (void)viewDidLayoutSubviews {
+	if (self.tableView.contentSize.height > self.tableView.frame.size.height + self.tableView.contentOffset.y) {
+		self.tableView.scrollEnabled = YES;
+	} else {
+		self.tableView.scrollEnabled = NO;
+	}
 }
 
 #pragma mark - segue methods
@@ -73,6 +75,10 @@ NSString *const THVShowChallengeAttempDetailsSegueId = @"showChallengeAttemptDet
 }
 
 #pragma mark - UITableViewDataSource methods
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+	return self.fetchedResultsController.sections.count;
+}
+
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
 	return [self.fetchedResultsController.sections[section] objects].count;
 }
@@ -98,9 +104,30 @@ NSString *const THVShowChallengeAttempDetailsSegueId = @"showChallengeAttemptDet
 	[self performSegueWithIdentifier:THVShowChallengeAttempDetailsSegueId sender:selectedChallenge];
 }
 
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
+	return [self.fetchedResultsController.sections[section] indexTitle];
+}
+
 #pragma mark - NSFetchedResultsControllerDelegate methods
 - (void)controllerDidChangeContent:(NSFetchedResultsController *)controller {
 	[self.tableView reloadData];
+}
+
+- (nullable NSString *)controller:(NSFetchedResultsController *)controller sectionIndexTitleForSectionName:(NSString *)sectionName {
+	
+	NSNumber *stateNumber = [[Commons challengeAttemptStateNumberFormatter] numberFromString:sectionName];
+	if (stateNumber) {
+		switch ([stateNumber integerValue]) {
+			case THVChallengeAttemptStateActive:
+				return @"Active challanges";
+				break;
+			case THVChallengeAttemptStateCompleted:
+				return @"Completed challanges";
+				break;
+		}
+	}
+	
+	return nil;
 }
 
 #pragma mark - unwind
@@ -110,7 +137,7 @@ NSString *const THVShowChallengeAttempDetailsSegueId = @"showChallengeAttemptDet
 #pragma mark - lazy initializares
 - (NSFetchedResultsController *)fetchedResultsController {
 	if (!_fetchedResultsController) {
-		_fetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:self.fetchRequest managedObjectContext:((AppDelegate *)[[UIApplication sharedApplication] delegate]).managedObjectContext sectionNameKeyPath:nil cacheName:nil];
+		_fetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:self.fetchRequest managedObjectContext:((AppDelegate *)[[UIApplication sharedApplication] delegate]).managedObjectContext sectionNameKeyPath:@"state" cacheName:nil];
 		
 		_fetchedResultsController.delegate = self;
 		
@@ -126,7 +153,7 @@ NSString *const THVShowChallengeAttempDetailsSegueId = @"showChallengeAttemptDet
 - (NSFetchRequest *)fetchRequest {
 	if (!_fetchRequest) {
 		_fetchRequest = [[NSFetchRequest alloc] initWithEntityName:[ChallengeAttempt entityName]];
-		_fetchRequest.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"startDate" ascending:YES]];
+		_fetchRequest.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"state" ascending:YES], [NSSortDescriptor sortDescriptorWithKey:@"startDate" ascending:YES]];
 	}
 	
 	return _fetchRequest;

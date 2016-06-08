@@ -418,7 +418,7 @@ Rest in peace!</string>
                                     <action selector="reminderSwitchTapped:" destination="dty-zy-K0P" eventType="valueChanged" id="pgt-fy-3Yf"/>
                                 </connections>
                             </switch>
-                            <datePicker hidden="YES" contentMode="scaleToFill" verticalCompressionResistancePriority="749" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="time" minuteInterval="1" useCurrentDate="NO" translatesAutoresizingMaskIntoConstraints="NO" id="t8y-wu-wYM">
+                            <datePicker hidden="YES" contentMode="scaleToFill" verticalCompressionResistancePriority="749" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="time" minuteInterval="5" useCurrentDate="NO" translatesAutoresizingMaskIntoConstraints="NO" id="t8y-wu-wYM">
                                 <rect key="frame" x="140" y="311" width="320" height="150"/>
                                 <constraints>
                                     <constraint firstAttribute="height" relation="lessThanOrEqual" constant="150" id="VRD-Md-Iw2"/>
@@ -486,7 +486,7 @@ Rest in peace!</string>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="pIg-0u-jpf" secondAttribute="trailing" id="7jz-VE-4hv"/>
-                            <constraint firstItem="pIg-0u-jpf" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="topMargin" id="AOs-Bg-MJP"/>
+                            <constraint firstItem="pIg-0u-jpf" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="MaR-pb-C7i"/>
                             <constraint firstItem="pIg-0u-jpf" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="NpL-pE-p9a"/>
                             <constraint firstAttribute="bottom" secondItem="pIg-0u-jpf" secondAttribute="bottom" id="rO3-vg-QcP"/>
                         </constraints>
@@ -546,7 +546,7 @@ Rest in peace!</string>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="zdc-tp-ihQ"/>
+        <segue reference="zvd-fx-BAt"/>
         <segue reference="G9R-2I-djd"/>
     </inferredMetricsTieBreakers>
 </document>
