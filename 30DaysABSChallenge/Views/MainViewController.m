@@ -21,6 +21,7 @@ NSString *const THVShowChallengeAttempDetailsSegueId = @"showChallengeAttemptDet
 @property (nonatomic) NSFetchRequest *fetchRequest;
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
+@property (weak, nonatomic) IBOutlet UILabel *placeholderLabel;
 
 @end
 
@@ -28,6 +29,7 @@ NSString *const THVShowChallengeAttempDetailsSegueId = @"showChallengeAttemptDet
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+	[self setupPlaceholderLabel];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -40,6 +42,16 @@ NSString *const THVShowChallengeAttempDetailsSegueId = @"showChallengeAttemptDet
 		self.tableView.scrollEnabled = YES;
 	} else {
 		self.tableView.scrollEnabled = NO;
+	}
+}
+
+- (void)setupPlaceholderLabel {
+	if (self.fetchedResultsController.fetchedObjects.count > 0) {
+		self.placeholderLabel.hidden = YES;
+		self.tableView.hidden = NO;
+	} else {
+		self.placeholderLabel.hidden = NO;
+		self.tableView.hidden = YES;
 	}
 }
 
@@ -183,6 +195,7 @@ NSString *const THVShowChallengeAttempDetailsSegueId = @"showChallengeAttemptDet
 - (void)controllerDidChangeContent:(NSFetchedResultsController *)controller {
 	[self.tableView endUpdates];
 	[self.tableView reloadData];
+	[self setupPlaceholderLabel];
 }
 
 #pragma mark - unwind

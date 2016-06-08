@@ -91,11 +91,6 @@ NSString *const THVStoryboardSceneIdChallengeDayDetails = @"challengeDayDetails"
 	}
 }
 
-- (void)application:(UIApplication *)application handleActionWithIdentifier:(NSString *)identifier forLocalNotification:(UILocalNotification *)notification completionHandler:(void (^)())completionHandler {
-	NSLog(@"handle without response info");
-	completionHandler();
-}
-
 - (void)application:(UIApplication *)application handleActionWithIdentifier:(NSString *)identifier forLocalNotification:(UILocalNotification *)notification withResponseInfo:(NSDictionary *)responseInfo completionHandler:(void (^)())completionHandler {
 	
 	if ([identifier isEqualToString:THVNotificationActionShow]) {

@@ -80,14 +80,15 @@ NSString *const THVNotificationUserInfoChallengeDayAttemptURIRepresentationId = 
 	notification.userInfo = infoDict;
 	
 	[[UIApplication sharedApplication] scheduleLocalNotification:notification];
-	
-	NSLog(@"Added notification: %@", notification.thv_description);
+//	DEBUG
+//	NSLog(@"Added notification: %@", notification.thv_description);
 }
 
 - (void)cancelScheduledNotificationForChallengeAttemptURI:(NSURL *)challengeUri {
 	for (UILocalNotification *notif in [[UIApplication sharedApplication] scheduledLocalNotifications]) {
 		if ([notif.userInfo[THVNotificationUserInfoChallengeAttemptURIRepresentationId] isEqualToString:[challengeUri absoluteString]]) {
-			NSLog(@"Removing notification: %@", notif.thv_description);
+//			DEBUG
+//			NSLog(@"Removing notification: %@", notif.thv_description);
 			[[UIApplication sharedApplication] cancelLocalNotification:notif];
 		}
 	}

@@ -61,7 +61,8 @@
 	if (self.reminderActive && self.reminderTime) {
 		ChallengeDayAttempt *nextDay = [self nearestChallengeDayForDate:[NSDate date]];
 		if (!nextDay) {
-			NSLog(@"There are no more days for this challenge");
+//			DEBUG
+//			NSLog(@"There are no more days for this challenge");
 			[[LocalNotificationsManager sharedInstance] cancelScheduledNotificationForChallengeAttemptURI:[[self objectID] URIRepresentation]];
 			return;
 		}

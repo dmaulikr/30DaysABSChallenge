@@ -482,12 +482,23 @@ Rest in peace!</string>
                                     <outlet property="delegate" destination="BYZ-38-t0r" id="Eq2-r3-3xG"/>
                                 </connections>
                             </tableView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9Vw-K4-PeU">
+                                <rect key="frame" x="194" y="269" width="213" height="62"/>
+                                <string key="text">No challenges to show.
+
+Please add a new challenge.</string>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="pIg-0u-jpf" secondAttribute="trailing" id="7jz-VE-4hv"/>
+                            <constraint firstItem="9Vw-K4-PeU" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="El7-Ti-zEY"/>
                             <constraint firstItem="pIg-0u-jpf" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="MaR-pb-C7i"/>
                             <constraint firstItem="pIg-0u-jpf" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="NpL-pE-p9a"/>
+                            <constraint firstItem="9Vw-K4-PeU" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="TZs-AZ-ucx"/>
                             <constraint firstAttribute="bottom" secondItem="pIg-0u-jpf" secondAttribute="bottom" id="rO3-vg-QcP"/>
                         </constraints>
                     </view>
@@ -500,6 +511,7 @@ Rest in peace!</string>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="placeholderLabel" destination="9Vw-K4-PeU" id="eGW-v1-rHk"/>
                         <outlet property="tableView" destination="pIg-0u-jpf" id="FLf-85-cce"/>
                         <segue destination="z4Y-Et-pt5" kind="show" identifier="showChallengeAttemptDetails" id="zvd-fx-BAt"/>
                     </connections>
