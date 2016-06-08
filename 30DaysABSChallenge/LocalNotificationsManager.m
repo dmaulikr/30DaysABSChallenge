@@ -72,7 +72,6 @@ NSString *const THVNotificationUserInfoChallengeDayAttemptURIRepresentationId = 
 	notification.fireDate = alertDateTime;
 	notification.alertBody = [NSString stringWithFormat:@"%@: %@", challengeName, dayType];
 	notification.category = THVNotificationCategoryAlert;
-	notification.applicationIconBadgeNumber = 1;
 	
 	NSDictionary *infoDict = @{
 							   THVNotificationUserInfoChallengeAttemptURIRepresentationId : [challengeUri absoluteString],

@@ -36,6 +36,8 @@ NSString *const THVUnwindToMainSegueId = @"unwindToMain";
 	
 	if ([self.selectedChallenge isKindOfClass:[ChallengeAttempt class]]) {
 		[self configureViewForShowingDetailsOfChallengeAttempt];
+	} else {
+		[self checkForActiveChallangesAttemptsWithChallenge:self.selectedChallenge];
 	}
 }
 
@@ -167,6 +169,31 @@ NSString *const THVUnwindToMainSegueId = @"unwindToMain";
 	}
 	
 	[challengeAttempt scheduleNextNotification];
+}
+
+- (void)checkForActiveChallangesAttemptsWithChallenge:(Challenge *)challenge {
+	if (challenge.challengeAttemptsList.count > 0 &&
+		[challenge.challengeAttemptsList indexOfObjectPassingTest:^BOOL(ChallengeAttempt * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+		BOOL condition = ([obj.state integerValue] == THVChallengeAttemptStateActive);
+		if (condition) {
+			*stop = YES;
+		}
+		return condition;
+	}] != NSNotFound) {
+		UIAlertController *alert = [UIAlertController alertControllerWithTitle:nil message:@"This challenge is already active in your list.\nDo you want to choose this challange anyway?" preferredStyle:UIAlertControllerStyleAlert];
+		
+		UIAlertAction *yesAction = [UIAlertAction actionWithTitle:@"Yes" style:UIAlertActionStyleDefault handler:nil];
+		
+		UIViewController __block *this = self;
+		UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+			[this.navigationController popViewControllerAnimated:YES];
+		}];
+		
+		[alert addAction:yesAction];
+		[alert addAction:cancelAction];
+		
+		[self presentViewController:alert animated:YES completion:nil];
+	}
 }
 
 @end
