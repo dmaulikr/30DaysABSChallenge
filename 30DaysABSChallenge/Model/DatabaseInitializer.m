@@ -15,6 +15,7 @@ NSString *const THVExerciseNameSitUps = @"sit-ups";
 NSString *const THVExerciseNameCrunches = @"crunches";
 NSString *const THVExerciseNameLegRaises = @"leg raises";
 NSString *const THVExerciseNamePlank = @"plank";
+NSString *const THVExerciseNamePushUps = @"push-ups";
 
 @implementation DatabaseInitializer
 
@@ -821,6 +822,383 @@ NSString *const THVExerciseNamePlank = @"plank";
 	day30Exercise04.type = @(THVExerciseTypeTime);
 	day30Exercise04.challengeDay = day30;
 	
+#pragma mark - 50 Push-Up Challenge
+	
+	// create challange entity
+	Challenge *pushUpChallenge = [NSEntityDescription insertNewObjectForEntityForName:[Challenge entityName] inManagedObjectContext:moc];
+	pushUpChallenge.challengeId = @(2);
+	pushUpChallenge.name = @"50 Push-Ups Challenge";
+	pushUpChallenge.numberOfDays = @(30);
+	
+#pragma mark -
+#pragma mark challenge day 1
+	// create challange day 1 with exercises
+	ChallengeDay *puDay01 = [NSEntityDescription insertNewObjectForEntityForName:[ChallengeDay entityName] inManagedObjectContext:moc];
+	puDay01.dayNumber = @(1);
+	puDay01.challengeDayId = @(31);
+	puDay01.type = @(THVChallengeDayTypeWorkout);
+	puDay01.challenge = pushUpChallenge;
+	
+	Exercise *puDay01Exercise01 = [NSEntityDescription insertNewObjectForEntityForName:[Exercise entityName] inManagedObjectContext:moc];
+	puDay01Exercise01.amount = @(5);
+	puDay01Exercise01.name = THVExerciseNamePushUps;
+	puDay01Exercise01.type = @(THVExerciseTypeRepetition);
+	puDay01Exercise01.challengeDay = puDay01;
+	
+#pragma mark challenge day 2
+	// create challange day 2 with exercises
+	ChallengeDay *puDay02 = [NSEntityDescription insertNewObjectForEntityForName:[ChallengeDay entityName] inManagedObjectContext:moc];
+	puDay02.dayNumber = @(2);
+	puDay02.challengeDayId = @(32);
+	puDay02.type = @(THVChallengeDayTypeWorkout);
+	puDay02.challenge = pushUpChallenge;
+	
+	Exercise *puDay02Exercise01 = [NSEntityDescription insertNewObjectForEntityForName:[Exercise entityName] inManagedObjectContext:moc];
+	puDay02Exercise01.amount = @(5);
+	puDay02Exercise01.name = THVExerciseNamePushUps;
+	puDay02Exercise01.type = @(THVExerciseTypeRepetition);
+	puDay02Exercise01.challengeDay = puDay02;
+	
+#pragma mark challenge day 3
+	// create challange day 3 with exercises
+	ChallengeDay *puDay03 = [NSEntityDescription insertNewObjectForEntityForName:[ChallengeDay entityName] inManagedObjectContext:moc];
+	puDay03.dayNumber = @(3);
+	puDay03.challengeDayId = @(33);
+	puDay03.type = @(THVChallengeDayTypeRest);
+	puDay03.challenge = pushUpChallenge;
+	
+#pragma mark challenge day 4
+	// create challange day 4 with exercises
+	ChallengeDay *puDay04 = [NSEntityDescription insertNewObjectForEntityForName:[ChallengeDay entityName] inManagedObjectContext:moc];
+	puDay04.dayNumber = @(4);
+	puDay04.challengeDayId = @(34);
+	puDay04.type = @(THVChallengeDayTypeWorkout);
+	puDay04.challenge = pushUpChallenge;
+	
+	Exercise *puDay04Exercise01 = [NSEntityDescription insertNewObjectForEntityForName:[Exercise entityName] inManagedObjectContext:moc];
+	puDay04Exercise01.amount = @(5);
+	puDay04Exercise01.name = THVExerciseNamePushUps;
+	puDay04Exercise01.type = @(THVExerciseTypeRepetition);
+	puDay04Exercise01.challengeDay = puDay04;
+	
+#pragma mark challenge day 5
+	// create challange day 5 with exercises
+	ChallengeDay *puDay05 = [NSEntityDescription insertNewObjectForEntityForName:[ChallengeDay entityName] inManagedObjectContext:moc];
+	puDay05.dayNumber = @(5);
+	puDay05.challengeDayId = @(35);
+	puDay05.type = @(THVChallengeDayTypeWorkout);
+	puDay05.challenge = pushUpChallenge;
+	
+	Exercise *puDay05Exercise01 = [NSEntityDescription insertNewObjectForEntityForName:[Exercise entityName] inManagedObjectContext:moc];
+	puDay05Exercise01.amount = @(10);
+	puDay05Exercise01.name = THVExerciseNamePushUps;
+	puDay05Exercise01.type = @(THVExerciseTypeRepetition);
+	puDay05Exercise01.challengeDay = puDay05;
+	
+#pragma mark challenge day 6
+	// create challange day 6 with exercises
+	ChallengeDay *puDay06 = [NSEntityDescription insertNewObjectForEntityForName:[ChallengeDay entityName] inManagedObjectContext:moc];
+	puDay06.dayNumber = @(6);
+	puDay06.challengeDayId = @(36);
+	puDay06.type = @(THVChallengeDayTypeRest);
+	puDay06.challenge = pushUpChallenge;
+	
+#pragma mark challenge day 7
+	// create challange day 7 with exercises
+	ChallengeDay *puDay07 = [NSEntityDescription insertNewObjectForEntityForName:[ChallengeDay entityName] inManagedObjectContext:moc];
+	puDay07.dayNumber = @(7);
+	puDay07.challengeDayId = @(37);
+	puDay07.type = @(THVChallengeDayTypeWorkout);
+	puDay07.challenge = pushUpChallenge;
+	
+	Exercise *puDay07Exercise01 = [NSEntityDescription insertNewObjectForEntityForName:[Exercise entityName] inManagedObjectContext:moc];
+	puDay07Exercise01.amount = @(10);
+	puDay07Exercise01.name = THVExerciseNamePushUps;
+	puDay07Exercise01.type = @(THVExerciseTypeRepetition);
+	puDay07Exercise01.challengeDay = puDay07;
+	
+#pragma mark challenge day 8
+	// create challange day 8 with exercises
+	ChallengeDay *puDay08 = [NSEntityDescription insertNewObjectForEntityForName:[ChallengeDay entityName] inManagedObjectContext:moc];
+	puDay08.dayNumber = @(8);
+	puDay08.challengeDayId = @(38);
+	puDay08.type = @(THVChallengeDayTypeRest);
+	puDay08.challenge = pushUpChallenge;
+	
+#pragma mark challenge day 9
+	// create challange day 9 with exercises
+	ChallengeDay *puDay09 = [NSEntityDescription insertNewObjectForEntityForName:[ChallengeDay entityName] inManagedObjectContext:moc];
+	puDay09.dayNumber = @(9);
+	puDay09.challengeDayId = @(39);
+	puDay09.type = @(THVChallengeDayTypeWorkout);
+	puDay09.challenge = pushUpChallenge;
+	
+	Exercise *puDay09Exercise01 = [NSEntityDescription insertNewObjectForEntityForName:[Exercise entityName] inManagedObjectContext:moc];
+	puDay09Exercise01.amount = @(12);
+	puDay09Exercise01.name = THVExerciseNamePushUps;
+	puDay09Exercise01.type = @(THVExerciseTypeRepetition);
+	puDay09Exercise01.challengeDay = puDay09;
+	
+#pragma mark challenge day 10
+	// create challange day 10 with exercises
+	ChallengeDay *puDay10 = [NSEntityDescription insertNewObjectForEntityForName:[ChallengeDay entityName] inManagedObjectContext:moc];
+	puDay10.dayNumber = @(10);
+	puDay10.challengeDayId = @(40);
+	puDay10.type = @(THVChallengeDayTypeWorkout);
+	puDay10.challenge = pushUpChallenge;
+	
+	Exercise *puDay10Exercise01 = [NSEntityDescription insertNewObjectForEntityForName:[Exercise entityName] inManagedObjectContext:moc];
+	puDay10Exercise01.amount = @(12);
+	puDay10Exercise01.name = THVExerciseNamePushUps;
+	puDay10Exercise01.type = @(THVExerciseTypeRepetition);
+	puDay10Exercise01.challengeDay = puDay10;
+	
+#pragma mark challenge day 11
+	// create challange day 11 with exercises
+	ChallengeDay *puDay11 = [NSEntityDescription insertNewObjectForEntityForName:[ChallengeDay entityName] inManagedObjectContext:moc];
+	puDay11.dayNumber = @(11);
+	puDay11.challengeDayId = @(41);
+	puDay11.type = @(THVChallengeDayTypeRest);
+	puDay11.challenge = pushUpChallenge;
+	
+#pragma mark challenge day 12
+	// create challange day 12 with exercises
+	ChallengeDay *puDay12 = [NSEntityDescription insertNewObjectForEntityForName:[ChallengeDay entityName] inManagedObjectContext:moc];
+	puDay12.dayNumber = @(12);
+	puDay12.challengeDayId = @(42);
+	puDay12.type = @(THVChallengeDayTypeWorkout);
+	puDay12.challenge = pushUpChallenge;
+	
+	Exercise *puDay12Exercise01 = [NSEntityDescription insertNewObjectForEntityForName:[Exercise entityName] inManagedObjectContext:moc];
+	puDay12Exercise01.amount = @(15);
+	puDay12Exercise01.name = THVExerciseNamePushUps;
+	puDay12Exercise01.type = @(THVExerciseTypeRepetition);
+	puDay12Exercise01.challengeDay = puDay12;
+	
+#pragma mark challenge day 13
+	// create challange day 13 with exercises
+	ChallengeDay *puDay13 = [NSEntityDescription insertNewObjectForEntityForName:[ChallengeDay entityName] inManagedObjectContext:moc];
+	puDay13.dayNumber = @(13);
+	puDay13.challengeDayId = @(43);
+	puDay13.type = @(THVChallengeDayTypeWorkout);
+	puDay13.challenge = pushUpChallenge;
+	
+	Exercise *puDay13Exercise01 = [NSEntityDescription insertNewObjectForEntityForName:[Exercise entityName] inManagedObjectContext:moc];
+	puDay13Exercise01.amount = @(15);
+	puDay13Exercise01.name = THVExerciseNamePushUps;
+	puDay13Exercise01.type = @(THVExerciseTypeRepetition);
+	puDay13Exercise01.challengeDay = puDay13;
+	
+#pragma mark challenge day 14
+	// create challange day 14 with exercises
+	ChallengeDay *puDay14 = [NSEntityDescription insertNewObjectForEntityForName:[ChallengeDay entityName] inManagedObjectContext:moc];
+	puDay14.dayNumber = @(14);
+	puDay14.challengeDayId = @(44);
+	puDay14.type = @(THVChallengeDayTypeRest);
+	puDay14.challenge = pushUpChallenge;
+	
+#pragma mark challenge day 15
+	// create challange day 15 with exercises
+	ChallengeDay *puDay15 = [NSEntityDescription insertNewObjectForEntityForName:[ChallengeDay entityName] inManagedObjectContext:moc];
+	puDay15.dayNumber = @(15);
+	puDay15.challengeDayId = @(45);
+	puDay15.type = @(THVChallengeDayTypeWorkout);
+	puDay15.challenge = pushUpChallenge;
+	
+	Exercise *puDay15Exercise01 = [NSEntityDescription insertNewObjectForEntityForName:[Exercise entityName] inManagedObjectContext:moc];
+	puDay15Exercise01.amount = @(20);
+	puDay15Exercise01.name = THVExerciseNamePushUps;
+	puDay15Exercise01.type = @(THVExerciseTypeRepetition);
+	puDay15Exercise01.challengeDay = puDay15;
+	
+#pragma mark challenge day 16
+	// create challange day 16 with exercises
+	ChallengeDay *puDay16 = [NSEntityDescription insertNewObjectForEntityForName:[ChallengeDay entityName] inManagedObjectContext:moc];
+	puDay16.dayNumber = @(16);
+	puDay16.challengeDayId = @(46);
+	puDay16.type = @(THVChallengeDayTypeWorkout);
+	puDay16.challenge = pushUpChallenge;
+	
+	Exercise *puDay16Exercise01 = [NSEntityDescription insertNewObjectForEntityForName:[Exercise entityName] inManagedObjectContext:moc];
+	puDay16Exercise01.amount = @(24);
+	puDay16Exercise01.name = THVExerciseNamePushUps;
+	puDay16Exercise01.type = @(THVExerciseTypeRepetition);
+	puDay16Exercise01.challengeDay = puDay16;
+	
+#pragma mark challenge day 17
+	// create challange day 17 with exercises
+	ChallengeDay *puDay17 = [NSEntityDescription insertNewObjectForEntityForName:[ChallengeDay entityName] inManagedObjectContext:moc];
+	puDay17.dayNumber = @(17);
+	puDay17.challengeDayId = @(47);
+	puDay17.type = @(THVChallengeDayTypeRest);
+	puDay17.challenge = pushUpChallenge;
+	
+#pragma mark challenge day 18
+	// create challange day 18 with exercises
+	ChallengeDay *puDay18 = [NSEntityDescription insertNewObjectForEntityForName:[ChallengeDay entityName] inManagedObjectContext:moc];
+	puDay18.dayNumber = @(18);
+	puDay18.challengeDayId = @(48);
+	puDay18.type = @(THVChallengeDayTypeWorkout);
+	puDay18.challenge = pushUpChallenge;
+	
+	Exercise *puDay18Exercise01 = [NSEntityDescription insertNewObjectForEntityForName:[Exercise entityName] inManagedObjectContext:moc];
+	puDay18Exercise01.amount = @(25);
+	puDay18Exercise01.name = THVExerciseNamePushUps;
+	puDay18Exercise01.type = @(THVExerciseTypeRepetition);
+	puDay18Exercise01.challengeDay = puDay18;
+	
+#pragma mark challenge day 19
+	// create challange day 19 with exercises
+	ChallengeDay *puDay19 = [NSEntityDescription insertNewObjectForEntityForName:[ChallengeDay entityName] inManagedObjectContext:moc];
+	puDay19.dayNumber = @(19);
+	puDay19.challengeDayId = @(49);
+	puDay19.type = @(THVChallengeDayTypeWorkout);
+	puDay19.challenge = pushUpChallenge;
+	
+	Exercise *puDay19Exercise01 = [NSEntityDescription insertNewObjectForEntityForName:[Exercise entityName] inManagedObjectContext:moc];
+	puDay19Exercise01.amount = @(30);
+	puDay19Exercise01.name = THVExerciseNamePushUps;
+	puDay19Exercise01.type = @(THVExerciseTypeRepetition);
+	puDay19Exercise01.challengeDay = puDay19;
+	
+#pragma mark challenge day 20
+	// create challange day 20 with exercises
+	ChallengeDay *puDay20 = [NSEntityDescription insertNewObjectForEntityForName:[ChallengeDay entityName] inManagedObjectContext:moc];
+	puDay20.dayNumber = @(20);
+	puDay20.challengeDayId = @(50);
+	puDay20.type = @(THVChallengeDayTypeRest);
+	puDay20.challenge = pushUpChallenge;
+	
+#pragma mark challenge day 21
+	// create challange day 21 with exercises
+	ChallengeDay *puDay21 = [NSEntityDescription insertNewObjectForEntityForName:[ChallengeDay entityName] inManagedObjectContext:moc];
+	puDay21.dayNumber = @(21);
+	puDay21.challengeDayId = @(51);
+	puDay21.type = @(THVChallengeDayTypeWorkout);
+	puDay21.challenge = pushUpChallenge;
+	
+	Exercise *puDay21Exercise02 = [NSEntityDescription insertNewObjectForEntityForName:[Exercise entityName] inManagedObjectContext:moc];
+	puDay21Exercise02.amount = @(32);
+	puDay21Exercise02.name = THVExerciseNamePushUps;
+	puDay21Exercise02.type = @(THVExerciseTypeRepetition);
+	puDay21Exercise02.challengeDay = puDay21;
+	
+#pragma mark challenge day 22
+	// create challange day 22 with exercises
+	ChallengeDay *puDay22 = [NSEntityDescription insertNewObjectForEntityForName:[ChallengeDay entityName] inManagedObjectContext:moc];
+	puDay22.dayNumber = @(22);
+	puDay22.challengeDayId = @(52);
+	puDay22.type = @(THVChallengeDayTypeWorkout);
+	puDay22.challenge = pushUpChallenge;
+	
+	Exercise *puDay22Exercise02 = [NSEntityDescription insertNewObjectForEntityForName:[Exercise entityName] inManagedObjectContext:moc];
+	puDay22Exercise02.amount = @(35);
+	puDay22Exercise02.name = THVExerciseNamePushUps;
+	puDay22Exercise02.type = @(THVExerciseTypeRepetition);
+	puDay22Exercise02.challengeDay = puDay22;
+	
+#pragma mark challenge day 23
+	// create challange day 23 with exercises
+	ChallengeDay *puDay23 = [NSEntityDescription insertNewObjectForEntityForName:[ChallengeDay entityName] inManagedObjectContext:moc];
+	puDay23.dayNumber = @(23);
+	puDay23.challengeDayId = @(53);
+	puDay23.type = @(THVChallengeDayTypeWorkout);
+	puDay23.challenge = pushUpChallenge;
+	
+	Exercise *puDay23Exercise02 = [NSEntityDescription insertNewObjectForEntityForName:[Exercise entityName] inManagedObjectContext:moc];
+	puDay23Exercise02.amount = @(35);
+	puDay23Exercise02.name = THVExerciseNamePushUps;
+	puDay23Exercise02.type = @(THVExerciseTypeRepetition);
+	puDay23Exercise02.challengeDay = puDay23;
+	
+#pragma mark challenge day 24
+	// create challange day 24 with exercises
+	ChallengeDay *puDay24 = [NSEntityDescription insertNewObjectForEntityForName:[ChallengeDay entityName] inManagedObjectContext:moc];
+	puDay24.dayNumber = @(24);
+	puDay24.challengeDayId = @(54);
+	puDay24.type = @(THVChallengeDayTypeRest);
+	puDay24.challenge = pushUpChallenge;
+	
+#pragma mark challenge day 25
+	// create challange day 25 with exercises
+	ChallengeDay *puDay25 = [NSEntityDescription insertNewObjectForEntityForName:[ChallengeDay entityName] inManagedObjectContext:moc];
+	puDay25.dayNumber = @(25);
+	puDay25.challengeDayId = @(55);
+	puDay25.type = @(THVChallengeDayTypeWorkout);
+	puDay25.challenge = pushUpChallenge;
+	
+	Exercise *puDay25Exercise02 = [NSEntityDescription insertNewObjectForEntityForName:[Exercise entityName] inManagedObjectContext:moc];
+	puDay25Exercise02.amount = @(38);
+	puDay25Exercise02.name = THVExerciseNamePushUps;
+	puDay25Exercise02.type = @(THVExerciseTypeRepetition);
+	puDay25Exercise02.challengeDay = puDay25;
+	
+#pragma mark challenge day 26
+	// create challange day 26 with exercises
+	ChallengeDay *puDay26 = [NSEntityDescription insertNewObjectForEntityForName:[ChallengeDay entityName] inManagedObjectContext:moc];
+	puDay26.dayNumber = @(26);
+	puDay26.challengeDayId = @(56);
+	puDay26.type = @(THVChallengeDayTypeWorkout);
+	puDay26.challenge = pushUpChallenge;
+	
+	Exercise *puDay26Exercise02 = [NSEntityDescription insertNewObjectForEntityForName:[Exercise entityName] inManagedObjectContext:moc];
+	puDay26Exercise02.amount = @(40);
+	puDay26Exercise02.name = THVExerciseNamePushUps;
+	puDay26Exercise02.type = @(THVExerciseTypeRepetition);
+	puDay26Exercise02.challengeDay = puDay26;
+	
+#pragma mark challenge day 27
+	// create challange day 27 with exercises
+	ChallengeDay *puDay27 = [NSEntityDescription insertNewObjectForEntityForName:[ChallengeDay entityName] inManagedObjectContext:moc];
+	puDay27.dayNumber = @(27);
+	puDay27.challengeDayId = @(57);
+	puDay27.type = @(THVChallengeDayTypeRest);
+	puDay27.challenge = pushUpChallenge;
+	
+#pragma mark challenge day 28
+	// create challange day 28 with exercises
+	ChallengeDay *puDay28 = [NSEntityDescription insertNewObjectForEntityForName:[ChallengeDay entityName] inManagedObjectContext:moc];
+	puDay28.dayNumber = @(28);
+	puDay28.challengeDayId = @(58);
+	puDay28.type = @(THVChallengeDayTypeWorkout);
+	puDay28.challenge = pushUpChallenge;
+	
+	Exercise *puDay28Exercise02 = [NSEntityDescription insertNewObjectForEntityForName:[Exercise entityName] inManagedObjectContext:moc];
+	puDay28Exercise02.amount = @(42);
+	puDay28Exercise02.name = THVExerciseNamePushUps;
+	puDay28Exercise02.type = @(THVExerciseTypeRepetition);
+	puDay28Exercise02.challengeDay = puDay28;
+	
+#pragma mark challenge day 29
+	// create challange day 29 with exercises
+	ChallengeDay *puDay29 = [NSEntityDescription insertNewObjectForEntityForName:[ChallengeDay entityName] inManagedObjectContext:moc];
+	puDay29.dayNumber = @(29);
+	puDay29.challengeDayId = @(59);
+	puDay29.type = @(THVChallengeDayTypeWorkout);
+	puDay29.challenge = pushUpChallenge;
+	
+	Exercise *puDay29Exercise02 = [NSEntityDescription insertNewObjectForEntityForName:[Exercise entityName] inManagedObjectContext:moc];
+	puDay29Exercise02.amount = @(45);
+	puDay29Exercise02.name = THVExerciseNamePushUps;
+	puDay29Exercise02.type = @(THVExerciseTypeRepetition);
+	puDay29Exercise02.challengeDay = puDay29;
+	
+#pragma mark challenge day 30
+	// create challange day 30 with exercises
+	ChallengeDay *puDay30 = [NSEntityDescription insertNewObjectForEntityForName:[ChallengeDay entityName] inManagedObjectContext:moc];
+	puDay30.dayNumber = @(30);
+	puDay30.challengeDayId = @(60);
+	puDay30.type = @(THVChallengeDayTypeWorkout);
+	puDay30.challenge = pushUpChallenge;
+	
+	Exercise *puDay30Exercise03 = [NSEntityDescription insertNewObjectForEntityForName:[Exercise entityName] inManagedObjectContext:moc];
+	puDay30Exercise03.amount = @(50);
+	puDay30Exercise03.name = THVExerciseNamePushUps;
+	puDay30Exercise03.type = @(THVExerciseTypeRepetition);
+	puDay30Exercise03.challengeDay = puDay30;
+	
+
+#pragma mark - Save data
 	// save MOC
 	NSError *error;
 	if (![moc save:&error]) {

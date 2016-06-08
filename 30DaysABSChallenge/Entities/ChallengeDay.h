@@ -13,6 +13,7 @@
 typedef enum {
 	THVChallengeDayTypeWorkout	= 1,
 	THVChallengeDayTypeRest		= 2
+	// TODO: add new day type - "just do it"
 } THVChallengeDayType;
 
 @class Exercise, Challenge, ChallengeDayAttempt;
