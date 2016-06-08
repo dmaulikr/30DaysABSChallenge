@@ -108,13 +108,27 @@ NSString *const THVShowChallengeAttempDetailsSegueId = @"showChallengeAttemptDet
 	return [self.fetchedResultsController.sections[section] indexTitle];
 }
 
-#pragma mark - NSFetchedResultsControllerDelegate methods
-- (void)controllerDidChangeContent:(NSFetchedResultsController *)controller {
-	[self.tableView reloadData];
+- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
+	return YES;
 }
 
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
+	if (editingStyle == UITableViewCellEditingStyleDelete) {
+		ChallengeAttempt *challengeAttempt = [self.fetchedResultsController objectAtIndexPath:indexPath];
+		
+		NSManagedObjectContext *moc = ((AppDelegate *)[[UIApplication sharedApplication] delegate]).managedObjectContext;
+		
+		[moc deleteObject:challengeAttempt];
+		NSError *error = nil;
+		if (![moc save:&error]) {
+			NSLog(@"Could not delete ChallengeAttempt!\n%@\n%@", error.localizedDescription, error.userInfo);
+		}
+		
+	}
+}
+
+#pragma mark - NSFetchedResultsControllerDelegate methods
 - (nullable NSString *)controller:(NSFetchedResultsController *)controller sectionIndexTitleForSectionName:(NSString *)sectionName {
-	
 	NSNumber *stateNumber = [[Commons challengeAttemptStateNumberFormatter] numberFromString:sectionName];
 	if (stateNumber) {
 		switch ([stateNumber integerValue]) {
@@ -128,6 +142,47 @@ NSString *const THVShowChallengeAttempDetailsSegueId = @"showChallengeAttemptDet
 	}
 	
 	return nil;
+}
+
+- (void)controllerWillChangeContent:(NSFetchedResultsController *)controller {
+	[self.tableView beginUpdates];
+}
+
+- (void)controller:(NSFetchedResultsController *)controller didChangeSection:(id <NSFetchedResultsSectionInfo>)sectionInfo atIndex:(NSUInteger)sectionIndex forChangeType:(NSFetchedResultsChangeType)type {
+	switch (type) {
+		case NSFetchedResultsChangeInsert:
+			[self.tableView insertSections:[NSIndexSet indexSetWithIndex:sectionIndex] withRowAnimation:UITableViewRowAnimationFade];
+			break;
+		case NSFetchedResultsChangeDelete:
+			[self.tableView deleteSections:[NSIndexSet indexSetWithIndex:sectionIndex] withRowAnimation:UITableViewRowAnimationFade];
+			break;
+		case NSFetchedResultsChangeMove:
+		case NSFetchedResultsChangeUpdate:
+			break;
+	}
+}
+
+- (void)controller:(NSFetchedResultsController *)controller didChangeObject:(id)anObject atIndexPath:(nullable NSIndexPath *)indexPath forChangeType:(NSFetchedResultsChangeType)type newIndexPath:(nullable NSIndexPath *)newIndexPath {
+	switch (type) {
+		case NSFetchedResultsChangeInsert:
+			[self.tableView insertRowsAtIndexPaths:@[newIndexPath] withRowAnimation:UITableViewRowAnimationFade];
+			break;
+		case NSFetchedResultsChangeDelete:
+			[self.tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+			break;
+		case NSFetchedResultsChangeUpdate:
+			[self configureCell:[self.tableView cellForRowAtIndexPath:indexPath] forRowAtIndexPath:indexPath];
+			break;
+		case NSFetchedResultsChangeMove:
+			[self.tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+			[self.tableView insertRowsAtIndexPaths:@[newIndexPath] withRowAnimation:UITableViewRowAnimationFade];
+			break;
+	}
+}
+
+- (void)controllerDidChangeContent:(NSFetchedResultsController *)controller {
+	[self.tableView endUpdates];
+	[self.tableView reloadData];
 }
 
 #pragma mark - unwind
