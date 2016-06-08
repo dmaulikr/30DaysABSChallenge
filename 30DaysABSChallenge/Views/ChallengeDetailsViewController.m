@@ -36,6 +36,8 @@ NSString *const THVChallengeDetailsCollectionViewHeaderId = @"THVChallengeDetail
 		[navigationBarButtons removeObject:self.chooseBarButtonItem];
 		[self.navigationItem setRightBarButtonItems:navigationBarButtons];
 	}
+	
+	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(markAsCompletedNotificationReceived:) name:THVMarkAsCompletedNotificationName object:nil];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -131,6 +133,10 @@ NSString *const THVChallengeDetailsCollectionViewHeaderId = @"THVChallengeDetail
 	id<ChallengeDayDataProtocol> dayForCell = [[self.selectedChallenge daysListOfChallenge] objectAtIndex:indexPath.item];
 	
 	[self performSegueWithIdentifier:THVShowChallengeDayDetails sender:dayForCell];
+}
+
+- (void)markAsCompletedNotificationReceived:(NSNotification *)notification {
+	[self.collectionView reloadData];
 }
 
 @end

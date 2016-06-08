@@ -11,6 +11,8 @@
 extern NSString *const THVReminderTimeFormat;
 extern NSString *const THVChallengeDayDateFormat;
 
+extern NSString *const THVMarkAsCompletedNotificationName;
+
 extern CGFloat const THVCompletedColorR;
 extern CGFloat const THVCompletedColorG;
 extern CGFloat const THVCompletedColorB;

@@ -13,6 +13,7 @@
 #import "ChallengeDayAttempt.h"
 #import "ChallengeDetailsViewController.h"
 #import "ChallengeDayDetailViewController.h"
+#import "Commons.h"
 
 NSString *const THVStoryboardSceneIdChallengeDetails = @"challengeDetailsScene";
 NSString *const THVStoryboardSceneIdChallengeDayDetails = @"challengeDayDetails";
@@ -88,6 +89,23 @@ NSString *const THVStoryboardSceneIdChallengeDayDetails = @"challengeDayDetails"
 	if ([self.window.rootViewController isKindOfClass:[UINavigationController class]]) {
 		[((UINavigationController *)self.window.rootViewController).visibleViewController presentViewController:alert animated:YES completion:nil];
 	}
+}
+
+- (void)application:(UIApplication *)application handleActionWithIdentifier:(NSString *)identifier forLocalNotification:(UILocalNotification *)notification completionHandler:(void (^)())completionHandler {
+	NSLog(@"handle without response info");
+	completionHandler();
+}
+
+- (void)application:(UIApplication *)application handleActionWithIdentifier:(NSString *)identifier forLocalNotification:(UILocalNotification *)notification withResponseInfo:(NSDictionary *)responseInfo completionHandler:(void (^)())completionHandler {
+	
+	if ([identifier isEqualToString:THVNotificationActionShow]) {
+		[self handleShowChallengeDayWithNotification:notification];
+	} else if ([identifier isEqualToString:THVNotificationActionMarkAsCompleted]) {
+		[self handleMarkChallengeDayAsCompletedWithNotification:notification];
+	}
+	
+	completionHandler();
+	
 }
 
 #pragma mark - Core Data stack
@@ -192,7 +210,7 @@ NSString *const THVStoryboardSceneIdChallengeDayDetails = @"challengeDayDetails"
 			[navController pushViewController:challengeDetailsVC animated:NO];
 			[navController pushViewController:challengeDayDetailsVC animated:YES];
 			
-			[challengeAttempt scheduleNextNotificationForDate:[challengeDayAttempt.dayAttemptDate dateByAddingTimeInterval:24.*60.*60.]];
+			[challengeAttempt scheduleNextNotification];
 		}
 	}
 	
@@ -213,7 +231,9 @@ NSString *const THVStoryboardSceneIdChallengeDayDetails = @"challengeDayDetails"
 			NSLog(@"Could not mark challenge day attempt as completed!\n%@\n%@", error.localizedDescription, error.userInfo);
 		}
 		
-		[challengeAttempt scheduleNextNotificationForDate:[challengeDayAttempt.dayAttemptDate dateByAddingTimeInterval:24.*60.*60.]];
+		[challengeAttempt scheduleNextNotification];
+		
+		[[NSNotificationCenter defaultCenter] postNotificationName:THVMarkAsCompletedNotificationName object:challengeDayAttempt];
 	}
 }
 
@@ -221,7 +241,7 @@ NSString *const THVStoryboardSceneIdChallengeDayDetails = @"challengeDayDetails"
 	ChallengeAttempt *challengeAttempt = [self getChallengeAttemptFromNotification:notif];
 	ChallengeDayAttempt *challengeDayAttempt = [self getChallengeDayAttemptFromNotification:notif];
 	if (![challengeDayAttempt isCompleted]) {
-		[challengeAttempt scheduleNextNotificationForDate:[challengeDayAttempt.dayAttemptDate dateByAddingTimeInterval:24.*60.*60.]];
+		[challengeAttempt scheduleNextNotification];
 	}
 }
 

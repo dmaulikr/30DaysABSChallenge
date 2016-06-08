@@ -8,6 +8,8 @@
 
 #import "ChallengeDayAttempt.h"
 #import "ChallengeDay.h"
+#import "Commons.h"
+#import "ChallengeAttempt.h"
 
 @implementation ChallengeDayAttempt
 
@@ -30,6 +32,21 @@
 
 - (BOOL)isCompleted {
 	return [[self completed] boolValue];
+}
+
+- (NSDate *)reminderDateTime {
+	NSCalendar *calendar = [NSCalendar autoupdatingCurrentCalendar];
+	NSDateComponents *reminderDateComponents = [calendar components:(NSCalendarUnitDay | NSCalendarUnitMonth | NSCalendarUnitYear) fromDate:self.dayAttemptDate];
+	
+	NSDate *reminderFireTime = [[Commons challengeTimeReminderFormatter] dateFromString:self.challengeAttempt.reminderTime];
+	NSDateComponents *reminderTimeComponents = [calendar components:(NSCalendarUnitHour | NSCalendarUnitMinute) fromDate:reminderFireTime];
+	reminderTimeComponents.day = reminderDateComponents.day;
+	reminderTimeComponents.month = reminderDateComponents.month;
+	reminderTimeComponents.year = reminderDateComponents.year;
+	
+	NSDate *fireDate = [calendar dateFromComponents:reminderTimeComponents];
+	
+	return fireDate;
 }
 
 @end

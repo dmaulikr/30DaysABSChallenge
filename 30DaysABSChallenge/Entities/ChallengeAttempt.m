@@ -48,15 +48,8 @@
 }
 
 - (ChallengeDayAttempt *)nearestChallengeDayForDate:(NSDate *)date {
-	NSDate *dateToCompare = [date thv_dateWithoutTime];
-	
-	BOOL returnNext = NO;
-	
 	for (ChallengeDayAttempt *day in [self challengeDayAttemptsList]) {
-		if ([day.dayAttemptDate isEqualToDate:dateToCompare]) {
-			// TODO: add to ChallengeDayAttempt method that will return reminder date time
-			// check if reminder date time is in past, if yes - returnNext = YES and return next dayattempt from array
-			
+		if ([[day reminderDateTime] timeIntervalSinceDate:date] > 0 && ![day.completed boolValue]) {
 			return day;
 		}
 	}
@@ -64,10 +57,9 @@
 	return nil;
 }
 
-- (void)scheduleNextNotificationForDate:(NSDate *)dateOfNextChallengeDay {
+- (void)scheduleNextNotification {
 	if (self.reminderActive && self.reminderTime) {
-		NSDate *nextAttemptDayDate = dateOfNextChallengeDay.timeIntervalSinceNow < 0 ? [NSDate date] : dateOfNextChallengeDay;
-		ChallengeDayAttempt *nextDay = [self nearestChallengeDayForDate:nextAttemptDayDate];
+		ChallengeDayAttempt *nextDay = [self nearestChallengeDayForDate:[NSDate date]];
 		if (!nextDay) {
 			NSLog(@"There are no more days for this challenge");
 			[[LocalNotificationsManager sharedInstance] cancelScheduledNotificationForChallengeAttemptURI:[[self objectID] URIRepresentation]];
@@ -77,7 +69,7 @@
 		NSURL *challengeURI = [[self objectID] URIRepresentation];
 		NSURL *dayURI = [[nextDay objectID] URIRepresentation];
 		
-		[[LocalNotificationsManager sharedInstance] scheduleNotificationWithChallengeAttemptURI:challengeURI challengeDayAttemptURI:dayURI alertDate:nextAttemptDayDate alertTime:self.reminderTime challengeName:[self challengeName] dayType:[nextDay dayTypeName]];
+		[[LocalNotificationsManager sharedInstance] scheduleNotificationWithChallengeAttemptURI:challengeURI challengeDayAttemptURI:dayURI alertDateTime:[nextDay reminderDateTime] challengeName:[self challengeName] dayType:[nextDay dayTypeName]];
 	} else {
 		[[LocalNotificationsManager sharedInstance] cancelScheduledNotificationForChallengeAttemptURI:[[self objectID] URIRepresentation]];
 	}

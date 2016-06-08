@@ -52,6 +52,8 @@ NSString *const THVMarkAsNotCompletedLabelString = @"Mark as NOT completed";
 		[alert addAction:[UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleCancel handler:nil]];
 		[self presentViewController:alert animated:YES completion:nil];
 	}
+	
+	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(markAsCompletedNotificationReceived:) name:THVMarkAsCompletedNotificationName object:nil];
 }
 
 - (void)viewDidLayoutSubviews {
@@ -233,11 +235,21 @@ NSString *const THVMarkAsNotCompletedLabelString = @"Mark as NOT completed";
 	
 	[self saveContext];
 	
-	[((ChallengeDayAttempt *)self.selectedChallangeDay).challengeAttempt scheduleNextNotificationForDate:isCompleted ? ((ChallengeDayAttempt *)self.selectedChallangeDay).challengeDayAttemptDate : [NSDate date]];
+	[((ChallengeDayAttempt *)self.selectedChallangeDay).challengeAttempt scheduleNextNotification];
 	
 	if (popViewController) {
 		[self.navigationController popViewControllerAnimated:YES];
 	} else {
+		[self setupMarkAsCompletedView];
+		[self.tableView reloadData];
+	}
+}
+
+- (void)markAsCompletedNotificationReceived:(NSNotification *)notification {
+	if (self.selectedChallangeDay == notification.object) {
+		if (cellTimer) {
+			[self invalidateTimer];
+		}
 		[self setupMarkAsCompletedView];
 		[self.tableView reloadData];
 	}

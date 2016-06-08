@@ -60,28 +60,16 @@ NSString *const THVNotificationUserInfoChallengeDayAttemptURIRepresentationId = 
 	[[UIApplication sharedApplication] registerUserNotificationSettings:notificationSettings];
 }
 
-- (void)scheduleNotificationWithChallengeAttemptURI:(NSURL *)challengeUri challengeDayAttemptURI:(NSURL *)dayUri alertDate:(NSDate *)alertDate alertTime:(NSString *)alertTime challengeName:(NSString *)challengeName dayType:(NSString *)dayType {
+- (void)scheduleNotificationWithChallengeAttemptURI:(NSURL *)challengeUri challengeDayAttemptURI:(NSURL *)dayUri alertDateTime:(NSDate *)alertDateTime challengeName:(NSString *)challengeName dayType:(NSString *)dayType {
 	
 	[self cancelScheduledNotificationForChallengeAttemptURI:challengeUri];
-	
-	NSDate *notifFireDate = alertDate;
-	NSCalendar *calendar = [NSCalendar autoupdatingCurrentCalendar];
-	NSDateComponents *notifFireDateComponents = [calendar components:(NSCalendarUnitDay | NSCalendarUnitMonth | NSCalendarUnitYear) fromDate:notifFireDate];
-	
-	NSDate *notifFireTime = [[Commons challengeTimeReminderFormatter] dateFromString:alertTime];
-	NSDateComponents *notifFireTimeComponents = [calendar components:(NSCalendarUnitHour | NSCalendarUnitMinute) fromDate:notifFireTime];
-	notifFireTimeComponents.day = notifFireDateComponents.day;
-	notifFireTimeComponents.month = notifFireDateComponents.month;
-	notifFireTimeComponents.year = notifFireDateComponents.year;
-	
-	NSDate *fireDate = [calendar dateFromComponents:notifFireTimeComponents];
 	
 	UILocalNotification *notification = [[UILocalNotification alloc] init];
 	if (notification == nil) {
 		return;
 	}
 	
-	notification.fireDate = fireDate;
+	notification.fireDate = alertDateTime;
 	notification.alertBody = [NSString stringWithFormat:@"%@: %@", challengeName, dayType];
 	notification.category = THVNotificationCategoryAlert;
 	notification.applicationIconBadgeNumber = 1;

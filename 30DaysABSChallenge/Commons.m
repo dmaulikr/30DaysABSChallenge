@@ -11,6 +11,8 @@
 NSString *const THVReminderTimeFormat = @"HH:mm";
 NSString *const THVChallengeDayDateFormat = @"dd MMM";
 
+NSString *const THVMarkAsCompletedNotificationName = @"MARK_AS_COMPLETED_NOTIFICATION";
+
 CGFloat const THVCompletedColorR = 95./255.;
 CGFloat const THVCompletedColorG = 186./255.;
 CGFloat const THVCompletedColorB = 125./255.;

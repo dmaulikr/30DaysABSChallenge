@@ -22,7 +22,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface ChallengeAttempt : ParentEntity <ChallengeDataProtocol>
 
 - (ChallengeDayAttempt *)nearestChallengeDayForDate:(NSDate *)date;
-- (void)scheduleNextNotificationForDate:(NSDate *)dateOfNextChallengeDay;
+- (void)scheduleNextNotification;
 
 @end
 

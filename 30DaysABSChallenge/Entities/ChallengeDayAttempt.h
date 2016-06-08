@@ -16,7 +16,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface ChallengeDayAttempt : ParentEntity <ChallengeDayDataProtocol>
 
-// Insert code here to declare functionality of your managed object subclass
+- (NSDate *)reminderDateTime;
 
 @end
 
