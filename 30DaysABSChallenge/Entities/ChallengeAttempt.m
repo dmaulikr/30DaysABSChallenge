@@ -76,4 +76,40 @@
 	}
 }
 
+- (BOOL)isDelayed {
+	ChallengeDayAttempt *firstNotCompletedDay = [self getFirstNotCompletedChallengeDay];
+	if (!firstNotCompletedDay) {
+		return NO;
+	}
+	
+	if ([firstNotCompletedDay.dayAttemptDate timeIntervalSinceDate:[[NSDate date] thv_dateWithoutTime]] >= 0) {
+		return NO;
+	} else {
+		return YES;
+	}
+}
+
+- (BOOL)isChallengeDayPendingCompletion {
+	ChallengeDayAttempt *firstNotCompletedDay = [self getFirstNotCompletedChallengeDay];
+	if (!firstNotCompletedDay) {
+		return NO;
+	}
+	
+	if ([self.reminderActive boolValue] && ![self.reminderTime isEqualToString:@""] && [[firstNotCompletedDay reminderDateTime] timeIntervalSinceNow] < 0) {
+		return YES;
+	} else {
+		return NO;
+	}
+}
+
+#pragma mark - helper methods
+- (ChallengeDayAttempt *)getFirstNotCompletedChallengeDay {
+	for (ChallengeDayAttempt *day in self.challengeDayAttemptsList) {
+		if (![day.completed boolValue]) {
+			return day;
+		}
+	}
+	return nil;
+}
+
 @end

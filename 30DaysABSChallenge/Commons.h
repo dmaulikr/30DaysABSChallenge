@@ -21,6 +21,10 @@ extern CGFloat const THVDelayedColorR;
 extern CGFloat const THVDelayedColorG;
 extern CGFloat const THVDelayedColorB;
 extern CGFloat const THVDelayedColorA;
+extern CGFloat const THVPendingColorR;
+extern CGFloat const THVPendingColorG;
+extern CGFloat const THVPendingColorB;
+extern CGFloat const THVPendingColorA;
 
 @interface Commons : NSObject
 

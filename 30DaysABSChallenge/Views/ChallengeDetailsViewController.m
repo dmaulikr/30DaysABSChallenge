@@ -83,12 +83,15 @@ NSString *const THVChallengeDetailsCollectionViewHeaderId = @"THVChallengeDetail
 		UIColor *toBeDoneColor = [UIColor whiteColor];
 		UIColor *completedColor = [UIColor colorWithRed:THVCompletedColorR green:THVCompletedColorG blue:THVCompletedColorB alpha:THVCompletedColorA];
 		UIColor *delayedColor = [UIColor colorWithRed:THVDelayedColorR green:THVDelayedColorG blue:THVDelayedColorB alpha:THVDelayedColorA];
+		UIColor *pendingColor = [UIColor colorWithRed:THVPendingColorR green:THVPendingColorG blue:THVPendingColorB alpha:THVPendingColorA];
 		
 		if ([dayForCell isCompleted]) {
 			cell.internalCellView.backgroundColor = completedColor;
 		} else if ([dayForCell respondsToSelector:@selector(dayAttemptDate)] &&
 				   [[[NSDate date] thv_dateWithoutTime] timeIntervalSinceDate:[dayForCell dayAttemptDate]] > (12. * 60. * 60.)) {
 			cell.internalCellView.backgroundColor = delayedColor;
+		} else if ([self.selectedChallenge isReminderActive] && [dayForCell respondsToSelector:NSSelectorFromString(@"reminderDateTime")] && [[dayForCell performSelector:NSSelectorFromString(@"reminderDateTime")] timeIntervalSinceNow] < 0) {
+			cell.internalCellView.backgroundColor = pendingColor;
 		} else {
 			cell.internalCellView.backgroundColor = toBeDoneColor;
 		}

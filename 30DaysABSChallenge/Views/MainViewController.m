@@ -84,6 +84,13 @@ NSString *const THVShowChallengeAttempDetailsSegueId = @"showChallengeAttemptDet
 			[detailTextLabelText appendFormat:@"Reminder time: %@", [challengeAttemptForRow challengeReminderTime]];
 		}
 	}
+	if ([challengeAttemptForRow respondsToSelector:@selector(isDelayed)] && [challengeAttemptForRow isDelayed]) {
+		cell.backgroundColor = [UIColor colorWithRed:THVDelayedColorR green:THVDelayedColorG blue:THVDelayedColorB alpha:THVDelayedColorA];
+	} else if ([challengeAttemptForRow respondsToSelector:@selector(isChallengeDayPendingCompletion)] && [challengeAttemptForRow isChallengeDayPendingCompletion]) {
+		cell.backgroundColor = [UIColor colorWithRed:THVPendingColorR green:THVPendingColorG blue:THVPendingColorB alpha:THVPendingColorA];
+	} else {
+		cell.backgroundColor = [UIColor whiteColor];
+	}
 	cell.detailTextLabel.text = detailTextLabelText;
 }
 

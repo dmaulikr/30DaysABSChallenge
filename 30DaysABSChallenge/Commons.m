@@ -21,6 +21,10 @@ CGFloat const THVDelayedColorR = 217./255.;
 CGFloat const THVDelayedColorG = 87./255.;
 CGFloat const THVDelayedColorB = 90./255.;
 CGFloat const THVDelayedColorA = 1.0;
+CGFloat const THVPendingColorR = 255./255.;
+CGFloat const THVPendingColorG = 213./255.;
+CGFloat const THVPendingColorB = 74./255.;
+CGFloat const THVPendingColorA = 1.0;
 
 @implementation Commons
 
