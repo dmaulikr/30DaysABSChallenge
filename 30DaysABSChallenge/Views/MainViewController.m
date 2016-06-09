@@ -11,6 +11,7 @@
 #import "ChallengeAttempt.h"
 #import "Commons.h"
 #import "ChallengeDetailsViewController.h"
+#import "LocalNotificationsManager.h"
 
 NSString *const THVMyChallengesTableViewCellId = @"THVMyChallengesTableViewCellId";
 NSString *const THVShowChallengeAttempDetailsSegueId = @"showChallengeAttemptDetails";
@@ -127,6 +128,7 @@ NSString *const THVShowChallengeAttempDetailsSegueId = @"showChallengeAttemptDet
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
 	if (editingStyle == UITableViewCellEditingStyleDelete) {
 		ChallengeAttempt *challengeAttempt = [self.fetchedResultsController objectAtIndexPath:indexPath];
+		[[LocalNotificationsManager sharedInstance] cancelScheduledNotificationForChallengeAttemptURI:[[challengeAttempt objectID] URIRepresentation]];
 		
 		NSManagedObjectContext *moc = ((AppDelegate *)[[UIApplication sharedApplication] delegate]).managedObjectContext;
 		
