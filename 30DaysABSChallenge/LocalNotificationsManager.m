@@ -32,7 +32,7 @@ NSString *const THVNotificationUserInfoChallengeDayAttemptURIRepresentationId = 
 }
 
 - (void)registerUserInteractionTypesAndCategoriesAndActionableNotificationTypes {
-	UIUserNotificationType types = (UIUserNotificationTypeAlert);
+	UIUserNotificationType types = (UIUserNotificationTypeAlert | UIUserNotificationTypeBadge);
 	
 	UIMutableUserNotificationAction *markAsCompletedAction = [[UIMutableUserNotificationAction alloc] init];
 	markAsCompletedAction.identifier = THVNotificationActionMarkAsCompleted;
@@ -80,6 +80,8 @@ NSString *const THVNotificationUserInfoChallengeDayAttemptURIRepresentationId = 
 	notification.userInfo = infoDict;
 	
 	[[UIApplication sharedApplication] scheduleLocalNotification:notification];
+	
+	[self renumerateBadgeNumbersForPendingNotifications];
 //	DEBUG
 //	NSLog(@"Added notification: %@", notification.thv_description);
 }
@@ -91,6 +93,25 @@ NSString *const THVNotificationUserInfoChallengeDayAttemptURIRepresentationId = 
 //			NSLog(@"Removing notification: %@", notif.thv_description);
 			[[UIApplication sharedApplication] cancelLocalNotification:notif];
 		}
+	}
+}
+
+- (void)renumerateBadgeNumbersForPendingNotifications {
+	UIApplication *app = [UIApplication sharedApplication];
+	
+	NSArray<UILocalNotification *> *pendingNotifications = [app scheduledLocalNotifications];
+	if (pendingNotifications.count == 0) {
+		return;
+	}
+	
+	pendingNotifications = [pendingNotifications sortedArrayUsingDescriptors:@[[NSSortDescriptor sortDescriptorWithKey:@"fireDate" ascending:YES]]];
+	
+	[app cancelAllLocalNotifications];
+	
+	NSInteger badgeNumber = 1;
+	for (UILocalNotification *notif in pendingNotifications) {
+		notif.applicationIconBadgeNumber = badgeNumber++;
+		[app scheduleLocalNotification:notif];
 	}
 }
 

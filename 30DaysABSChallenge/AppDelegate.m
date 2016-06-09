@@ -57,7 +57,8 @@ NSString *const THVStoryboardSceneIdChallengeDayDetails = @"challengeDayDetails"
 }
 
 - (void)applicationDidBecomeActive:(UIApplication *)application {
-	// Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
+	[UIApplication sharedApplication].applicationIconBadgeNumber = 0;
+	[[LocalNotificationsManager sharedInstance] renumerateBadgeNumbersForPendingNotifications];
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application {
@@ -186,6 +187,8 @@ NSString *const THVStoryboardSceneIdChallengeDayDetails = @"challengeDayDetails"
 
 #pragma mark - helper methods
 - (void)handleShowChallengeDayWithNotification:(UILocalNotification *)notif {
+	[UIApplication sharedApplication].applicationIconBadgeNumber = 0;
+	
 	if ([self.window.rootViewController isKindOfClass:[UINavigationController class]]) {
 		ChallengeAttempt *challengeAttempt = [self getChallengeAttemptFromNotification:notif];
 		ChallengeDayAttempt *challengeDayAttempt = [self getChallengeDayAttemptFromNotification:notif];
@@ -212,6 +215,8 @@ NSString *const THVStoryboardSceneIdChallengeDayDetails = @"challengeDayDetails"
 }
 
 - (void)handleMarkChallengeDayAsCompletedWithNotification:(UILocalNotification *)notif {
+	[UIApplication sharedApplication].applicationIconBadgeNumber = 0;
+	
 	ChallengeAttempt *challengeAttempt = [self getChallengeAttemptFromNotification:notif];
 	ChallengeDayAttempt *challengeDayAttempt = [self getChallengeDayAttemptFromNotification:notif];
 	
@@ -233,6 +238,8 @@ NSString *const THVStoryboardSceneIdChallengeDayDetails = @"challengeDayDetails"
 }
 
 - (void)handleCancelPopupWithNotification:(UILocalNotification *)notif {
+	[UIApplication sharedApplication].applicationIconBadgeNumber = 0;
+	
 	ChallengeAttempt *challengeAttempt = [self getChallengeAttemptFromNotification:notif];
 	ChallengeDayAttempt *challengeDayAttempt = [self getChallengeDayAttemptFromNotification:notif];
 	if (![challengeDayAttempt isCompleted]) {

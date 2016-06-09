@@ -23,5 +23,6 @@ extern NSString *const THVNotificationUserInfoChallengeDayAttemptURIRepresentati
 - (void)registerUserInteractionTypesAndCategoriesAndActionableNotificationTypes;
 - (void)scheduleNotificationWithChallengeAttemptURI:(NSURL *)challengeUri challengeDayAttemptURI:(NSURL *)dayUri alertDateTime:(NSDate *)alertDateTime challengeName:(NSString *)challengeName dayType:(NSString *)dayType;
 - (void)cancelScheduledNotificationForChallengeAttemptURI:(NSURL *)challengeUri;
+- (void)renumerateBadgeNumbersForPendingNotifications;
 
 @end
