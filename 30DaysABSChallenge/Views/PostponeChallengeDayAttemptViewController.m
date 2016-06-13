@@ -62,8 +62,15 @@ NSString *const THVUnwindToDayDetailsSegueId = @"unwindToDayDetails";
 - (NSDate *)postponeStartingFromSelectedDayWithTimeInterval:(NSTimeInterval)timeInterval {
 	NSDate *selectedDayNewAttemptDate = [self.selectedChallengeDay.challengeDayAttemptDate dateByAddingTimeInterval:timeInterval];
 	
-	NSArray<ChallengeDayAttempt *> *challengeDaysArray = [self.selectedChallengeDay.challengeAttempt.challengeDayAttemptsList array];
+	ChallengeAttempt *challengeAttempt = self.selectedChallengeDay.challengeAttempt;
+	NSArray<ChallengeDayAttempt *> *challengeDaysArray = [challengeAttempt.challengeDayAttemptsList array];
 	NSInteger selectedChallengeDayIndex = [challengeDaysArray indexOfObject:self.selectedChallengeDay];
+	
+	if (selectedChallengeDayIndex == 0) {
+		challengeAttempt.startDate = selectedDayNewAttemptDate;
+	} else {
+		challengeAttempt.startDate = challengeAttempt.startDate;
+	}
 	
 	if (selectedChallengeDayIndex != NSNotFound) {
 		for (NSInteger i = selectedChallengeDayIndex; i < challengeDaysArray.count; i++) {
