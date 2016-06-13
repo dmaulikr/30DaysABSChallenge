@@ -38,10 +38,7 @@ NSString *const THVShowPostponePopoverSegueId = @"showPostponePopover";
 - (void)viewDidLoad {
 	showOnly = ![self.selectedChallangeDay respondsToSelector:@selector(isCompleted)];
 	
-	if (showOnly) {
-		self.navigationItem.rightBarButtonItems = [NSMutableArray array];
-	}
-	
+	[self setupPostponeButton];
 	[self setupMarkAsCompletedView];
 	[self setupDayAttemptDateLabel];
 	
@@ -190,6 +187,16 @@ NSString *const THVShowPostponePopoverSegueId = @"showPostponePopover";
 	}
 }
 
+- (void)setupPostponeButton {
+	if (showOnly || [self.selectedChallangeDay isCompleted]) {
+		self.navigationItem.rightBarButtonItems = [NSMutableArray array];
+	} else {
+		if (![self.navigationItem.rightBarButtonItems containsObject:self.postponeButton]) {
+			self.navigationItem.rightBarButtonItems = [self.navigationItem.rightBarButtonItems arrayByAddingObject:self.postponeButton];
+		}
+	}
+}
+
 - (void)markAsCompletedViewTapped {
 	[self.markAsCompletedButton sendActionsForControlEvents:UIControlEventTouchUpInside];
 }
@@ -260,6 +267,7 @@ NSString *const THVShowPostponePopoverSegueId = @"showPostponePopover";
 	if (popViewController) {
 		[self.navigationController popViewControllerAnimated:YES];
 	} else {
+		[self setupPostponeButton];
 		[self setupMarkAsCompletedView];
 		[self.tableView reloadData];
 	}
