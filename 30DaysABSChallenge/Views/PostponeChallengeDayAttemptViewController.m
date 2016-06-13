@@ -81,6 +81,8 @@ NSString *const THVUnwindToDayDetailsSegueId = @"unwindToDayDetails";
 	
 	[self saveContext];
 	
+	[challengeAttempt scheduleNextNotification];
+	
 	return selectedDayNewAttemptDate;
 }
 
