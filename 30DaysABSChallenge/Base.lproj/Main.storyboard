@@ -323,6 +323,24 @@ Rest in peace!</string>
                                             <rect key="frame" x="0.0" y="0.0" width="95" height="95"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="P5U-SX-E1q" userLabel="underlying view">
+                                                    <rect key="frame" x="2" y="2" width="91" height="91"/>
+                                                    <subviews>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Mark NOT completed" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5FV-kw-cVR">
+                                                            <rect key="frame" x="25" y="2" width="64" height="87"/>
+                                                            <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="12"/>
+                                                            <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                    </subviews>
+                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <constraints>
+                                                        <constraint firstItem="5FV-kw-cVR" firstAttribute="leading" secondItem="P5U-SX-E1q" secondAttribute="leading" constant="25" id="1I6-1B-D9J"/>
+                                                        <constraint firstAttribute="trailing" secondItem="5FV-kw-cVR" secondAttribute="trailing" constant="2" id="Lk4-ng-qFY"/>
+                                                        <constraint firstItem="5FV-kw-cVR" firstAttribute="top" secondItem="P5U-SX-E1q" secondAttribute="top" constant="2" id="YZV-qz-V6Y"/>
+                                                        <constraint firstAttribute="bottom" secondItem="5FV-kw-cVR" secondAttribute="bottom" constant="2" id="k5u-7h-Dp1"/>
+                                                    </constraints>
+                                                </view>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zEU-jq-KXu" userLabel="internal cell view">
                                                     <rect key="frame" x="2" y="2" width="91" height="91"/>
                                                     <subviews>
@@ -362,14 +380,20 @@ Rest in peace!</string>
                                         <constraints>
                                             <constraint firstItem="zEU-jq-KXu" firstAttribute="leading" secondItem="vr1-Pv-yOq" secondAttribute="leading" constant="2" id="1mK-I3-ffj"/>
                                             <constraint firstAttribute="bottom" secondItem="zEU-jq-KXu" secondAttribute="bottom" constant="2" id="6jq-Ox-7FC"/>
+                                            <constraint firstAttribute="trailing" secondItem="P5U-SX-E1q" secondAttribute="trailing" constant="2" id="Amb-xn-Alb"/>
                                             <constraint firstAttribute="trailing" secondItem="zEU-jq-KXu" secondAttribute="trailing" constant="2" id="Eag-xd-VSV"/>
                                             <constraint firstItem="zEU-jq-KXu" firstAttribute="top" secondItem="vr1-Pv-yOq" secondAttribute="top" constant="2" id="eb2-U0-Xsu"/>
+                                            <constraint firstItem="P5U-SX-E1q" firstAttribute="top" secondItem="vr1-Pv-yOq" secondAttribute="top" constant="2" id="fyK-xa-rIF"/>
+                                            <constraint firstItem="P5U-SX-E1q" firstAttribute="leading" secondItem="vr1-Pv-yOq" secondAttribute="leading" constant="2" id="oXx-tW-54T"/>
+                                            <constraint firstAttribute="bottom" secondItem="P5U-SX-E1q" secondAttribute="bottom" constant="2" id="wl5-3K-UMC"/>
                                         </constraints>
                                         <connections>
                                             <outlet property="dayDateLabel" destination="XiU-Bq-oij" id="QG4-26-OJk"/>
                                             <outlet property="dayNumberLabel" destination="evc-A5-gD0" id="Nra-DP-Kbb"/>
                                             <outlet property="dayTypeLabel" destination="FuK-L3-h1F" id="l3W-A3-dpL"/>
                                             <outlet property="internalCellView" destination="zEU-jq-KXu" id="xzA-7a-MY8"/>
+                                            <outlet property="underlyingLabel" destination="5FV-kw-cVR" id="4D6-TD-TAD"/>
+                                            <outlet property="underlyingView" destination="P5U-SX-E1q" id="ONd-j3-f1d"/>
                                         </connections>
                                     </collectionViewCell>
                                 </cells>

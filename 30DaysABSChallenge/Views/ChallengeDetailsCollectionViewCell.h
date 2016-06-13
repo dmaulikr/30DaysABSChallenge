@@ -14,5 +14,12 @@
 @property (weak, nonatomic) IBOutlet UILabel *dayTypeLabel;
 @property (weak, nonatomic) IBOutlet UILabel *dayDateLabel;
 @property (weak, nonatomic) IBOutlet UIView *internalCellView;
+@property (weak, nonatomic) IBOutlet UIView *underlyingView;
+@property (weak, nonatomic) IBOutlet UILabel *underlyingLabel;
+
+@property (nonatomic) BOOL isCompleted;
+@property (nonatomic) BOOL underlyingViewRevealed;
+
+- (void)removeGestureRecognizers;
 
 @end

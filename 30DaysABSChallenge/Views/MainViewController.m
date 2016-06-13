@@ -34,6 +34,14 @@ NSString *const THVShowChallengeAttempDetailsSegueId = @"showChallengeAttemptDet
 	[self setupPlaceholderLabel];
 }
 
+- (void)viewWillAppear:(BOOL)animated {
+	if (self.fetchedResultsController.fetchedObjects.count > 0) {
+		[self.tableView reloadData];
+	}
+	
+	[super viewWillAppear:animated];
+}
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.

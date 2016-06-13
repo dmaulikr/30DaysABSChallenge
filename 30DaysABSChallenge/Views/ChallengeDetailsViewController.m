@@ -14,6 +14,8 @@
 #import "Commons.h"
 #import "ChallengeDayDetailViewController.h"
 #import "NSDate+THVDateAdditions.h"
+#import "ChallengeDayAttempt.h"
+#import "ChallengeAttempt.h"
 
 NSString *const THVGoToChosenChallengeConfigurationScreen = @"chosenChallangeScreenFromDetails";
 NSString *const THVShowChallengeDayDetails = @"shoChallengeDayDetails";
@@ -78,8 +80,11 @@ NSString *const THVChallengeDetailsCollectionViewHeaderId = @"THVChallengeDetail
 	} else {
 		[cell.dayDateLabel removeFromSuperview];
 	}
+	cell.underlyingViewRevealed = NO;
 	
 	if ([dayForCell respondsToSelector:@selector(isCompleted)]) {
+		cell.isCompleted = [dayForCell isCompleted];
+		
 		UIColor *toBeDoneColor = [UIColor whiteColor];
 		UIColor *completedColor = [UIColor colorWithRed:THVCompletedColorR green:THVCompletedColorG blue:THVCompletedColorB alpha:THVCompletedColorA];
 		UIColor *delayedColor = [UIColor colorWithRed:THVDelayedColorR green:THVDelayedColorG blue:THVDelayedColorB alpha:THVDelayedColorA];
@@ -95,8 +100,8 @@ NSString *const THVChallengeDetailsCollectionViewHeaderId = @"THVChallengeDetail
 		} else {
 			cell.internalCellView.backgroundColor = toBeDoneColor;
 		}
-		
-		
+	} else {
+		[cell removeGestureRecognizers];
 	}
 }
 
@@ -135,7 +140,25 @@ NSString *const THVChallengeDetailsCollectionViewHeaderId = @"THVChallengeDetail
 	
 	id<ChallengeDayDataProtocol> dayForCell = [[self.selectedChallenge daysListOfChallenge] objectAtIndex:indexPath.item];
 	
-	[self performSegueWithIdentifier:THVShowChallengeDayDetails sender:dayForCell];
+	ChallengeDetailsCollectionViewCell *selectedCell = (ChallengeDetailsCollectionViewCell *)[collectionView cellForItemAtIndexPath:indexPath];
+	
+	if (!selectedCell.underlyingViewRevealed) {
+		[self performSegueWithIdentifier:THVShowChallengeDayDetails sender:dayForCell];
+	} else {
+		ChallengeDayAttempt *challengeDayAttempt = (ChallengeDayAttempt *)dayForCell;
+		challengeDayAttempt.completed = [NSNumber numberWithBool:![challengeDayAttempt isCompleted]];
+		challengeDayAttempt.completionDate = [challengeDayAttempt isCompleted] ? [NSDate date] : nil;
+		[challengeDayAttempt.exerciseListOfDay makeObjectsPerformSelector:@selector(setCompleted:) withObject:[NSNumber numberWithBool:[challengeDayAttempt isCompleted]]];
+		[challengeDayAttempt.exerciseListOfDay makeObjectsPerformSelector:@selector(setCompletionDate:) withObject:[challengeDayAttempt isCompleted] ? [NSDate date] : nil];
+		
+		NSError *error = nil;
+		if (![((AppDelegate *)[[UIApplication sharedApplication] delegate]).managedObjectContext save:&error]) {
+			NSLog(@"Could not mark challenge day attempt as completed!\n%@\n%@", error.localizedDescription, error.userInfo);
+		}
+		
+		[challengeDayAttempt.challengeAttempt scheduleNextNotification];
+		[collectionView reloadItemsAtIndexPaths:@[indexPath]];
+	}
 }
 
 - (void)markAsCompletedNotificationReceived:(NSNotification *)notification {
