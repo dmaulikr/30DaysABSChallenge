@@ -12,6 +12,7 @@
 		8949B6C81D019012002409EA /* CheckboxLayerUnchecked.m in Sources */ = {isa = PBXBuildFile; fileRef = 8949B6C71D019012002409EA /* CheckboxLayerUnchecked.m */; };
 		8949B6CB1D01901D002409EA /* CheckboxLayerChecked.m in Sources */ = {isa = PBXBuildFile; fileRef = 8949B6CA1D01901D002409EA /* CheckboxLayerChecked.m */; };
 		8949B6CE1D0199CC002409EA /* CheckboxLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 8949B6CD1D0199CC002409EA /* CheckboxLayer.m */; };
+		8956FB171D0EA96100386383 /* PostponeChallengeDayAttemptViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8956FB161D0EA96100386383 /* PostponeChallengeDayAttemptViewController.m */; };
 		8970B56F1D06AD7800113D7C /* LocalNotificationsManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 8970B56E1D06AD7800113D7C /* LocalNotificationsManager.m */; };
 		8970B5751D06DEC800113D7C /* UILocalNotification+THVPrintingAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 8970B5741D06DEC800113D7C /* UILocalNotification+THVPrintingAdditions.m */; };
 		8974E3CE1CF8375200CF51A5 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 8974E3CD1CF8375200CF51A5 /* main.m */; };
@@ -58,6 +59,8 @@
 		8949B6CC1D0199CC002409EA /* CheckboxLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CheckboxLayer.h; sourceTree = "<group>"; };
 		8949B6CD1D0199CC002409EA /* CheckboxLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CheckboxLayer.m; sourceTree = "<group>"; };
 		8949B6CF1D01B0B1002409EA /* CheckboxDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CheckboxDelegate.h; sourceTree = "<group>"; };
+		8956FB151D0EA96100386383 /* PostponeChallengeDayAttemptViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PostponeChallengeDayAttemptViewController.h; sourceTree = "<group>"; };
+		8956FB161D0EA96100386383 /* PostponeChallengeDayAttemptViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PostponeChallengeDayAttemptViewController.m; sourceTree = "<group>"; };
 		8970B56D1D06AD7800113D7C /* LocalNotificationsManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocalNotificationsManager.h; sourceTree = "<group>"; };
 		8970B56E1D06AD7800113D7C /* LocalNotificationsManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocalNotificationsManager.m; sourceTree = "<group>"; };
 		8970B5731D06DEC800113D7C /* UILocalNotification+THVPrintingAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UILocalNotification+THVPrintingAdditions.h"; sourceTree = "<group>"; };
@@ -268,6 +271,8 @@
 				89EAB33D1CFC5AD100CCA851 /* ChallengeDayDetailViewController.m */,
 				89EAB33F1CFC6BDD00CCA851 /* ChallengeDayDetailsTableViewCell.h */,
 				89EAB3401CFC6BDD00CCA851 /* ChallengeDayDetailsTableViewCell.m */,
+				8956FB151D0EA96100386383 /* PostponeChallengeDayAttemptViewController.h */,
+				8956FB161D0EA96100386383 /* PostponeChallengeDayAttemptViewController.m */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -382,6 +387,7 @@
 				897B80D81CF8794B0000A351 /* ChallengeDetailsViewController.m in Sources */,
 				8974E4311CF851C800CF51A5 /* ChallengeDay+CoreDataProperties.m in Sources */,
 				8970B5751D06DEC800113D7C /* UILocalNotification+THVPrintingAdditions.m in Sources */,
+				8956FB171D0EA96100386383 /* PostponeChallengeDayAttemptViewController.m in Sources */,
 				8974E3DA1CF8375200CF51A5 /* _0DaysABSChallenge.xcdatamodeld in Sources */,
 				8974E4341CF851C800CF51A5 /* ParentEntity.m in Sources */,
 				8974E3E91CF83B7800CF51A5 /* Commons.m in Sources */,

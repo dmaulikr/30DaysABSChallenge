@@ -213,6 +213,13 @@ Rest in peace!</string>
                     </view>
                     <navigationItem key="navigationItem" title="Title" id="jvZ-DE-TMF">
                         <barButtonItem key="backBarButtonItem" title=" " id="LuB-Xs-vrz"/>
+                        <barButtonItem key="rightBarButtonItem" title="Postpone" id="SfN-VH-6Bw">
+                            <connections>
+                                <segue destination="LS4-Hu-mUs" kind="popoverPresentation" identifier="showPostponePopover" popoverAnchorBarButtonItem="SfN-VH-6Bw" id="CEb-Tw-MdV">
+                                    <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
+                                </segue>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="dayAttemptDateLabel" destination="RzL-0m-Dqs" id="Yhp-X3-kns"/>
@@ -223,12 +230,70 @@ Rest in peace!</string>
                         <outlet property="markAsCompletedViewHeightConstraint" destination="27z-2s-jBi" id="aA1-jZ-rV8"/>
                         <outlet property="markAsCompletedViewLabel" destination="ubS-eq-QwH" id="sNR-qp-4qr"/>
                         <outlet property="placeholderLabel" destination="rfd-A8-xHT" id="9eh-1u-0BY"/>
+                        <outlet property="postponeButton" destination="SfN-VH-6Bw" id="fKn-Is-v3g"/>
                         <outlet property="tableView" destination="Qnx-wP-fSR" id="k5i-JI-gX0"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FKP-Xz-hqT" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3739" y="2405"/>
+        </scene>
+        <!--Postpone Challenge Day Attempt View Controller-->
+        <scene sceneID="XAE-h9-eL5">
+            <objects>
+                <viewController storyboardIdentifier="PostponeVC" id="LS4-Hu-mUs" customClass="PostponeChallengeDayAttemptViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Lih-jY-3PC"/>
+                        <viewControllerLayoutGuide type="bottom" id="CS9-UM-qHC"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="ukz-c8-YNL">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Postpone until:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vk6-Wt-KIR">
+                                <rect key="frame" x="20" y="8" width="115" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="date" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="Yye-F2-Xy6">
+                                <rect key="frame" x="0.0" y="37" width="600" height="216"/>
+                                <date key="date" timeIntervalSinceReferenceDate="487502655.18508899">
+                                    <!--2016-06-13 09:24:15 +0000-->
+                                </date>
+                            </datePicker>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jqK-PC-FV0">
+                                <rect key="frame" x="283" y="562" width="34" height="30"/>
+                                <state key="normal" title="Save"/>
+                                <connections>
+                                    <action selector="saveButtonTapped:" destination="LS4-Hu-mUs" eventType="touchUpInside" id="Xmf-Ym-ejE"/>
+                                    <segue destination="WCw-i3-chv" kind="unwind" identifier="unwindToDayDetails" unwindAction="unwindFromPostponePopover:" id="hdA-U4-qdu"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="Yye-F2-Xy6" firstAttribute="top" secondItem="Vk6-Wt-KIR" secondAttribute="bottom" constant="8" id="G4M-4f-tcg"/>
+                            <constraint firstItem="Vk6-Wt-KIR" firstAttribute="leading" secondItem="ukz-c8-YNL" secondAttribute="leading" constant="20" id="Oag-19-y4N"/>
+                            <constraint firstItem="jqK-PC-FV0" firstAttribute="top" relation="greaterThanOrEqual" secondItem="Yye-F2-Xy6" secondAttribute="bottom" constant="8" id="WLw-pj-ZZ6"/>
+                            <constraint firstItem="jqK-PC-FV0" firstAttribute="centerX" secondItem="ukz-c8-YNL" secondAttribute="centerX" id="Z9K-eh-Co2"/>
+                            <constraint firstItem="Yye-F2-Xy6" firstAttribute="leading" secondItem="ukz-c8-YNL" secondAttribute="leading" id="hVw-QS-gY2"/>
+                            <constraint firstItem="CS9-UM-qHC" firstAttribute="top" secondItem="jqK-PC-FV0" secondAttribute="bottom" constant="8" id="xSH-wb-hBU"/>
+                            <constraint firstItem="Vk6-Wt-KIR" firstAttribute="top" secondItem="Lih-jY-3PC" secondAttribute="bottom" constant="8" id="yHC-05-39W"/>
+                            <constraint firstAttribute="trailing" secondItem="Yye-F2-Xy6" secondAttribute="trailing" id="zKU-oU-A9K"/>
+                        </constraints>
+                    </view>
+                    <nil key="simulatedStatusBarMetrics"/>
+                    <nil key="simulatedTopBarMetrics"/>
+                    <nil key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <outlet property="datePicker" destination="Yye-F2-Xy6" id="ccA-04-x6o"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="se9-Zh-tgL" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="WCw-i3-chv" userLabel="Exit" sceneMemberID="exit"/>
+            </objects>
+            <point key="canvasLocation" x="4530" y="2405"/>
         </scene>
         <!--Challange Details-->
         <scene sceneID="uhE-Tm-VgO">

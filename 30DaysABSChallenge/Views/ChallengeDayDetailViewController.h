@@ -10,7 +10,7 @@
 #import "ChallengeDayDataProtocol.h"
 #import "CheckboxDelegate.h"
 
-@interface ChallengeDayDetailViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, CheckboxDelegate>
+@interface ChallengeDayDetailViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, CheckboxDelegate, UIPopoverPresentationControllerDelegate>
 
 @property (weak, nonatomic) IBOutlet UILabel *dayNumberLabel;
 @property (weak, nonatomic) IBOutlet UILabel *dayAttemptDateLabel;
@@ -26,5 +26,7 @@
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *markAsCompletedViewHeightConstraint;
 @property (weak, nonatomic) IBOutlet UIButton *markAsCompletedButton;
 @property (weak, nonatomic) IBOutlet UIButton *markAsCompletedViewLabel;
+
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *postponeButton;
 
 @end

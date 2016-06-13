@@ -15,10 +15,13 @@
 #import "ExerciseDataProtocol.h"
 #import "Exercise.h"
 #import "ExerciseAttempt.h"
+#import "PostponeChallengeDayAttemptViewController.h"
 
 NSString *const THVChallengeDayDetailsTableViewCellId = @"challengeDayDetailsTableViewCellId";
 NSString *const THVMarkAsCompletedLabelString = @"Mark as completed";
 NSString *const THVMarkAsNotCompletedLabelString = @"Mark as NOT completed";
+
+NSString *const THVShowPostponePopoverSegueId = @"showPostponePopover";
 
 @interface ChallengeDayDetailViewController () {
 	ChallengeDayDetailsTableViewCell *cellWithTimer;
@@ -34,6 +37,10 @@ NSString *const THVMarkAsNotCompletedLabelString = @"Mark as NOT completed";
 
 - (void)viewDidLoad {
 	showOnly = ![self.selectedChallangeDay respondsToSelector:@selector(isCompleted)];
+	
+	if (showOnly) {
+		self.navigationItem.rightBarButtonItems = [NSMutableArray array];
+	}
 	
 	[self setupMarkAsCompletedView];
 	[self setupDayAttemptDateLabel];
@@ -73,6 +80,17 @@ NSString *const THVMarkAsNotCompletedLabelString = @"Mark as NOT completed";
 	}
 	[self saveContext];
 	[super viewWillDisappear:animated];
+}
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+	if ([segue.identifier isEqualToString:THVShowPostponePopoverSegueId]) {
+		PostponeChallengeDayAttemptViewController *destinationVC = segue.destinationViewController;
+		destinationVC.preferredContentSize = CGSizeMake(self.view.frame.size.width * 0.8, self.view.frame.size.height * 0.4);
+		destinationVC.selectedChallengeDay = self.selectedChallangeDay;
+		
+		UIPopoverPresentationController *popoverController = destinationVC.popoverPresentationController;
+		popoverController.delegate = self;
+	}
 }
 
 #pragma mark - table view helper methods
@@ -284,6 +302,11 @@ NSString *const THVMarkAsNotCompletedLabelString = @"Mark as NOT completed";
 	}
 }
 
+#pragma mark - UIPopoverPresentationControllerDelegate methods
+- (UIModalPresentationStyle)adaptivePresentationStyleForPresentationController:(UIPresentationController *)controller {
+	return UIModalPresentationNone;
+}
+
 #pragma mark - ibaction methods
 - (IBAction)markAsCompletedButtonTapped:(id)sender {
 	if ([self.selectedChallangeDay isKindOfClass:[ChallengeDayAttempt class]]) {
@@ -292,6 +315,12 @@ NSString *const THVMarkAsNotCompletedLabelString = @"Mark as NOT completed";
 		} else {
 			[self markSelectedChallengeDayAttemptAsCompleted:NO markAllExercises:YES andPopViewController:NO];
 		}
+	}
+}
+
+- (IBAction)unwindFromPostponePopover:(UIStoryboardSegue *)segue {
+	if ([segue.identifier isEqualToString:THVUnwindToDayDetailsSegueId]) {
+		self.dayAttemptDateLabel.text = [[Commons challengeDayDateFormatter] stringFromDate:[self.selectedChallangeDay dayAttemptDate]];
 	}
 }
 
