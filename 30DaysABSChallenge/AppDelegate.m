@@ -90,6 +90,8 @@ NSString *const THVStoryboardSceneIdChallengeDayDetails = @"challengeDayDetails"
 	if ([self.window.rootViewController isKindOfClass:[UINavigationController class]]) {
 		[((UINavigationController *)self.window.rootViewController).visibleViewController presentViewController:alert animated:YES completion:nil];
 	}
+	
+	[[NSNotificationCenter defaultCenter] postNotificationName:THVDidReceiveLocalNotifNotificationName object:nil];
 }
 
 - (void)application:(UIApplication *)application handleActionWithIdentifier:(NSString *)identifier forLocalNotification:(UILocalNotification *)notification withResponseInfo:(NSDictionary *)responseInfo completionHandler:(void (^)())completionHandler {

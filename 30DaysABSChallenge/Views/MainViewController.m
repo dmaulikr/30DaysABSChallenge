@@ -30,6 +30,7 @@ NSString *const THVShowChallengeAttempDetailsSegueId = @"showChallengeAttemptDet
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+	[[NSNotificationCenter defaultCenter] addObserver:self.tableView selector:@selector(reloadData) name:THVDidReceiveLocalNotifNotificationName object:nil];
 	[self setupPlaceholderLabel];
 }
 
